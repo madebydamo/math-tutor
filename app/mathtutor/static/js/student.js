@@ -589,7 +589,7 @@ function RankPage() {
   return html`<h1>Dienstgrade</h1><p class="muted">Du startest als Rekrut. Für jede Beförderung brauchst du XP <b>und</b> echtes Können – XP allein reichen nicht.</p>
     <div class="ladder">${r.ranks.slice().reverse().map((x, i) => { const idx = r.ranks.length - 1 - i; return html`
       <div class=${`step ${idx === r.index ? 'cur' : ''} ${idx > r.index ? 'locked' : ''}`}>
-        ${x.badge ? html`<img src=${x.badge} alt="" />` : html`<div class="nob"></div>`}
+        <span class="ladder-fig"><${Avatar} rankId=${x.id} size=${84} cls=${idx > r.index ? 'locked-fig' : ''} />${x.badge ? html`<img src=${x.badge} alt="" />` : html`<div class="nob"></div>`}</span>
         <div><b>${x.name}</b> <span class="muted small">(${x.abbr})</span>
           ${idx > 0 && html`<ul class="checks" style="color:var(--fg)">${x.checks.map((c) => html`<li><span class=${`ck ${c.ok ? 'ok' : ''}`} style=${c.ok ? '' : 'background:var(--muted-bg)'}>${c.ok ? '✓' : ''}</span>${c.text}</li>`)}</ul>`}</div>
         <span>${idx === r.index ? html`<span class="tag acc">aktuell</span>` : idx < r.index ? '✅' : '🔒'}</span></div>`; })}</div>`;
