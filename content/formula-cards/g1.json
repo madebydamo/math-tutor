@@ -1,0 +1,816 @@
+[
+  {
+    "id": "g1-brueche-addieren",
+    "chapter": "g1",
+    "skills": [
+      "g-brueche"
+    ],
+    "topic": "Bruchrechnen",
+    "topic_order": 1,
+    "name": "Brüche addieren und subtrahieren",
+    "formula": "$$\\frac ab\\pm\\frac cd=\\frac{a\\cdot d\\pm b\\cdot c}{b\\cdot d}$$",
+    "symbols": [
+      {
+        "sym": "$a,\\ c$",
+        "desc": "Zähler (Zahlen oder Terme)"
+      },
+      {
+        "sym": "$b,\\ d$",
+        "desc": "Nenner (Zahlen oder Terme), $\\neq0$"
+      }
+    ],
+    "explain": "Zuerst auf einen gemeinsamen Nenner bringen (am besten den kleinsten, das kgV), dann nur die Zähler addieren.",
+    "example": "$\\frac23+\\frac34=\\frac{8}{12}+\\frac{9}{12}=\\frac{17}{12}$",
+    "pitfall": "Zähler und Nenner einzeln addieren: $\\frac12+\\frac13\\neq\\frac25$.",
+    "drill": [
+      {
+        "prompt": "$\\frac23+\\frac34=\\;?$",
+        "answer": {
+          "type": "number",
+          "value": "17/12"
+        }
+      },
+      {
+        "prompt": "$\\frac56-\\frac14=\\;?$",
+        "answer": {
+          "type": "number",
+          "value": "7/12"
+        }
+      },
+      {
+        "prompt": "$2-\\frac38=\\;?$",
+        "answer": {
+          "type": "number",
+          "value": "13/8"
+        }
+      }
+    ]
+  },
+  {
+    "id": "g1-brueche-mult-div",
+    "chapter": "g1",
+    "skills": [
+      "g-brueche"
+    ],
+    "topic": "Bruchrechnen",
+    "topic_order": 1,
+    "name": "Brüche multiplizieren und dividieren",
+    "formula": "$$\\frac ab\\cdot\\frac cd=\\frac{a\\,c}{b\\,d}\\qquad \\frac ab:\\frac cd=\\frac ab\\cdot\\frac dc$$",
+    "symbols": [
+      {
+        "sym": "$a,\\ c$",
+        "desc": "Zähler (Zahlen oder Terme)"
+      },
+      {
+        "sym": "$b,\\ d$",
+        "desc": "Nenner, $\\neq0$; beim Dividieren auch $c\\neq0$"
+      },
+      {
+        "sym": "$\\frac dc$",
+        "desc": "Kehrwert von $\\frac cd$"
+      }
+    ],
+    "explain": "Multiplizieren: Zähler mal Zähler, Nenner mal Nenner (vorher kürzen!). Dividieren: mit dem Kehrwert multiplizieren.",
+    "example": "$\\frac34:\\frac98=\\frac34\\cdot\\frac89=\\frac{24}{36}=\\frac23$",
+    "pitfall": "Beim Dividieren den falschen Bruch umkehren.",
+    "drill": [
+      {
+        "prompt": "$\\frac25\\cdot\\frac{15}{4}=\\;?$",
+        "answer": {
+          "type": "number",
+          "value": "3/2"
+        }
+      },
+      {
+        "prompt": "$\\frac34:\\frac98=\\;?$",
+        "answer": {
+          "type": "number",
+          "value": "2/3"
+        }
+      },
+      {
+        "prompt": "Doppelbruch: $\\dfrac{\\;\\frac12\\;}{\\frac35}=\\;?$",
+        "answer": {
+          "type": "number",
+          "value": "5/6"
+        }
+      }
+    ]
+  },
+  {
+    "id": "g1-kuerzen",
+    "chapter": "g1",
+    "skills": [
+      "g-brueche",
+      "g-terme"
+    ],
+    "topic": "Bruchrechnen",
+    "topic_order": 1,
+    "name": "Kürzen von Bruchtermen",
+    "formula": "$$\\frac{a\\cdot c}{b\\cdot c}=\\frac ab\\quad(c\\neq0)$$",
+    "symbols": [
+      {
+        "sym": "$a,\\ b$",
+        "desc": "restlicher Zähler bzw. Nenner (Zahlen oder Terme), $b\\neq0$"
+      },
+      {
+        "sym": "$c$",
+        "desc": "gemeinsamer Faktor in Zähler und Nenner, $c\\neq0$"
+      }
+    ],
+    "explain": "Kürzen darf man nur gemeinsame Faktoren. Summen zuerst faktorisieren (ausklammern, binomische Formeln), dann kürzen.",
+    "example": "$\\frac{x^2-9}{2x+6}=\\frac{(x+3)(x-3)}{2(x+3)}=\\frac{x-3}{2}$",
+    "pitfall": "Aus Summen kürzen: $\\frac{x+3}{3}\\neq x$.",
+    "drill": [
+      {
+        "prompt": "$\\dfrac{36}{84}=\\dfrac{3}{n}$, $n=\\;?$",
+        "answer": {
+          "type": "number",
+          "value": "7"
+        }
+      },
+      {
+        "prompt": "Kürze vollständig: $\\dfrac{4x^2-8x}{4x}=\\;?$",
+        "answer": {
+          "type": "expr",
+          "value": "x-2"
+        }
+      },
+      {
+        "prompt": "Kürze vollständig: $\\dfrac{x^2-9}{2x+6}=\\;?$",
+        "answer": {
+          "type": "expr",
+          "value": "(x-3)/2"
+        }
+      }
+    ]
+  },
+  {
+    "id": "g1-potenzen-gleiche-basis",
+    "chapter": "g1",
+    "skills": [
+      "g-potenzen"
+    ],
+    "topic": "Potenzen",
+    "topic_order": 2,
+    "name": "Potenzgesetze: gleiche Basis",
+    "formula": "$$a^m\\cdot a^n=a^{m+n}\\qquad \\frac{a^m}{a^n}=a^{m-n}$$",
+    "symbols": [
+      {
+        "sym": "$a$",
+        "desc": "Basis (Zahl oder Variable), bei Division $a\\neq0$"
+      },
+      {
+        "sym": "$m,\\ n$",
+        "desc": "Exponenten (Hochzahlen), beliebige reelle Zahlen"
+      }
+    ],
+    "explain": "Bei gleicher Basis werden die Exponenten addiert (Multiplikation) bzw. subtrahiert (Division).",
+    "example": "$x^5\\cdot x^3=x^8$, $\\;\\frac{a^7}{a^{-2}}=a^{9}$",
+    "pitfall": "Exponenten multiplizieren statt addieren: $x^5\\cdot x^3\\neq x^{15}$.",
+    "drill": [
+      {
+        "prompt": "$x^5\\cdot x^3=x^n$, $n=\\;?$",
+        "answer": {
+          "type": "number",
+          "value": "8"
+        }
+      },
+      {
+        "prompt": "$\\dfrac{a^7}{a^{-2}}=a^n$, $n=\\;?$",
+        "answer": {
+          "type": "number",
+          "value": "9"
+        }
+      },
+      {
+        "prompt": "$2^{10}\\cdot2^{-7}=\\;?$",
+        "answer": {
+          "type": "number",
+          "value": "8"
+        }
+      }
+    ]
+  },
+  {
+    "id": "g1-potenz-von-potenz",
+    "chapter": "g1",
+    "skills": [
+      "g-potenzen"
+    ],
+    "topic": "Potenzen",
+    "topic_order": 2,
+    "name": "Potenz einer Potenz, Produkt, Quotient",
+    "formula": "$$(a^m)^n=a^{m\\cdot n}\\qquad (a\\,b)^n=a^n\\,b^n\\qquad \\Big(\\frac ab\\Big)^n=\\frac{a^n}{b^n}$$",
+    "symbols": [
+      {
+        "sym": "$a,\\ b$",
+        "desc": "Basen (Zahlen oder Variablen), $b\\neq0$ im Bruch"
+      },
+      {
+        "sym": "$m,\\ n$",
+        "desc": "Exponenten (Zahlen)"
+      }
+    ],
+    "explain": "Potenziert man eine Potenz, werden die Exponenten multipliziert. Bei Produkten und Quotienten wird jeder Faktor potenziert.",
+    "example": "$(2x^3)^2=4x^6$",
+    "pitfall": "$(a+b)^2\\neq a^2+b^2$ – das Gesetz gilt nur für Produkte, nicht für Summen.",
+    "drill": [
+      {
+        "prompt": "$(x^3)^4=x^n$, $n=\\;?$",
+        "answer": {
+          "type": "number",
+          "value": "12"
+        }
+      },
+      {
+        "prompt": "$(a^2b)^3=a^m\\,b^n$. Gib $(m;n)$ an.",
+        "answer": {
+          "type": "tuple",
+          "value": [
+            "6",
+            "3"
+          ],
+          "names": [
+            "m",
+            "n"
+          ]
+        }
+      },
+      {
+        "prompt": "$\\left(\\frac23\\right)^3=\\;?$",
+        "answer": {
+          "type": "number",
+          "value": "8/27"
+        }
+      }
+    ]
+  },
+  {
+    "id": "g1-negative-exponenten",
+    "chapter": "g1",
+    "skills": [
+      "g-potenzen"
+    ],
+    "topic": "Potenzen",
+    "topic_order": 2,
+    "name": "Null und negative Exponenten",
+    "formula": "$$a^0=1\\qquad a^{-n}=\\frac1{a^n}\\qquad \\Big(\\frac ab\\Big)^{-n}=\\Big(\\frac ba\\Big)^{n}\\quad(a,b\\neq0)$$",
+    "symbols": [
+      {
+        "sym": "$a,\\ b$",
+        "desc": "Basen, $\\neq0$"
+      },
+      {
+        "sym": "$n$",
+        "desc": "Exponent (Zahl)"
+      }
+    ],
+    "explain": "Ein negativer Exponent bedeutet Kehrwert. So schreibt man Brüche als Potenzen, z.B. für das Ableiten.",
+    "example": "$2^{-3}=\\frac18$, $\\;\\frac{5}{x^2}=5x^{-2}$",
+    "pitfall": "$2^{-3}$ ist nicht negativ: $2^{-3}\\neq-8$.",
+    "drill": [
+      {
+        "prompt": "$2^{-3}=\\;?$",
+        "answer": {
+          "type": "number",
+          "value": "1/8"
+        }
+      },
+      {
+        "prompt": "$\\left(\\frac23\\right)^{-2}=\\;?$",
+        "answer": {
+          "type": "number",
+          "value": "9/4"
+        }
+      },
+      {
+        "prompt": "$\\dfrac{1}{x^4}=x^n$, $n=\\;?$",
+        "answer": {
+          "type": "number",
+          "value": "-4"
+        }
+      },
+      {
+        "prompt": "$7^0+7^{-1}\\cdot 7=\\;?$",
+        "answer": {
+          "type": "number",
+          "value": "2"
+        }
+      }
+    ]
+  },
+  {
+    "id": "g1-wurzel-als-potenz",
+    "chapter": "g1",
+    "skills": [
+      "g-wurzeln",
+      "g-potenzen"
+    ],
+    "topic": "Wurzeln",
+    "topic_order": 3,
+    "name": "Wurzel als Potenz",
+    "formula": "$$\\sqrt[n]{a^m}=a^{\\frac mn}\\qquad \\sqrt a=a^{\\frac12}\\qquad \\frac{1}{\\sqrt[n]{a}}=a^{-\\frac1n}$$",
+    "symbols": [
+      {
+        "sym": "$a$",
+        "desc": "Radikand (Zahl unter der Wurzel), $a\\ge0$; im Nenner $a>0$"
+      },
+      {
+        "sym": "$n$",
+        "desc": "Wurzelexponent, natürliche Zahl $\\ge2$ (bei $\\sqrt{\\ }$ ist $n=2$)"
+      },
+      {
+        "sym": "$m$",
+        "desc": "Exponent des Radikanden (Zahl)"
+      }
+    ],
+    "explain": "Wurzeln schreibt man als Potenzen mit gebrochenem Exponenten. Dann gelten alle Potenzgesetze.",
+    "example": "$8^{\\frac23}=\\big(\\sqrt[3]8\\big)^2=2^2=4$",
+    "pitfall": "Zähler und Nenner im Exponenten vertauschen: $\\sqrt[3]{x^2}=x^{2/3}$, nicht $x^{3/2}$.",
+    "drill": [
+      {
+        "prompt": "$8^{\\frac23}=\\;?$",
+        "answer": {
+          "type": "number",
+          "value": "4"
+        }
+      },
+      {
+        "prompt": "$16^{-\\frac14}=\\;?$",
+        "answer": {
+          "type": "number",
+          "value": "1/2"
+        }
+      },
+      {
+        "prompt": "$\\sqrt x\\cdot\\sqrt[3]{x}=x^n$, $n=\\;?$",
+        "answer": {
+          "type": "number",
+          "value": "5/6"
+        }
+      },
+      {
+        "prompt": "$\\dfrac{1}{\\sqrt{x^3}}=x^n$, $n=\\;?$",
+        "answer": {
+          "type": "number",
+          "value": "-3/2"
+        }
+      }
+    ]
+  },
+  {
+    "id": "g1-wurzelgesetze",
+    "chapter": "g1",
+    "skills": [
+      "g-wurzeln"
+    ],
+    "topic": "Wurzeln",
+    "topic_order": 3,
+    "name": "Wurzelgesetze",
+    "formula": "$$\\sqrt{a\\,b}=\\sqrt a\\cdot\\sqrt b\\qquad \\sqrt{\\frac ab}=\\frac{\\sqrt a}{\\sqrt b}\\qquad \\sqrt{a^2}=|a|$$",
+    "symbols": [
+      {
+        "sym": "$a,\\ b$",
+        "desc": "Radikanden, Zahlen $\\ge0$; im Nenner $b>0$ (bei $\\sqrt{a^2}$ ist $a$ beliebig)"
+      },
+      {
+        "sym": "$|a|$",
+        "desc": "Betrag von $a$ (Zahl ohne Vorzeichen), $\\ge0$"
+      }
+    ],
+    "explain": "Wurzeln aus Produkten und Quotienten darf man aufteilen. Teilweise Wurzelziehen: Quadratzahl als Faktor abspalten.",
+    "example": "$\\sqrt{50}=\\sqrt{25\\cdot2}=5\\sqrt2$",
+    "pitfall": "Bei Summen gilt das nicht: $\\sqrt{9+16}=5\\neq3+4$.",
+    "drill": [
+      {
+        "prompt": "$\\sqrt{12}\\cdot\\sqrt3=\\;?$",
+        "answer": {
+          "type": "number",
+          "value": "6"
+        }
+      },
+      {
+        "prompt": "$\\sqrt{50}=k\\sqrt2$, $k=\\;?$",
+        "answer": {
+          "type": "number",
+          "value": "5"
+        }
+      },
+      {
+        "prompt": "$\\sqrt{9+16}=\\;?$",
+        "answer": {
+          "type": "number",
+          "value": "5"
+        }
+      },
+      {
+        "prompt": "$\\sqrt{\\dfrac{49}{4}}=\\;?$",
+        "answer": {
+          "type": "number",
+          "value": "7/2"
+        }
+      }
+    ]
+  },
+  {
+    "id": "g1-ausmultiplizieren",
+    "chapter": "g1",
+    "skills": [
+      "g-terme"
+    ],
+    "topic": "Terme",
+    "topic_order": 4,
+    "name": "Ausmultiplizieren",
+    "formula": "$$a(b+c)=ab+ac\\qquad (a+b)(c+d)=ac+ad+bc+bd$$",
+    "symbols": [
+      {
+        "sym": "$a,\\ b,\\ c,\\ d$",
+        "desc": "Zahlen, Variablen oder Terme"
+      }
+    ],
+    "explain": "Jeder Summand der ersten Klammer wird mit jedem Summanden der zweiten multipliziert. Ein Minus vor der Klammer dreht alle Vorzeichen.",
+    "example": "$(x+3)(x-5)=x^2-5x+3x-15=x^2-2x-15$",
+    "pitfall": "Minus vor der Klammer: $-(2x-3)=-2x+3$, nicht $-2x-3$.",
+    "drill": [
+      {
+        "prompt": "$(x+3)(x-5)=x^2+px+q$. Gib $(p;q)$ an.",
+        "answer": {
+          "type": "tuple",
+          "value": [
+            "-2",
+            "-15"
+          ],
+          "names": [
+            "p",
+            "q"
+          ]
+        }
+      },
+      {
+        "prompt": "$3x(2x-1)-2(x-4)=ax^2+bx+c$. Gib $(a;b;c)$ an.",
+        "answer": {
+          "type": "tuple",
+          "value": [
+            "6",
+            "-5",
+            "8"
+          ],
+          "names": [
+            "a",
+            "b",
+            "c"
+          ]
+        }
+      },
+      {
+        "prompt": "Multipliziere aus: $(2x-1)(x+4)=\\;?$",
+        "answer": {
+          "type": "expr",
+          "value": "2*x**2+7*x-4"
+        }
+      }
+    ]
+  },
+  {
+    "id": "g1-ausklammern",
+    "chapter": "g1",
+    "skills": [
+      "g-terme"
+    ],
+    "topic": "Terme",
+    "topic_order": 4,
+    "name": "Ausklammern (Faktorisieren)",
+    "formula": "$$ab+ac=a(b+c)$$",
+    "symbols": [
+      {
+        "sym": "$a$",
+        "desc": "gemeinsamer Faktor (Zahl, Variable oder Term)"
+      },
+      {
+        "sym": "$b,\\ c$",
+        "desc": "die übrigen Faktoren der Summanden"
+      }
+    ],
+    "explain": "Den grössten gemeinsamen Faktor (Zahl und Variable mit kleinstem Exponenten) vor die Klammer ziehen. Wichtig zum Lösen von Gleichungen und Kürzen.",
+    "example": "$6x^3-9x^2=3x^2(2x-3)$",
+    "pitfall": "Beim Ausklammern eine $1$ vergessen: $x^2+x=x(x+1)$, nicht $x\\cdot x$.",
+    "drill": [
+      {
+        "prompt": "$6x^2-9x=3x\\,(ax+b)$. Gib $(a;b)$ an.",
+        "answer": {
+          "type": "tuple",
+          "value": [
+            "2",
+            "-3"
+          ],
+          "names": [
+            "a",
+            "b"
+          ]
+        }
+      },
+      {
+        "prompt": "$4x^3-8x^2=4x^2\\cdot(\\;?\\;)$",
+        "answer": {
+          "type": "expr",
+          "value": "x-2"
+        }
+      },
+      {
+        "prompt": "$5x^2+x=x\\cdot(\\;?\\;)$",
+        "answer": {
+          "type": "expr",
+          "value": "5*x+1"
+        }
+      }
+    ]
+  },
+  {
+    "id": "g1-binomische-formeln",
+    "chapter": "g1",
+    "skills": [
+      "g-binome",
+      "g-terme"
+    ],
+    "topic": "Terme",
+    "topic_order": 4,
+    "name": "Binomische Formeln",
+    "formula": "$$(a+b)^2=a^2+2ab+b^2\\qquad (a-b)^2=a^2-2ab+b^2\\qquad (a+b)(a-b)=a^2-b^2$$",
+    "symbols": [
+      {
+        "sym": "$a,\\ b$",
+        "desc": "beliebige Zahlen, Variablen oder Terme"
+      },
+      {
+        "sym": "$2ab$",
+        "desc": "gemischtes Glied"
+      }
+    ],
+    "explain": "Abkürzung beim Ausmultiplizieren. Das gemischte Glied $2ab$ nicht vergessen.",
+    "example": "$(3x-2)^2=9x^2-12x+4$",
+    "pitfall": "$(a+b)^2=a^2+b^2$ – das gemischte Glied $2ab$ fehlt.",
+    "drill": [
+      {
+        "prompt": "$(x+4)^2=x^2+bx+c$. Gib $(b;c)$ an.",
+        "answer": {
+          "type": "tuple",
+          "value": [
+            "8",
+            "16"
+          ],
+          "names": [
+            "b",
+            "c"
+          ]
+        }
+      },
+      {
+        "prompt": "$(3a-2)^2=p\\,a^2+q\\,a+r$. Gib $(p;q;r)$ an.",
+        "answer": {
+          "type": "tuple",
+          "value": [
+            "9",
+            "-12",
+            "4"
+          ],
+          "names": [
+            "p",
+            "q",
+            "r"
+          ]
+        }
+      },
+      {
+        "prompt": "Kopfrechnen mit der 3. binomischen Formel: $51\\cdot49=\\;?$",
+        "answer": {
+          "type": "number",
+          "value": "2499"
+        }
+      }
+    ]
+  },
+  {
+    "id": "g1-binome-rueckwaerts",
+    "chapter": "g1",
+    "skills": [
+      "g-binome",
+      "g-terme"
+    ],
+    "topic": "Terme",
+    "topic_order": 4,
+    "name": "Binomische Formeln rückwärts, quadratische Ergänzung",
+    "formula": "$$x^2\\pm2bx+b^2=(x\\pm b)^2\\qquad a^2-b^2=(a+b)(a-b)\\qquad x^2+px=\\Big(x+\\frac p2\\Big)^2-\\Big(\\frac p2\\Big)^2$$",
+    "symbols": [
+      {
+        "sym": "$x$",
+        "desc": "Variable"
+      },
+      {
+        "sym": "$a,\\ b$",
+        "desc": "Zahlen oder Terme"
+      },
+      {
+        "sym": "$p$",
+        "desc": "Koeffizient (Zahl) vor $x$"
+      },
+      {
+        "sym": "$\\left(\\frac p2\\right)^2$",
+        "desc": "quadratische Ergänzung (Zahl)"
+      }
+    ],
+    "explain": "Erkennt man eine binomische Formel, kann man faktorisieren. Bei der quadratischen Ergänzung addiert man $\\left(\\frac p2\\right)^2$.",
+    "example": "$x^2-10x+25=(x-5)^2$, $\\;4x^2-9=(2x+3)(2x-3)$",
+    "pitfall": "$a^2+b^2$ lässt sich (reell) nicht faktorisieren.",
+    "drill": [
+      {
+        "prompt": "$x^2+6x+9=(x+k)^2$, $k=\\;?$",
+        "answer": {
+          "type": "number",
+          "value": "3"
+        }
+      },
+      {
+        "prompt": "$9x^2-25=(3x+m)(3x-m)$ mit $m>0$, $m=\\;?$",
+        "answer": {
+          "type": "number",
+          "value": "5"
+        }
+      },
+      {
+        "prompt": "Quadratische Ergänzung: $x^2+8x+c$ ist ein vollständiges Quadrat für $c=\\;?$",
+        "answer": {
+          "type": "number",
+          "value": "16"
+        }
+      }
+    ]
+  },
+  {
+    "id": "g1-prozent-grundformel",
+    "chapter": "g1",
+    "skills": [
+      "g-prozent"
+    ],
+    "topic": "Prozent",
+    "topic_order": 5,
+    "name": "Prozentrechnen: Grundformel",
+    "formula": "$$P=\\frac{p}{100}\\cdot G\\qquad p=\\frac PG\\cdot100\\qquad G=\\frac{P}{p}\\cdot100$$",
+    "symbols": [
+      {
+        "sym": "$G$",
+        "desc": "Grundwert (das Ganze, entspricht 100 %)"
+      },
+      {
+        "sym": "$P$",
+        "desc": "Prozentwert (der Anteil, gleiche Einheit wie $G$)"
+      },
+      {
+        "sym": "$p$",
+        "desc": "Prozentsatz, Zahl ohne %-Zeichen (z.B. $15$ für 15 %)"
+      }
+    ],
+    "explain": "$G$ Grundwert (100 %), $P$ Prozentwert, $p$ Prozentsatz. Zuerst klären, was 100 % ist.",
+    "example": "15 % von 240: $0.15\\cdot240=36$",
+    "pitfall": "Grundwert und Prozentwert verwechseln.",
+    "drill": [
+      {
+        "prompt": "15 % von 240 sind?",
+        "answer": {
+          "type": "number",
+          "value": "36"
+        }
+      },
+      {
+        "prompt": "18 ist wie viel Prozent von 72?",
+        "answer": {
+          "type": "number",
+          "value": "25",
+          "unit": "%"
+        }
+      },
+      {
+        "prompt": "30 sind 12 % von welchem Grundwert?",
+        "answer": {
+          "type": "number",
+          "value": "250"
+        }
+      }
+    ]
+  },
+  {
+    "id": "g1-prozent-aenderung",
+    "chapter": "g1",
+    "skills": [
+      "g-prozent"
+    ],
+    "topic": "Prozent",
+    "topic_order": 5,
+    "name": "Prozentuale Änderung, Wachstumsfaktor",
+    "formula": "$$G_{\\text{neu}}=G\\cdot\\Big(1\\pm\\frac p{100}\\Big)\\qquad q=1\\pm\\frac p{100}$$",
+    "symbols": [
+      {
+        "sym": "$G$",
+        "desc": "ursprünglicher Wert (Grundwert)"
+      },
+      {
+        "sym": "$G_{\\text{neu}}$",
+        "desc": "Wert nach der Änderung"
+      },
+      {
+        "sym": "$p$",
+        "desc": "Prozentsatz der Änderung, Zahl $\\ge0$"
+      },
+      {
+        "sym": "$q$",
+        "desc": "Wachstumsfaktor (Zahl): $>1$ Zunahme, $<1$ Abnahme"
+      }
+    ],
+    "explain": "Zu- oder Abnahme um $p\\,\\%$ entspricht einer Multiplikation mit dem Faktor $q$. Mehrere Änderungen: Faktoren multiplizieren.",
+    "example": "$+25\\,\\%$: $q=1.25$; $\\;-20\\,\\%$: $q=0.8$",
+    "pitfall": "Zurückrechnen mit dem falschen Faktor: Nach $-20\\,\\%$ ist der alte Wert $\\frac{\\text{neu}}{0.8}$, nicht $\\text{neu}\\cdot1.2$.",
+    "drill": [
+      {
+        "prompt": "Ein Preis von 80 CHF steigt um 25 %. Neuer Preis in CHF?",
+        "answer": {
+          "type": "number",
+          "value": "100"
+        }
+      },
+      {
+        "prompt": "Nach einer Senkung um 20 % kostet ein Artikel 64 CHF. Alter Preis in CHF?",
+        "answer": {
+          "type": "number",
+          "value": "80"
+        }
+      },
+      {
+        "prompt": "Erst +10 %, dann −10 %. Gesamtfaktor $q=\\;?$",
+        "answer": {
+          "type": "number",
+          "value": "0.99"
+        }
+      }
+    ]
+  },
+  {
+    "id": "g1-zinseszins",
+    "chapter": "g1",
+    "skills": [
+      "g-prozent",
+      "g-potenzen"
+    ],
+    "topic": "Prozent",
+    "topic_order": 5,
+    "name": "Zins und Zinseszins",
+    "formula": "$$Z=K_0\\cdot\\frac p{100}\\quad\\text{(1 Jahr)}\\qquad K_n=K_0\\cdot\\Big(1+\\frac p{100}\\Big)^n$$",
+    "symbols": [
+      {
+        "sym": "$K_0$",
+        "desc": "Anfangskapital (z.B. in CHF)"
+      },
+      {
+        "sym": "$K_n$",
+        "desc": "Kapital nach $n$ Jahren (gleiche Einheit)"
+      },
+      {
+        "sym": "$Z$",
+        "desc": "Zins für ein Jahr (gleiche Einheit)"
+      },
+      {
+        "sym": "$p$",
+        "desc": "Zinssatz in % pro Jahr (Zahl, z.B. $2$)"
+      },
+      {
+        "sym": "$n$",
+        "desc": "Anzahl Jahre (Zahl)"
+      }
+    ],
+    "explain": "Beim Zinseszins wird der Zins jedes Jahr mitverzinst: $n$-mal mit dem Faktor $q$ multiplizieren.",
+    "example": "$1000\\cdot1.02^3=1061.21$ CHF",
+    "pitfall": "$n$ Jahre Zinseszins ist nicht $K_0\\cdot\\left(1+n\\cdot\\frac{p}{100}\\right)$.",
+    "drill": [
+      {
+        "prompt": "Zins für 1 Jahr: 5000 CHF zu 1.5 %?",
+        "answer": {
+          "type": "number",
+          "value": "75"
+        }
+      },
+      {
+        "prompt": "1000 CHF zu 2 % Zinseszins. Kapital nach 3 Jahren (CHF)?",
+        "answer": {
+          "type": "number",
+          "value": "1061.21"
+        }
+      },
+      {
+        "prompt": "Welcher Faktor $q$ gehört zu 3.5 % Zins?",
+        "answer": {
+          "type": "number",
+          "value": "1.035"
+        }
+      }
+    ]
+  }
+]

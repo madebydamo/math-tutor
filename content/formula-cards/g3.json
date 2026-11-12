@@ -1,0 +1,718 @@
+[
+  {
+    "id": "g3-pythagoras",
+    "chapter": "g3",
+    "skills": [
+      "g-pythagoras"
+    ],
+    "topic": "Rechtwinkliges Dreieck",
+    "topic_order": 1,
+    "name": "Satz des Pythagoras",
+    "formula": "$$a^2+b^2=c^2\\qquad c=\\sqrt{a^2+b^2},\\quad a=\\sqrt{c^2-b^2}$$",
+    "symbols": [
+      {
+        "sym": "$a,\\ b$",
+        "desc": "Katheten: die beiden Seiten am rechten Winkel (Längen, z.B. in cm)"
+      },
+      {
+        "sym": "$c$",
+        "desc": "Hypotenuse: Seite gegenüber dem rechten Winkel, längste Seite (Länge)"
+      }
+    ],
+    "explain": "Gilt nur im rechtwinkligen Dreieck. $c$ ist die Hypotenuse (gegenüber dem rechten Winkel, längste Seite), $a$ und $b$ sind die Katheten.",
+    "example": "Katheten $6$ und $8$: $c=\\sqrt{36+64}=10$",
+    "pitfall": "Die Hypotenuse falsch zuordnen, oder $\\sqrt{a^2+b^2}=a+b$ rechnen.",
+    "drill": [
+      {
+        "prompt": "Katheten 6 und 8. Hypotenuse?",
+        "answer": {
+          "type": "number",
+          "value": "10"
+        }
+      },
+      {
+        "prompt": "Hypotenuse 13, eine Kathete 5. Andere Kathete?",
+        "answer": {
+          "type": "number",
+          "value": "12"
+        }
+      },
+      {
+        "prompt": "Diagonale eines Quadrats mit Seite 1?",
+        "answer": {
+          "type": "number",
+          "value": "sqrt(2)"
+        }
+      }
+    ]
+  },
+  {
+    "id": "g3-abstand-punkte",
+    "chapter": "g3",
+    "skills": [
+      "g-pythagoras",
+      "g-geraden"
+    ],
+    "topic": "Rechtwinkliges Dreieck",
+    "topic_order": 1,
+    "name": "Abstand zweier Punkte",
+    "formula": "$$d=\\sqrt{(x_2-x_1)^2+(y_2-y_1)^2}\\qquad\\text{Raumdiagonale Quader: } d=\\sqrt{a^2+b^2+c^2}$$",
+    "symbols": [
+      {
+        "sym": "$(x_1\\mid y_1),\\ (x_2\\mid y_2)$",
+        "desc": "Koordinaten der beiden Punkte (Zahlen)"
+      },
+      {
+        "sym": "$d$",
+        "desc": "Abstand der Punkte (Länge $\\ge0$)"
+      },
+      {
+        "sym": "$a,\\ b,\\ c$",
+        "desc": "Kantenlängen des Quaders"
+      }
+    ],
+    "explain": "Pythagoras im Koordinatensystem: $\\Delta x$ und $\\Delta y$ sind die Katheten.",
+    "example": "$A(1\\mid2)$, $B(4\\mid6)$: $d=\\sqrt{3^2+4^2}=5$",
+    "pitfall": "Vorzeichenfehler bei $\\Delta x$ sind egal (wird quadriert) – aber nicht die Differenz mit der Summe verwechseln.",
+    "drill": [
+      {
+        "prompt": "Abstand von $A(1\\mid2)$ und $B(4\\mid6)$?",
+        "answer": {
+          "type": "number",
+          "value": "5"
+        }
+      },
+      {
+        "prompt": "Abstand von $P(-2\\mid1)$ und $Q(3\\mid-11)$?",
+        "answer": {
+          "type": "number",
+          "value": "13"
+        }
+      },
+      {
+        "prompt": "Raumdiagonale eines Würfels mit Kante 2?",
+        "answer": {
+          "type": "number",
+          "value": "2*sqrt(3)"
+        }
+      }
+    ]
+  },
+  {
+    "id": "g3-sin-cos-tan",
+    "chapter": "g3",
+    "skills": [
+      "g-trig-dreieck"
+    ],
+    "topic": "Rechtwinkliges Dreieck",
+    "topic_order": 1,
+    "name": "sin, cos, tan im rechtwinkligen Dreieck",
+    "formula": "$$\\sin\\alpha=\\frac{\\text{Gegenkathete}}{\\text{Hypotenuse}}\\qquad \\cos\\alpha=\\frac{\\text{Ankathete}}{\\text{Hypotenuse}}\\qquad \\tan\\alpha=\\frac{\\text{Gegenkathete}}{\\text{Ankathete}}$$",
+    "symbols": [
+      {
+        "sym": "$\\alpha$",
+        "desc": "spitzer Winkel im rechtwinkligen Dreieck (meist in Grad)"
+      },
+      {
+        "sym": "Gegenkathete",
+        "desc": "Kathete, die dem Winkel $\\alpha$ gegenüberliegt (Länge)"
+      },
+      {
+        "sym": "Ankathete",
+        "desc": "Kathete, die am Winkel $\\alpha$ anliegt (Länge)"
+      },
+      {
+        "sym": "Hypotenuse",
+        "desc": "Seite gegenüber dem rechten Winkel (Länge)"
+      }
+    ],
+    "explain": "Winkel aus Seiten: Umkehrfunktion $\\sin^{-1}$, $\\cos^{-1}$, $\\tan^{-1}$. Rechner im Grad-Modus, wenn der Winkel in Grad gefragt ist.",
+    "example": "Gegenkathete $3$, Hypotenuse $6$: $\\sin\\alpha=0.5\\Rightarrow\\alpha=30^\\circ$",
+    "pitfall": "Gegen- und Ankathete verwechseln (sie hängen vom Winkel ab!) oder den Rechner im Bogenmass lassen.",
+    "drill": [
+      {
+        "prompt": "Gegenkathete 3, Hypotenuse 6. $\\alpha$ in Grad?",
+        "answer": {
+          "type": "number",
+          "value": "30",
+          "unit": "°"
+        }
+      },
+      {
+        "prompt": "Ankathete 4, $\\alpha=60^\\circ$. Hypotenuse?",
+        "answer": {
+          "type": "number",
+          "value": "8"
+        }
+      },
+      {
+        "prompt": "Gegenkathete 5, Ankathete 12. $\\alpha$ in Grad?",
+        "answer": {
+          "type": "number",
+          "value": "22.62",
+          "unit": "°"
+        }
+      }
+    ]
+  },
+  {
+    "id": "g3-spezielle-werte",
+    "chapter": "g3",
+    "skills": [
+      "g-trig-dreieck"
+    ],
+    "topic": "Rechtwinkliges Dreieck",
+    "topic_order": 1,
+    "name": "Spezielle Werte von sin, cos, tan",
+    "formula": "$$\\begin{array}{c|ccccc}\\alpha&0^\\circ&30^\\circ&45^\\circ&60^\\circ&90^\\circ\\\\\\hline\\sin\\alpha&0&\\frac12&\\frac{\\sqrt2}2&\\frac{\\sqrt3}2&1\\\\\\cos\\alpha&1&\\frac{\\sqrt3}2&\\frac{\\sqrt2}2&\\frac12&0\\\\\\tan\\alpha&0&\\frac{\\sqrt3}3&1&\\sqrt3&-\\end{array}$$",
+    "symbols": [
+      {
+        "sym": "$\\alpha$",
+        "desc": "Winkel in Grad"
+      },
+      {
+        "sym": "$\\sin\\alpha,\\ \\cos\\alpha,\\ \\tan\\alpha$",
+        "desc": "exakte Werte (Zahlen ohne Einheit)"
+      }
+    ],
+    "explain": "Diese Werte kommen in Prüfungen ohne Rechner vor. Merkhilfe: $\\sin$ = $\\frac{\\sqrt0}2,\\frac{\\sqrt1}2,\\frac{\\sqrt2}2,\\frac{\\sqrt3}2,\\frac{\\sqrt4}2$; $\\cos$ rückwärts.",
+    "example": "$\\sin60^\\circ=\\frac{\\sqrt3}{2}\\approx0.866$",
+    "pitfall": "$\\sin30^\\circ$ und $\\cos30^\\circ$ vertauschen.",
+    "drill": [
+      {
+        "prompt": "$\\sin60^\\circ=\\;?$",
+        "answer": {
+          "type": "number",
+          "value": "sqrt(3)/2"
+        }
+      },
+      {
+        "prompt": "$\\cos45^\\circ=\\;?$",
+        "answer": {
+          "type": "number",
+          "value": "sqrt(2)/2"
+        }
+      },
+      {
+        "prompt": "$\\tan30^\\circ=\\;?$",
+        "answer": {
+          "type": "number",
+          "value": "sqrt(3)/3"
+        }
+      },
+      {
+        "prompt": "$\\cos60^\\circ=\\;?$",
+        "answer": {
+          "type": "number",
+          "value": "1/2"
+        }
+      }
+    ]
+  },
+  {
+    "id": "g3-trig-pythagoras",
+    "chapter": "g3",
+    "skills": [
+      "g-trig-dreieck",
+      "g-pythagoras"
+    ],
+    "topic": "Rechtwinkliges Dreieck",
+    "topic_order": 1,
+    "name": "Trigonometrischer Pythagoras",
+    "formula": "$$\\sin^2\\alpha+\\cos^2\\alpha=1\\qquad \\tan\\alpha=\\frac{\\sin\\alpha}{\\cos\\alpha}$$",
+    "symbols": [
+      {
+        "sym": "$\\alpha$",
+        "desc": "beliebiger Winkel (Grad oder Bogenmass)"
+      },
+      {
+        "sym": "$\\sin^2\\alpha$",
+        "desc": "$(\\sin\\alpha)^2$, Zahl"
+      },
+      {
+        "sym": "$\\tan\\alpha$",
+        "desc": "Zahl, definiert für $\\cos\\alpha\\neq0$"
+      }
+    ],
+    "explain": "Kennt man $\\sin\\alpha$, erhält man $\\cos\\alpha$ ohne den Winkel zu berechnen (für spitze Winkel positiv).",
+    "example": "$\\sin\\alpha=0.6\\Rightarrow\\cos\\alpha=\\sqrt{1-0.36}=0.8$, $\\tan\\alpha=0.75$",
+    "pitfall": "$\\sin^2\\alpha$ bedeutet $(\\sin\\alpha)^2$, nicht $\\sin(\\alpha^2)$.",
+    "drill": [
+      {
+        "prompt": "$\\sin\\alpha=0.6$, $\\alpha$ spitz. $\\cos\\alpha=\\;?$",
+        "answer": {
+          "type": "number",
+          "value": "0.8"
+        }
+      },
+      {
+        "prompt": "$\\sin\\alpha=0.6$, $\\alpha$ spitz. $\\tan\\alpha=\\;?$",
+        "answer": {
+          "type": "number",
+          "value": "0.75"
+        }
+      },
+      {
+        "prompt": "$\\sin^2(17^\\circ)+\\cos^2(17^\\circ)=\\;?$",
+        "answer": {
+          "type": "number",
+          "value": "1"
+        }
+      }
+    ]
+  },
+  {
+    "id": "g3-bogenmass",
+    "chapter": "g3",
+    "skills": [
+      "g-bogenmass"
+    ],
+    "topic": "Bogenmass",
+    "topic_order": 2,
+    "name": "Bogenmass und Grad",
+    "formula": "$$x=\\frac{\\pi}{180^\\circ}\\cdot\\alpha\\qquad \\alpha=\\frac{180^\\circ}{\\pi}\\cdot x\\qquad 360^\\circ=2\\pi,\\ \\ 180^\\circ=\\pi$$",
+    "symbols": [
+      {
+        "sym": "$\\alpha$",
+        "desc": "Winkel in Grad (°)"
+      },
+      {
+        "sym": "$x$",
+        "desc": "derselbe Winkel im Bogenmass (rad, reine Zahl)"
+      },
+      {
+        "sym": "$\\pi$",
+        "desc": "Kreiszahl, Konstante $\\approx3.14159$"
+      }
+    ],
+    "explain": "Das Bogenmass ist die Bogenlänge am Einheitskreis. $1\\ \\text{rad}\\approx57.3^\\circ$. Rechner: Winkelmodus beachten (DEG/RAD).",
+    "example": "$90^\\circ=\\frac\\pi2$, $\\;\\frac{2\\pi}{3}=120^\\circ$",
+    "pitfall": "Rechner im falschen Modus – häufigster Fehler überhaupt.",
+    "drill": [
+      {
+        "prompt": "$270^\\circ$ im Bogenmass?",
+        "answer": {
+          "type": "number",
+          "value": "3*pi/2"
+        }
+      },
+      {
+        "prompt": "$\\dfrac{2\\pi}{3}$ in Grad?",
+        "answer": {
+          "type": "number",
+          "value": "120",
+          "unit": "°"
+        }
+      },
+      {
+        "prompt": "$1\\ \\text{rad}$ in Grad?",
+        "answer": {
+          "type": "number",
+          "value": "57.296",
+          "unit": "°"
+        }
+      },
+      {
+        "prompt": "$45^\\circ$ im Bogenmass?",
+        "answer": {
+          "type": "number",
+          "value": "pi/4"
+        }
+      }
+    ]
+  },
+  {
+    "id": "g3-bogenlaenge",
+    "chapter": "g3",
+    "skills": [
+      "g-bogenmass"
+    ],
+    "topic": "Bogenmass",
+    "topic_order": 2,
+    "name": "Bogenlänge und Kreissektor",
+    "formula": "$$b=r\\cdot x\\qquad A_{\\text{Sektor}}=\\tfrac12\\,r^2\\,x\\qquad (x\\text{ im Bogenmass})$$",
+    "symbols": [
+      {
+        "sym": "$r$",
+        "desc": "Radius des Kreises (Länge)"
+      },
+      {
+        "sym": "$x$",
+        "desc": "Mittelpunktswinkel im Bogenmass (rad)"
+      },
+      {
+        "sym": "$b$",
+        "desc": "Bogenlänge (Länge, gleiche Einheit wie $r$)"
+      },
+      {
+        "sym": "$A_{\\text{Sektor}}$",
+        "desc": "Fläche des Kreissektors (Flächeneinheit, z.B. cm²)"
+      }
+    ],
+    "explain": "Im Bogenmass werden Kreisformeln besonders einfach. In Grad: $b=2\\pi r\\cdot\\frac{\\alpha}{360^\\circ}$.",
+    "example": "$r=2$, $\\alpha=90^\\circ=\\frac\\pi2$: $b=2\\cdot\\frac\\pi2=\\pi$",
+    "pitfall": "Den Winkel in Grad in die Formel $b=r\\cdot x$ einsetzen.",
+    "drill": [
+      {
+        "prompt": "$r=5$, $x=2$ rad. Bogenlänge $b$?",
+        "answer": {
+          "type": "number",
+          "value": "10"
+        }
+      },
+      {
+        "prompt": "$r=2$, $\\alpha=90^\\circ$. Bogenlänge $b$?",
+        "answer": {
+          "type": "number",
+          "value": "pi"
+        }
+      },
+      {
+        "prompt": "$r=4$, $x=\\frac\\pi4$. Sektorfläche?",
+        "answer": {
+          "type": "number",
+          "value": "2*pi"
+        }
+      }
+    ]
+  },
+  {
+    "id": "g3-geradengleichung",
+    "chapter": "g3",
+    "skills": [
+      "g-geraden"
+    ],
+    "topic": "Geraden",
+    "topic_order": 3,
+    "name": "Gerade: Steigung und y-Achsenabschnitt",
+    "formula": "$$y=m\\,x+q\\qquad m=\\frac{\\Delta y}{\\Delta x}=\\frac{y_2-y_1}{x_2-x_1}$$",
+    "symbols": [
+      {
+        "sym": "$x,\\ y$",
+        "desc": "Koordinaten eines Punkts auf der Geraden"
+      },
+      {
+        "sym": "$m$",
+        "desc": "Steigung (Zahl)"
+      },
+      {
+        "sym": "$q$",
+        "desc": "$y$-Achsenabschnitt (Zahl): Schnittpunkt $(0\\mid q)$"
+      },
+      {
+        "sym": "$(x_1\\mid y_1),\\ (x_2\\mid y_2)$",
+        "desc": "zwei Punkte auf der Geraden"
+      },
+      {
+        "sym": "$\\Delta x,\\ \\Delta y$",
+        "desc": "Differenzen der $x$- bzw. $y$-Koordinaten"
+      }
+    ],
+    "explain": "$m$ ist die Steigung (pro 1 nach rechts geht es $m$ hinauf), $q$ der $y$-Achsenabschnitt. Nullstelle: $x=-\\frac qm$.",
+    "example": "$A(1\\mid3)$, $B(4\\mid9)$: $m=\\frac{6}{3}=2$, $q=3-2\\cdot1=1$, $y=2x+1$",
+    "pitfall": "$\\Delta x$ und $\\Delta y$ vertauschen, oder die Punkte in verschiedener Reihenfolge subtrahieren.",
+    "drill": [
+      {
+        "prompt": "Gerade durch $A(1\\mid3)$ und $B(4\\mid9)$: Gib $(m;q)$ an.",
+        "answer": {
+          "type": "tuple",
+          "value": [
+            "2",
+            "1"
+          ],
+          "names": [
+            "m",
+            "q"
+          ]
+        }
+      },
+      {
+        "prompt": "Nullstelle von $y=3x-6$?",
+        "answer": {
+          "type": "number",
+          "value": "2"
+        }
+      },
+      {
+        "prompt": "Steigung durch $P(-1\\mid4)$ und $Q(3\\mid-4)$?",
+        "answer": {
+          "type": "number",
+          "value": "-2"
+        }
+      }
+    ]
+  },
+  {
+    "id": "g3-punkt-steigungs-form",
+    "chapter": "g3",
+    "skills": [
+      "g-geraden"
+    ],
+    "topic": "Geraden",
+    "topic_order": 3,
+    "name": "Punkt-Steigungs-Form",
+    "formula": "$$y=m\\,(x-x_0)+y_0$$",
+    "symbols": [
+      {
+        "sym": "$x,\\ y$",
+        "desc": "Koordinaten eines beliebigen Punkts der Geraden"
+      },
+      {
+        "sym": "$m$",
+        "desc": "Steigung (Zahl)"
+      },
+      {
+        "sym": "$(x_0\\mid y_0)$",
+        "desc": "gegebener Punkt $P$ auf der Geraden"
+      }
+    ],
+    "explain": "Gerade mit Steigung $m$ durch den Punkt $P(x_0\\mid y_0)$. Dieselbe Form wird später für Tangenten gebraucht.",
+    "example": "$m=-2$, $P(3\\mid1)$: $y=-2(x-3)+1=-2x+7$",
+    "pitfall": "Vorzeichen: $(x-x_0)$ mit $x_0=-2$ gibt $(x+2)$.",
+    "drill": [
+      {
+        "prompt": "Gerade mit $m=-2$ durch $P(3\\mid1)$: $y=\\;?$",
+        "answer": {
+          "type": "expr",
+          "value": "-2*x+7"
+        }
+      },
+      {
+        "prompt": "Gerade durch $(1\\mid2)$ und $(3\\mid8)$: $y=\\;?$",
+        "answer": {
+          "type": "expr",
+          "value": "3*x-1"
+        }
+      },
+      {
+        "prompt": "Gerade mit $m=\\frac12$ durch $P(-2\\mid0)$: $y=\\;?$",
+        "answer": {
+          "type": "expr",
+          "value": "x/2+1"
+        }
+      }
+    ]
+  },
+  {
+    "id": "g3-parallel-senkrecht",
+    "chapter": "g3",
+    "skills": [
+      "g-geraden"
+    ],
+    "topic": "Geraden",
+    "topic_order": 3,
+    "name": "Parallele und senkrechte Geraden",
+    "formula": "$$g\\parallel h\\iff m_1=m_2\\qquad g\\perp h\\iff m_1\\cdot m_2=-1\\;\\;\\Big(m_2=-\\frac1{m_1}\\Big)$$",
+    "symbols": [
+      {
+        "sym": "$g,\\ h$",
+        "desc": "zwei Geraden"
+      },
+      {
+        "sym": "$m_1,\\ m_2$",
+        "desc": "Steigungen von $g$ bzw. $h$ (Zahlen), bei $\\perp$ beide $\\neq0$"
+      }
+    ],
+    "explain": "Für eine Senkrechte: Kehrwert der Steigung nehmen und das Vorzeichen wechseln.",
+    "example": "$m_1=\\frac23\\Rightarrow m_\\perp=-\\frac32$",
+    "pitfall": "Nur das Vorzeichen wechseln oder nur den Kehrwert bilden – es braucht beides.",
+    "drill": [
+      {
+        "prompt": "Steigung senkrecht zu $m=\\frac23$?",
+        "answer": {
+          "type": "number",
+          "value": "-3/2"
+        }
+      },
+      {
+        "prompt": "Gerade durch den Ursprung, senkrecht zu $y=2x+1$: $y=\\;?$",
+        "answer": {
+          "type": "expr",
+          "value": "-x/2"
+        }
+      },
+      {
+        "prompt": "Gerade parallel zu $y=-3x+5$ durch $P(1\\mid1)$: $y=\\;?$",
+        "answer": {
+          "type": "expr",
+          "value": "-3*x+4"
+        }
+      }
+    ]
+  },
+  {
+    "id": "g3-steigungswinkel",
+    "chapter": "g3",
+    "skills": [
+      "g-geraden",
+      "g-trig-dreieck"
+    ],
+    "topic": "Geraden",
+    "topic_order": 3,
+    "name": "Steigung und Steigungswinkel",
+    "formula": "$$m=\\tan\\alpha\\qquad \\alpha=\\tan^{-1}(m)\\qquad p\\,\\%\\ \\text{Steigung}\\Rightarrow m=\\frac p{100}$$",
+    "symbols": [
+      {
+        "sym": "$m$",
+        "desc": "Steigung (Zahl)"
+      },
+      {
+        "sym": "$\\alpha$",
+        "desc": "Steigungswinkel gegenüber der positiven $x$-Achse (in Grad)"
+      },
+      {
+        "sym": "$p$",
+        "desc": "Steigung in Prozent (Zahl, z.B. $12$)"
+      }
+    ],
+    "explain": "Der Steigungswinkel ist der Winkel zwischen Gerade und positiver $x$-Achse.",
+    "example": "$m=1\\Rightarrow\\alpha=45^\\circ$; $12\\,\\%$ Steigung: $\\alpha=\\tan^{-1}(0.12)\\approx6.84^\\circ$",
+    "pitfall": "$12\\,\\%$ Steigung ist nicht $12^\\circ$.",
+    "drill": [
+      {
+        "prompt": "Steigungswinkel von $y=x+3$ in Grad?",
+        "answer": {
+          "type": "number",
+          "value": "45",
+          "unit": "°"
+        }
+      },
+      {
+        "prompt": "Strasse mit 12 % Steigung: Steigungswinkel in Grad?",
+        "answer": {
+          "type": "number",
+          "value": "6.843",
+          "unit": "°"
+        }
+      },
+      {
+        "prompt": "Steigungswinkel $30^\\circ$: $m=\\;?$",
+        "answer": {
+          "type": "number",
+          "value": "sqrt(3)/3"
+        }
+      }
+    ]
+  },
+  {
+    "id": "g3-einheiten",
+    "chapter": "g3",
+    "skills": [
+      "g-einheiten"
+    ],
+    "topic": "Einheiten",
+    "topic_order": 4,
+    "name": "Einheiten umrechnen",
+    "formula": "$$1\\,\\text{m}^2=10^4\\,\\text{cm}^2\\qquad 1\\,\\text{m}^3=10^6\\,\\text{cm}^3=1000\\,\\text{L}\\qquad 1\\,\\text{dm}^3=1\\,\\text{L}\\qquad 1\\,\\tfrac{\\text{m}}{\\text{s}}=3.6\\,\\tfrac{\\text{km}}{\\text{h}}$$",
+    "symbols": [
+      {
+        "sym": "m, cm, dm",
+        "desc": "Meter, Zentimeter ($10^{-2}$ m), Dezimeter ($10^{-1}$ m)"
+      },
+      {
+        "sym": "L",
+        "desc": "Liter, $1\\,\\text{L}=1\\,\\text{dm}^3$"
+      },
+      {
+        "sym": "km/h, m/s",
+        "desc": "Geschwindigkeitseinheiten"
+      }
+    ],
+    "explain": "Bei Flächen den Umrechnungsfaktor quadrieren, bei Volumen hoch drei nehmen.",
+    "example": "$2.5\\,\\text{m}^2=2.5\\cdot10^4\\,\\text{cm}^2=25'000\\,\\text{cm}^2$",
+    "pitfall": "$1\\,\\text{m}^2=100\\,\\text{cm}^2$ rechnen (Faktor nicht quadriert).",
+    "drill": [
+      {
+        "prompt": "$2.5\\,\\text{m}^2$ in $\\text{cm}^2$?",
+        "answer": {
+          "type": "number",
+          "value": "25000"
+        }
+      },
+      {
+        "prompt": "$3\\,\\text{L}$ in $\\text{cm}^3$?",
+        "answer": {
+          "type": "number",
+          "value": "3000"
+        }
+      },
+      {
+        "prompt": "$72\\,\\tfrac{\\text{km}}{\\text{h}}$ in $\\tfrac{\\text{m}}{\\text{s}}$?",
+        "answer": {
+          "type": "number",
+          "value": "20"
+        }
+      },
+      {
+        "prompt": "$450\\,\\text{cm}^3$ in $\\text{dm}^3$?",
+        "answer": {
+          "type": "number",
+          "value": "0.45"
+        }
+      }
+    ]
+  },
+  {
+    "id": "g3-wissenschaftliche-schreibweise",
+    "chapter": "g3",
+    "skills": [
+      "g-einheiten",
+      "g-potenzen"
+    ],
+    "topic": "Einheiten",
+    "topic_order": 4,
+    "name": "Wissenschaftliche Schreibweise und Vorsätze",
+    "formula": "$$a\\cdot10^n,\\ 1\\le a<10\\qquad \\text{k}=10^3,\\ \\text{M}=10^6,\\ \\text{G}=10^9,\\ \\text{m}=10^{-3},\\ \\mu=10^{-6},\\ \\text{n}=10^{-9}$$",
+    "symbols": [
+      {
+        "sym": "$a$",
+        "desc": "Mantisse (Zahl), $1\\le a<10$"
+      },
+      {
+        "sym": "$n$",
+        "desc": "Exponent der Zehnerpotenz (ganze Zahl)"
+      },
+      {
+        "sym": "k, M, G",
+        "desc": "Vorsätze kilo ($10^3$), Mega ($10^6$), Giga ($10^9$)"
+      },
+      {
+        "sym": "m, $\\mu$, n",
+        "desc": "Vorsätze milli ($10^{-3}$), mikro ($10^{-6}$), nano ($10^{-9}$)"
+      }
+    ],
+    "explain": "Sehr grosse und kleine Zahlen schreibt man mit Zehnerpotenzen. Beim Multiplizieren die Mantissen multiplizieren und die Exponenten addieren. Rechner: `2E-6` für $2\\cdot10^{-6}$.",
+    "example": "$(2\\cdot10^3)\\cdot(4\\cdot10^{-5})=8\\cdot10^{-2}=0.08$",
+    "pitfall": "$\\mu$ (Mikro, $10^{-6}$) mit m (Milli, $10^{-3}$) verwechseln.",
+    "drill": [
+      {
+        "prompt": "$0.00042=4.2\\cdot10^n$, $n=\\;?$",
+        "answer": {
+          "type": "number",
+          "value": "-4"
+        }
+      },
+      {
+        "prompt": "$3\\,\\mu\\text{F}$ in F?",
+        "answer": {
+          "type": "number",
+          "value": "3*10**(-6)"
+        }
+      },
+      {
+        "prompt": "$(2\\cdot10^3)\\cdot(4\\cdot10^{-5})=\\;?$",
+        "answer": {
+          "type": "number",
+          "value": "0.08"
+        }
+      },
+      {
+        "prompt": "$5\\,\\text{k}\\Omega\\cdot 2\\,\\text{mA}$ in V?",
+        "answer": {
+          "type": "number",
+          "value": "10"
+        }
+      }
+    ]
+  }
+]

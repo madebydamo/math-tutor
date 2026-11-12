@@ -1,0 +1,885 @@
+[
+  {
+    "id": "g2-lineare-gleichung",
+    "chapter": "g2",
+    "skills": [
+      "g-lin-gleichung"
+    ],
+    "topic": "Lineare Gleichungen",
+    "topic_order": 1,
+    "name": "Lineare Gleichung lösen",
+    "formula": "$$a\\,x+b=c\\;\\Rightarrow\\;x=\\frac{c-b}{a}\\quad(a\\neq0)$$",
+    "symbols": [
+      {
+        "sym": "$x$",
+        "desc": "Unbekannte (gesuchte Zahl)"
+      },
+      {
+        "sym": "$a$",
+        "desc": "Koeffizient von $x$ (Zahl), $a\\neq0$"
+      },
+      {
+        "sym": "$b,\\ c$",
+        "desc": "gegebene Zahlen"
+      }
+    ],
+    "explain": "Mit Äquivalenzumformungen (auf beiden Seiten dasselbe tun) alle $x$-Terme auf eine Seite, alle Zahlen auf die andere bringen. Dann durch den Koeffizienten teilen.",
+    "example": "$2(x+1)=5x-7\\;\\Rightarrow\\;2x+2=5x-7\\;\\Rightarrow\\;9=3x\\;\\Rightarrow\\;x=3$",
+    "pitfall": "Beim Seitenwechsel das Vorzeichen nicht ändern oder nur einen Summanden mit einem Faktor multiplizieren.",
+    "drill": [
+      {
+        "prompt": "$3x-7=11$, $x=\\;?$",
+        "answer": {
+          "type": "number",
+          "value": "6"
+        }
+      },
+      {
+        "prompt": "$2(x+1)=5x-7$, $x=\\;?$",
+        "answer": {
+          "type": "number",
+          "value": "3"
+        }
+      },
+      {
+        "prompt": "$\\dfrac x4+1=\\dfrac x2$, $x=\\;?$",
+        "answer": {
+          "type": "number",
+          "value": "4"
+        }
+      }
+    ]
+  },
+  {
+    "id": "g2-bruchgleichung",
+    "chapter": "g2",
+    "skills": [
+      "g-lin-gleichung",
+      "g-formeln-umstellen"
+    ],
+    "topic": "Lineare Gleichungen",
+    "topic_order": 1,
+    "name": "Gleichungen mit Brüchen",
+    "formula": "$$\\frac{a}{x}=\\frac{b}{x+c}\\;\\Rightarrow\\;a\\,(x+c)=b\\,x\\qquad D=\\mathbb R\\setminus\\{\\text{Nullstellen der Nenner}\\}$$",
+    "symbols": [
+      {
+        "sym": "$x$",
+        "desc": "Unbekannte, kommt im Nenner vor"
+      },
+      {
+        "sym": "$a,\\ b,\\ c$",
+        "desc": "gegebene Zahlen"
+      },
+      {
+        "sym": "$D$",
+        "desc": "Definitionsmenge: alle $x$, für die kein Nenner null ist"
+      },
+      {
+        "sym": "$\\mathbb R$",
+        "desc": "Menge der reellen Zahlen"
+      }
+    ],
+    "explain": "Mit dem Hauptnenner multiplizieren, dann wie eine normale Gleichung lösen. Zum Schluss prüfen, ob die Lösung in der Definitionsmenge liegt.",
+    "example": "$\\frac2x=\\frac3{x+1}\\Rightarrow2(x+1)=3x\\Rightarrow x=2$",
+    "pitfall": "Die Definitionsmenge vergessen: Eine Lösung, die einen Nenner null macht, ist ungültig.",
+    "drill": [
+      {
+        "prompt": "$\\dfrac2x=\\dfrac3{x+1}$, $x=\\;?$",
+        "answer": {
+          "type": "number",
+          "value": "2"
+        }
+      },
+      {
+        "prompt": "$\\dfrac{6}{x-1}=3$, $x=\\;?$",
+        "answer": {
+          "type": "number",
+          "value": "3"
+        }
+      },
+      {
+        "prompt": "Welche Zahl ist bei $\\dfrac{5}{2x-8}=1$ aus der Definitionsmenge ausgeschlossen?",
+        "answer": {
+          "type": "number",
+          "value": "4"
+        }
+      }
+    ]
+  },
+  {
+    "id": "g2-mitternachtsformel",
+    "chapter": "g2",
+    "skills": [
+      "g-quad-gleichung"
+    ],
+    "topic": "Quadratische Gleichungen",
+    "topic_order": 2,
+    "name": "Mitternachtsformel",
+    "formula": "$$a x^2+bx+c=0\\;\\Rightarrow\\;x_{1,2}=\\frac{-b\\pm\\sqrt{b^2-4ac}}{2a}$$",
+    "symbols": [
+      {
+        "sym": "$x$",
+        "desc": "Unbekannte"
+      },
+      {
+        "sym": "$x_{1,2}$",
+        "desc": "die (bis zu zwei) Lösungen"
+      },
+      {
+        "sym": "$a$",
+        "desc": "Koeffizient von $x^2$ (Zahl), $a\\neq0$"
+      },
+      {
+        "sym": "$b$",
+        "desc": "Koeffizient von $x$ (Zahl, mit Vorzeichen)"
+      },
+      {
+        "sym": "$c$",
+        "desc": "konstantes Glied (Zahl, mit Vorzeichen)"
+      }
+    ],
+    "explain": "Gleichung zuerst auf die Form $ax^2+bx+c=0$ bringen, dann $a$, $b$, $c$ mit Vorzeichen ablesen und einsetzen. Rechner: `solve(a*x^2+b*x+c=0,x)`.",
+    "example": "$2x^2+3x-2=0$: $x=\\frac{-3\\pm\\sqrt{9+16}}{4}=\\frac{-3\\pm5}{4}$, also $x_1=\\frac12$, $x_2=-2$",
+    "pitfall": "Vorzeichen von $b$ falsch: $-b$ heisst bei $b=-5$ eben $+5$. Und durch $2a$ teilen, nicht nur durch $2$.",
+    "drill": [
+      {
+        "prompt": "Lösungen von $x^2-5x+6=0$?",
+        "answer": {
+          "type": "set",
+          "value": [
+            "2",
+            "3"
+          ]
+        }
+      },
+      {
+        "prompt": "Lösungen von $2x^2+3x-2=0$?",
+        "answer": {
+          "type": "set",
+          "value": [
+            "1/2",
+            "-2"
+          ]
+        }
+      },
+      {
+        "prompt": "Lösungen von $3x^2-x-2=0$?",
+        "answer": {
+          "type": "set",
+          "value": [
+            "1",
+            "-2/3"
+          ]
+        }
+      }
+    ]
+  },
+  {
+    "id": "g2-diskriminante",
+    "chapter": "g2",
+    "skills": [
+      "g-quad-gleichung"
+    ],
+    "topic": "Quadratische Gleichungen",
+    "topic_order": 2,
+    "name": "Diskriminante",
+    "formula": "$$D=b^2-4ac\\qquad D>0:\\ 2\\text{ Lösungen}\\quad D=0:\\ 1\\text{ Lösung}\\quad D<0:\\ \\text{keine reelle Lösung}$$",
+    "symbols": [
+      {
+        "sym": "$D$",
+        "desc": "Diskriminante (Zahl unter der Wurzel)"
+      },
+      {
+        "sym": "$a,\\ b,\\ c$",
+        "desc": "Koeffizienten von $ax^2+bx+c=0$ (Zahlen), $a\\neq0$"
+      }
+    ],
+    "explain": "Der Ausdruck unter der Wurzel der Mitternachtsformel entscheidet über die Anzahl Lösungen (Anzahl Nullstellen der Parabel).",
+    "example": "$x^2+4x+5=0$: $D=16-20=-4<0$, keine Lösung",
+    "pitfall": "$b^2$ bei negativem $b$ falsch: $(-3)^2=+9$.",
+    "drill": [
+      {
+        "prompt": "Diskriminante von $x^2+4x+5=0$?",
+        "answer": {
+          "type": "number",
+          "value": "-4"
+        }
+      },
+      {
+        "prompt": "Wie viele reelle Lösungen hat $4x^2-12x+9=0$?",
+        "answer": {
+          "type": "choice",
+          "value": 1,
+          "options": [
+            "0",
+            "1",
+            "2"
+          ]
+        }
+      },
+      {
+        "prompt": "Wie viele reelle Lösungen hat $x^2-3x-10=0$?",
+        "answer": {
+          "type": "choice",
+          "value": 2,
+          "options": [
+            "0",
+            "1",
+            "2"
+          ]
+        }
+      }
+    ]
+  },
+  {
+    "id": "g2-nullprodukt",
+    "chapter": "g2",
+    "skills": [
+      "g-quad-gleichung"
+    ],
+    "topic": "Quadratische Gleichungen",
+    "topic_order": 2,
+    "name": "Spezialfälle: Nullprodukt und reine Quadrate",
+    "formula": "$$a\\cdot b=0\\iff a=0\\ \\text{oder}\\ b=0\\qquad x^2=c\\;(c>0)\\Rightarrow x=\\pm\\sqrt c$$",
+    "symbols": [
+      {
+        "sym": "$a,\\ b$",
+        "desc": "Faktoren (Zahlen oder Terme mit $x$)"
+      },
+      {
+        "sym": "$x$",
+        "desc": "Unbekannte"
+      },
+      {
+        "sym": "$c$",
+        "desc": "gegebene Zahl $>0$"
+      }
+    ],
+    "explain": "Fehlt $c$: $x$ ausklammern und den Satz vom Nullprodukt anwenden. Fehlt $b$: nach $x^2$ auflösen, beide Vorzeichen beachten.",
+    "example": "$x^2-3x=0\\Rightarrow x(x-3)=0\\Rightarrow x_1=0,\\ x_2=3$",
+    "pitfall": "Durch $x$ teilen und dabei die Lösung $x=0$ verlieren; bei $x^2=25$ nur $x=5$ angeben.",
+    "drill": [
+      {
+        "prompt": "Lösungen von $x^2-3x=0$?",
+        "answer": {
+          "type": "set",
+          "value": [
+            "0",
+            "3"
+          ]
+        }
+      },
+      {
+        "prompt": "Lösungen von $2x^2=50$?",
+        "answer": {
+          "type": "set",
+          "value": [
+            "5",
+            "-5"
+          ]
+        }
+      },
+      {
+        "prompt": "Lösungen von $(x-1)(x+4)=0$?",
+        "answer": {
+          "type": "set",
+          "value": [
+            "1",
+            "-4"
+          ]
+        }
+      }
+    ]
+  },
+  {
+    "id": "g2-vieta",
+    "chapter": "g2",
+    "skills": [
+      "g-quad-gleichung"
+    ],
+    "topic": "Quadratische Gleichungen",
+    "topic_order": 2,
+    "name": "Satz von Vieta",
+    "formula": "$$x^2+px+q=(x-x_1)(x-x_2)\\quad\\text{mit}\\quad x_1+x_2=-p,\\;\\; x_1\\cdot x_2=q$$",
+    "symbols": [
+      {
+        "sym": "$x$",
+        "desc": "Variable"
+      },
+      {
+        "sym": "$p$",
+        "desc": "Koeffizient von $x$ (Zahl)"
+      },
+      {
+        "sym": "$q$",
+        "desc": "konstantes Glied (Zahl)"
+      },
+      {
+        "sym": "$x_1,\\ x_2$",
+        "desc": "Lösungen (Nullstellen) der Gleichung $x^2+px+q=0$"
+      }
+    ],
+    "explain": "Für normierte Gleichungen ($a=1$): zwei Zahlen suchen, deren Produkt $q$ und deren Summe $-p$ ist. Schnell im Kopf faktorisieren.",
+    "example": "$x^2-x-12$: Produkt $-12$, Summe $1$ $\\Rightarrow$ $4$ und $-3$: $(x-4)(x+3)$",
+    "pitfall": "Vorzeichen: Die Summe der Lösungen ist $-p$, nicht $p$.",
+    "drill": [
+      {
+        "prompt": "Lösungen von $x^2-x-12=0$?",
+        "answer": {
+          "type": "set",
+          "value": [
+            "4",
+            "-3"
+          ]
+        }
+      },
+      {
+        "prompt": "Lösungen $2$ und $-5$. Gleichung $x^2+px+q=0$: Gib $(p;q)$ an.",
+        "answer": {
+          "type": "tuple",
+          "value": [
+            "3",
+            "-10"
+          ],
+          "names": [
+            "p",
+            "q"
+          ]
+        }
+      }
+    ]
+  },
+  {
+    "id": "g2-lgs-2x2",
+    "chapter": "g2",
+    "skills": [
+      "g-lgs"
+    ],
+    "topic": "Gleichungssysteme",
+    "topic_order": 3,
+    "name": "Lineares Gleichungssystem 2×2",
+    "formula": "$$\\begin{cases}a_1x+b_1y=c_1\\\\a_2x+b_2y=c_2\\end{cases}\\quad\\text{Einsetzungs-, Gleichsetzungs- oder Additionsverfahren}$$",
+    "symbols": [
+      {
+        "sym": "$x,\\ y$",
+        "desc": "Unbekannte"
+      },
+      {
+        "sym": "$a_1,\\ b_1,\\ a_2,\\ b_2$",
+        "desc": "Koeffizienten (Zahlen)"
+      },
+      {
+        "sym": "$c_1,\\ c_2$",
+        "desc": "rechte Seiten (Zahlen)"
+      }
+    ],
+    "explain": "Eine Variable eliminieren: Gleichungen so multiplizieren, dass sich beim Addieren eine Variable weghebt, oder eine Gleichung auflösen und einsetzen. Rechner: `solve({…},{x,y})`.",
+    "example": "$x+y=10$, $x-y=4$: addieren $\\Rightarrow2x=14$, $x=7$, $y=3$",
+    "pitfall": "Beim Multiplizieren einer Gleichung nur die linke Seite multiplizieren.",
+    "drill": [
+      {
+        "prompt": "$x+y=10$, $\\;x-y=4$. Gib $(x;y)$ an.",
+        "answer": {
+          "type": "tuple",
+          "value": [
+            "7",
+            "3"
+          ],
+          "names": [
+            "x",
+            "y"
+          ]
+        }
+      },
+      {
+        "prompt": "$2x+3y=12$, $\\;x-y=1$. Gib $(x;y)$ an.",
+        "answer": {
+          "type": "tuple",
+          "value": [
+            "3",
+            "2"
+          ],
+          "names": [
+            "x",
+            "y"
+          ]
+        }
+      },
+      {
+        "prompt": "$y=2x-1$, $\\;3x+y=9$. Gib $(x;y)$ an.",
+        "answer": {
+          "type": "tuple",
+          "value": [
+            "2",
+            "3"
+          ],
+          "names": [
+            "x",
+            "y"
+          ]
+        }
+      }
+    ]
+  },
+  {
+    "id": "g2-lgs-3x3",
+    "chapter": "g2",
+    "skills": [
+      "g-lgs"
+    ],
+    "topic": "Gleichungssysteme",
+    "topic_order": 3,
+    "name": "Lineares Gleichungssystem 3×3",
+    "formula": "$$\\begin{cases}a_1x+b_1y+c_1z=d_1\\\\a_2x+b_2y+c_2z=d_2\\\\a_3x+b_3y+c_3z=d_3\\end{cases}$$",
+    "symbols": [
+      {
+        "sym": "$x,\\ y,\\ z$",
+        "desc": "Unbekannte"
+      },
+      {
+        "sym": "$a_i,\\ b_i,\\ c_i$",
+        "desc": "Koeffizienten der $i$-ten Gleichung (Zahlen)"
+      },
+      {
+        "sym": "$d_i$",
+        "desc": "rechte Seite der $i$-ten Gleichung (Zahl)"
+      }
+    ],
+    "explain": "Mit zwei Gleichungspaaren jeweils dieselbe Variable eliminieren → 2×2-System lösen → zurückeinsetzen. Rechner: `solve({…},{x,y,z})` bzw. Menü 3/7/2.",
+    "example": "$x+y+z=6,\\ y+z=5,\\ z=3$: von unten nach oben einsetzen $\\Rightarrow z=3,\\ y=2,\\ x=1$",
+    "pitfall": "Beim Zurückeinsetzen eine Variable mit falschem Wert weiterverwenden – zum Schluss die Probe machen.",
+    "drill": [
+      {
+        "prompt": "$x+y+z=6$, $\\;y+z=5$, $\\;z=3$. Gib $(x;y;z)$ an.",
+        "answer": {
+          "type": "tuple",
+          "value": [
+            "1",
+            "2",
+            "3"
+          ],
+          "names": [
+            "x",
+            "y",
+            "z"
+          ]
+        }
+      },
+      {
+        "prompt": "$x+y=5$, $\\;y+z=7$, $\\;x+z=6$. Gib $(x;y;z)$ an.",
+        "answer": {
+          "type": "tuple",
+          "value": [
+            "2",
+            "3",
+            "4"
+          ],
+          "names": [
+            "x",
+            "y",
+            "z"
+          ]
+        }
+      }
+    ]
+  },
+  {
+    "id": "g2-lgs-loesbarkeit",
+    "chapter": "g2",
+    "skills": [
+      "g-lgs"
+    ],
+    "topic": "Gleichungssysteme",
+    "topic_order": 3,
+    "name": "Lösbarkeit eines Gleichungssystems",
+    "formula": "$$\\text{Widerspruch }(0=c,\\ c\\neq0)\\Rightarrow\\text{keine Lösung}\\qquad 0=0\\Rightarrow\\text{unendlich viele Lösungen}$$",
+    "symbols": [
+      {
+        "sym": "$c$",
+        "desc": "Zahl, die nach dem Eliminieren rechts übrig bleibt"
+      }
+    ],
+    "explain": "Beim Eliminieren können alle Variablen wegfallen. Bleibt eine falsche Aussage, ist das System unlösbar (parallele Geraden); bleibt eine wahre Aussage, gibt es unendlich viele Lösungen (identische Geraden).",
+    "example": "$x+2y=3$, $2x+4y=7$: $2\\cdot$(I)$-$(II) gibt $0=-1$ $\\Rightarrow$ keine Lösung",
+    "pitfall": "Aus $0=0$ schliessen, dass $x=0$ ist.",
+    "drill": [
+      {
+        "prompt": "$x+2y=3$, $\\;2x+4y=7$. Wie viele Lösungen?",
+        "answer": {
+          "type": "choice",
+          "value": 0,
+          "options": [
+            "keine",
+            "genau eine",
+            "unendlich viele"
+          ]
+        }
+      },
+      {
+        "prompt": "$x+2y=3$, $\\;2x+4y=6$. Wie viele Lösungen?",
+        "answer": {
+          "type": "choice",
+          "value": 2,
+          "options": [
+            "keine",
+            "genau eine",
+            "unendlich viele"
+          ]
+        }
+      },
+      {
+        "prompt": "$x+2y=3$, $\\;2x-y=1$. Wie viele Lösungen?",
+        "answer": {
+          "type": "choice",
+          "value": 1,
+          "options": [
+            "keine",
+            "genau eine",
+            "unendlich viele"
+          ]
+        }
+      }
+    ]
+  },
+  {
+    "id": "g2-formeln-umstellen",
+    "chapter": "g2",
+    "skills": [
+      "g-formeln-umstellen"
+    ],
+    "topic": "Formeln umstellen",
+    "topic_order": 4,
+    "name": "Formeln umstellen",
+    "formula": "$$\\text{Gesuchte Grösse isolieren: Umkehroperationen in umgekehrter Reihenfolge}\\quad(+\\leftrightarrow-,\\ \\cdot\\leftrightarrow:,\\ x^2\\leftrightarrow\\sqrt{\\ })$$",
+    "symbols": [
+      {
+        "sym": "$+\\leftrightarrow-$",
+        "desc": "Addieren wird durch Subtrahieren rückgängig gemacht (und umgekehrt)"
+      },
+      {
+        "sym": "$\\cdot\\leftrightarrow:$",
+        "desc": "Multiplizieren wird durch Dividieren rückgängig gemacht (Divisor $\\neq0$)"
+      },
+      {
+        "sym": "$x^2\\leftrightarrow\\sqrt{\\ }$",
+        "desc": "Quadrieren wird durch Wurzelziehen rückgängig gemacht (Vorzeichen beachten)"
+      }
+    ],
+    "explain": "Wie eine Gleichung lösen: Schritt für Schritt alles, was nicht zur gesuchten Grösse gehört, auf die andere Seite bringen.",
+    "example": "$A=\\tfrac12gh\\;\\Rightarrow\\;2A=gh\\;\\Rightarrow\\;h=\\frac{2A}{g}$",
+    "pitfall": "Nur einen Teil einer Seite umformen oder beim Wurzelziehen die ganze Seite vergessen.",
+    "drill": [
+      {
+        "prompt": "$A=\\tfrac12\\,g\\,h$ nach $h$ auflösen: $h=\\;?$",
+        "answer": {
+          "type": "expr",
+          "value": "2*A/g",
+          "var": "A,g"
+        }
+      },
+      {
+        "prompt": "$W=\\tfrac12\\,m\\,v^2$ nach $v$ auflösen ($v>0$): $v=\\;?$",
+        "answer": {
+          "type": "expr",
+          "value": "sqrt(2*W/m)",
+          "var": "W,m"
+        }
+      },
+      {
+        "prompt": "$\\dfrac1R=\\dfrac1{R_1}+\\dfrac1{R_2}$ nach $R$ auflösen: $R=\\;?$",
+        "answer": {
+          "type": "expr",
+          "value": "R1*R2/(R1+R2)",
+          "var": "R1,R2"
+        }
+      }
+    ]
+  },
+  {
+    "id": "g2-formeln-potenzen",
+    "chapter": "g2",
+    "skills": [
+      "g-formeln-umstellen",
+      "g-quad-gleichung"
+    ],
+    "topic": "Formeln umstellen",
+    "topic_order": 4,
+    "name": "Umstellen mit Potenzen und Wurzeln",
+    "formula": "$$x^n=a\\;\\Rightarrow\\;x=\\sqrt[n]{a}=a^{\\frac1n}\\quad(a>0)\\qquad \\sqrt{x}=a\\;\\Rightarrow\\;x=a^2$$",
+    "symbols": [
+      {
+        "sym": "$x$",
+        "desc": "gesuchte Grösse"
+      },
+      {
+        "sym": "$n$",
+        "desc": "Exponent (natürliche Zahl $\\ge2$)"
+      },
+      {
+        "sym": "$a$",
+        "desc": "gegebener Wert (Zahl), $a>0$"
+      }
+    ],
+    "explain": "Potenzen werden mit der passenden Wurzel aufgehoben, Wurzeln durch Quadrieren. Bei geraden Potenzen gibt es zwei Vorzeichen – physikalisch oft nur das positive.",
+    "example": "$V=\\tfrac43\\pi r^3\\;\\Rightarrow\\;r=\\sqrt[3]{\\frac{3V}{4\\pi}}$",
+    "pitfall": "Bei $T=2\\pi\\sqrt{l/g}$ zuerst durch $2\\pi$ teilen und erst dann quadrieren.",
+    "drill": [
+      {
+        "prompt": "$A=\\pi r^2$ nach $r$ ($r>0$): $r=\\;?$",
+        "answer": {
+          "type": "expr",
+          "value": "sqrt(A/pi)",
+          "var": "A"
+        }
+      },
+      {
+        "prompt": "$T=2\\pi\\sqrt{\\dfrac lg}$ nach $l$: $l=\\;?$",
+        "answer": {
+          "type": "expr",
+          "value": "g*T**2/(4*pi**2)",
+          "var": "T,g"
+        }
+      },
+      {
+        "prompt": "$V=\\tfrac43\\pi r^3$ nach $r$: $r=\\;?$",
+        "answer": {
+          "type": "expr",
+          "value": "(3*V/(4*pi))**(1/3)",
+          "var": "V"
+        }
+      }
+    ]
+  },
+  {
+    "id": "g2-logarithmus-definition",
+    "chapter": "g2",
+    "skills": [
+      "g-logarithmen"
+    ],
+    "topic": "Logarithmen",
+    "topic_order": 5,
+    "name": "Definition des Logarithmus",
+    "formula": "$$\\log_a b=x\\iff a^x=b\\qquad \\lg=\\log_{10},\\quad \\ln=\\log_e$$",
+    "symbols": [
+      {
+        "sym": "$a$",
+        "desc": "Basis (Zahl), $a>0$, $a\\neq1$"
+      },
+      {
+        "sym": "$b$",
+        "desc": "Numerus (Zahl, deren Logarithmus gesucht ist), $b>0$"
+      },
+      {
+        "sym": "$x$",
+        "desc": "Logarithmus = gesuchter Exponent (Zahl)"
+      },
+      {
+        "sym": "$\\lg$",
+        "desc": "Zehnerlogarithmus, Basis 10"
+      },
+      {
+        "sym": "$\\ln$",
+        "desc": "natürlicher Logarithmus, Basis $e$"
+      },
+      {
+        "sym": "$e$",
+        "desc": "Eulersche Zahl, Konstante $\\approx2.71828$"
+      }
+    ],
+    "explain": "Der Logarithmus beantwortet die Frage: «Mit welcher Hochzahl muss ich $a$ potenzieren, um $b$ zu erhalten?» Nur für $b>0$ definiert.",
+    "example": "$\\log_2 32=5$, weil $2^5=32$; $\\lg0.001=-3$",
+    "pitfall": "$\\log_a b$ mit $\\frac ab$ verwechseln, oder den Logarithmus einer negativen Zahl berechnen wollen.",
+    "drill": [
+      {
+        "prompt": "$\\log_2 32=\\;?$",
+        "answer": {
+          "type": "number",
+          "value": "5"
+        }
+      },
+      {
+        "prompt": "$\\lg 0.001=\\;?$",
+        "answer": {
+          "type": "number",
+          "value": "-3"
+        }
+      },
+      {
+        "prompt": "$\\log_3\\frac19=\\;?$",
+        "answer": {
+          "type": "number",
+          "value": "-2"
+        }
+      },
+      {
+        "prompt": "$\\ln\\big(e^4\\big)=\\;?$",
+        "answer": {
+          "type": "number",
+          "value": "4"
+        }
+      }
+    ]
+  },
+  {
+    "id": "g2-logarithmengesetze",
+    "chapter": "g2",
+    "skills": [
+      "g-logarithmen"
+    ],
+    "topic": "Logarithmen",
+    "topic_order": 5,
+    "name": "Logarithmengesetze",
+    "formula": "$$\\log(u\\cdot v)=\\log u+\\log v\\qquad \\log\\frac uv=\\log u-\\log v\\qquad \\log(u^r)=r\\cdot\\log u$$",
+    "symbols": [
+      {
+        "sym": "$\\log$",
+        "desc": "Logarithmus zu einer beliebigen festen Basis (z.B. $\\lg$, $\\ln$)"
+      },
+      {
+        "sym": "$u,\\ v$",
+        "desc": "positive Zahlen ($>0$)"
+      },
+      {
+        "sym": "$r$",
+        "desc": "beliebige reelle Zahl (Exponent)"
+      }
+    ],
+    "explain": "Gelten für jede Basis. Das dritte Gesetz holt den Exponenten herunter – das ist der Schlüssel zum Lösen von Exponentialgleichungen.",
+    "example": "$\\lg4+\\lg25=\\lg100=2$",
+    "pitfall": "$\\log(u+v)\\neq\\log u+\\log v$ und $\\frac{\\log u}{\\log v}\\neq\\log\\frac uv$.",
+    "drill": [
+      {
+        "prompt": "$\\lg4+\\lg25=\\;?$",
+        "answer": {
+          "type": "number",
+          "value": "2"
+        }
+      },
+      {
+        "prompt": "$\\log_2 48-\\log_2 3=\\;?$",
+        "answer": {
+          "type": "number",
+          "value": "4"
+        }
+      },
+      {
+        "prompt": "$\\log_3\\big(81^2\\big)=\\;?$",
+        "answer": {
+          "type": "number",
+          "value": "8"
+        }
+      },
+      {
+        "prompt": "$\\ln\\sqrt{e}=\\;?$",
+        "answer": {
+          "type": "number",
+          "value": "1/2"
+        }
+      }
+    ]
+  },
+  {
+    "id": "g2-basiswechsel",
+    "chapter": "g2",
+    "skills": [
+      "g-logarithmen"
+    ],
+    "topic": "Logarithmen",
+    "topic_order": 5,
+    "name": "Basiswechsel",
+    "formula": "$$\\log_a b=\\frac{\\ln b}{\\ln a}=\\frac{\\lg b}{\\lg a}$$",
+    "symbols": [
+      {
+        "sym": "$a$",
+        "desc": "Basis (Zahl), $a>0$, $a\\neq1$"
+      },
+      {
+        "sym": "$b$",
+        "desc": "Numerus (Zahl), $b>0$"
+      },
+      {
+        "sym": "$\\ln,\\ \\lg$",
+        "desc": "natürlicher Logarithmus (Basis $e$) bzw. Zehnerlogarithmus (Basis 10)"
+      }
+    ],
+    "explain": "Logarithmen zu beliebiger Basis rechnet man mit $\\ln$ oder $\\lg$ auf dem Rechner aus.",
+    "example": "$\\log_2 10=\\frac{\\ln10}{\\ln2}\\approx3.322$",
+    "pitfall": "Bruch verkehrt herum: $\\frac{\\ln a}{\\ln b}$.",
+    "drill": [
+      {
+        "prompt": "$\\log_2 10\\approx\\;?$",
+        "answer": {
+          "type": "number",
+          "value": "3.3219"
+        }
+      },
+      {
+        "prompt": "$\\log_5 100\\approx\\;?$",
+        "answer": {
+          "type": "number",
+          "value": "2.8614"
+        }
+      }
+    ]
+  },
+  {
+    "id": "g2-exponentialgleichung",
+    "chapter": "g2",
+    "skills": [
+      "g-logarithmen",
+      "g-formeln-umstellen"
+    ],
+    "topic": "Logarithmen",
+    "topic_order": 5,
+    "name": "Exponentialgleichung lösen",
+    "formula": "$$a^x=b\\;\\Rightarrow\\;x=\\log_a b=\\frac{\\ln b}{\\ln a}\\qquad c\\cdot a^x=b\\;\\Rightarrow\\;x=\\frac{\\ln(b/c)}{\\ln a}$$",
+    "symbols": [
+      {
+        "sym": "$x$",
+        "desc": "Unbekannte im Exponenten"
+      },
+      {
+        "sym": "$a$",
+        "desc": "Basis (Zahl), $a>0$, $a\\neq1$"
+      },
+      {
+        "sym": "$b$",
+        "desc": "rechte Seite (Zahl), $b>0$ bzw. $b/c>0$"
+      },
+      {
+        "sym": "$c$",
+        "desc": "Vorfaktor (Zahl), $c\\neq0$"
+      },
+      {
+        "sym": "$\\ln$",
+        "desc": "natürlicher Logarithmus"
+      }
+    ],
+    "explain": "Zuerst die Potenz isolieren, dann auf beiden Seiten logarithmieren und den Exponenten herunterholen.",
+    "example": "$3\\cdot1.05^x=6\\Rightarrow1.05^x=2\\Rightarrow x=\\frac{\\ln2}{\\ln1.05}\\approx14.21$",
+    "pitfall": "Vor dem Logarithmieren nicht durch den Vorfaktor teilen: $\\ln(3\\cdot1.05^x)\\neq x\\ln(3\\cdot1.05)$.",
+    "drill": [
+      {
+        "prompt": "$2^x=20$, $x\\approx\\;?$",
+        "answer": {
+          "type": "number",
+          "value": "4.3219"
+        }
+      },
+      {
+        "prompt": "$3\\cdot1.05^x=6$, $x\\approx\\;?$",
+        "answer": {
+          "type": "number",
+          "value": "14.207"
+        }
+      },
+      {
+        "prompt": "$10^x=0.01$, $x=\\;?$",
+        "answer": {
+          "type": "number",
+          "value": "-2"
+        }
+      }
+    ]
+  }
+]

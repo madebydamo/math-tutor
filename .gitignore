@@ -1,0 +1,14 @@
+result
+__pycache__/
+*.pyc
+/data/
+/assets/
+
+# Course material (copyright of the course author) and the student's avatar: server only, see README
+/content/exercises/
+/content/figures/
+/content/exams.json
+/content/exam-info.md
+/content/theory/k*.md
+/content/formeln/k*.md
+/app/mathtutor/static/avatar/

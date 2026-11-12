@@ -1,0 +1,1495 @@
+[
+  {
+    "id": "k2-einheitskreis",
+    "chapter": "k2",
+    "skills": [
+      "trig-grundfunktionen"
+    ],
+    "topic": "sin, cos, tan & Bogenmass",
+    "topic_order": 1,
+    "name": "Einheitskreis",
+    "formula": "$$P(\\cos x\\mid\\sin x)\\qquad \\tan x=\\frac{\\sin x}{\\cos x}\\qquad \\sin^2x+\\cos^2x=1$$",
+    "symbols": [
+      {
+        "sym": "$x$",
+        "desc": "Winkel (Bogenmass oder Grad), gemessen ab der positiven $x$-Achse im Gegenuhrzeigersinn"
+      },
+      {
+        "sym": "$P$",
+        "desc": "Punkt auf dem Einheitskreis (Radius 1)"
+      },
+      {
+        "sym": "$\\cos x$",
+        "desc": "$x$-Koordinate von $P$ (Zahl zwischen $-1$ und $1$)"
+      },
+      {
+        "sym": "$\\sin x$",
+        "desc": "$y$-Koordinate von $P$ (Zahl zwischen $-1$ und $1$)"
+      },
+      {
+        "sym": "$\\tan x$",
+        "desc": "Zahl, definiert für $\\cos x\\neq0$"
+      }
+    ],
+    "explain": "Ein Punkt auf dem Einheitskreis zum Winkel $x$ hat die Koordinaten $(\\cos x\\mid\\sin x)$. So sind sin und cos für alle Winkel definiert, auch für stumpfe und negative.",
+    "example": "$\\cos\\frac{2\\pi}{3}=-\\frac12$ (2. Quadrant: $x$-Koordinate negativ)",
+    "pitfall": "Vorzeichen im 2.–4. Quadranten vergessen.",
+    "drill": [
+      {
+        "prompt": "$\\sin\\frac\\pi6=\\;?$",
+        "answer": {
+          "type": "number",
+          "value": "1/2"
+        }
+      },
+      {
+        "prompt": "$\\cos\\frac{2\\pi}3=\\;?$",
+        "answer": {
+          "type": "number",
+          "value": "-1/2"
+        }
+      },
+      {
+        "prompt": "$\\sin\\frac{3\\pi}2=\\;?$",
+        "answer": {
+          "type": "number",
+          "value": "-1"
+        }
+      },
+      {
+        "prompt": "$\\tan\\frac{\\pi}4=\\;?$",
+        "answer": {
+          "type": "number",
+          "value": "1"
+        }
+      }
+    ]
+  },
+  {
+    "id": "k2-bogenmass",
+    "chapter": "k2",
+    "skills": [
+      "trig-grundfunktionen"
+    ],
+    "topic": "sin, cos, tan & Bogenmass",
+    "topic_order": 1,
+    "name": "Bogenmass",
+    "formula": "$$x_{\\text{rad}}=\\frac{\\pi}{180^\\circ}\\cdot x_{\\text{Grad}}\\qquad 360^\\circ=2\\pi,\\quad 180^\\circ=\\pi,\\quad 90^\\circ=\\tfrac\\pi2$$",
+    "symbols": [
+      {
+        "sym": "$x_{\\text{Grad}}$",
+        "desc": "Winkel in Grad (°)"
+      },
+      {
+        "sym": "$x_{\\text{rad}}$",
+        "desc": "derselbe Winkel im Bogenmass (rad, reine Zahl)"
+      },
+      {
+        "sym": "$\\pi$",
+        "desc": "Kreiszahl $\\approx3.14159$ (entspricht $180^\\circ$)"
+      }
+    ],
+    "explain": "Funktionen $\\sin x$ mit $x$ als reelle Zahl verwenden immer das Bogenmass. Auf dem TI-Nspire den Winkelmodus prüfen!",
+    "example": "$135^\\circ=\\frac{135}{180}\\pi=\\frac{3\\pi}4$",
+    "pitfall": "Rechner im falschen Modus (DEG statt RAD).",
+    "drill": [
+      {
+        "prompt": "$135^\\circ$ im Bogenmass?",
+        "answer": {
+          "type": "number",
+          "value": "3*pi/4"
+        }
+      },
+      {
+        "prompt": "$\\frac\\pi5$ in Grad?",
+        "answer": {
+          "type": "number",
+          "value": "36",
+          "unit": "°"
+        }
+      },
+      {
+        "prompt": "$1.2$ rad in Grad?",
+        "answer": {
+          "type": "number",
+          "value": "68.75",
+          "unit": "°"
+        }
+      }
+    ]
+  },
+  {
+    "id": "k2-eigenschaften",
+    "chapter": "k2",
+    "skills": [
+      "trig-grundfunktionen",
+      "trig-nullstellen"
+    ],
+    "topic": "sin, cos, tan & Bogenmass",
+    "topic_order": 1,
+    "name": "Eigenschaften von sin, cos, tan",
+    "formula": "$$\\begin{array}{c|ccc}&\\sin&\\cos&\\tan\\\\\\hline W&[-1;1]&[-1;1]&\\mathbb R\\\\\\text{Periode}&2\\pi&2\\pi&\\pi\\\\\\text{Nullstellen}&k\\pi&\\frac\\pi2+k\\pi&k\\pi\\\\\\text{Hochpunkte}&\\frac\\pi2+2k\\pi&2k\\pi&-\\end{array}$$",
+    "symbols": [
+      {
+        "sym": "$W$",
+        "desc": "Wertebereich: alle möglichen $y$-Werte"
+      },
+      {
+        "sym": "Periode",
+        "desc": "kleinste Länge, nach der sich der Graph wiederholt (Bogenmass)"
+      },
+      {
+        "sym": "$k$",
+        "desc": "beliebige ganze Zahl, $k\\in\\mathbb Z$"
+      },
+      {
+        "sym": "$\\mathbb R$",
+        "desc": "alle reellen Zahlen"
+      },
+      {
+        "sym": "$\\pi$",
+        "desc": "Kreiszahl, Konstante $\\approx3.14159$ (entspricht $180^\\circ$)"
+      }
+    ],
+    "explain": "$k\\in\\mathbb Z$. $\\tan$ hat Polstellen (senkrechte Asymptoten) bei $x=\\frac\\pi2+k\\pi$.",
+    "example": "Nullstellen von $\\cos$ in $[0;2\\pi]$: $\\frac\\pi2,\\ \\frac{3\\pi}2$",
+    "pitfall": "Periode von $\\tan$ ist $\\pi$, nicht $2\\pi$.",
+    "drill": [
+      {
+        "prompt": "Nullstellen von $\\sin x$ in $[0;2\\pi]$?",
+        "answer": {
+          "type": "set",
+          "value": [
+            "0",
+            "pi",
+            "2*pi"
+          ]
+        }
+      },
+      {
+        "prompt": "Nullstellen von $\\cos x$ in $[0;2\\pi]$?",
+        "answer": {
+          "type": "set",
+          "value": [
+            "pi/2",
+            "3*pi/2"
+          ]
+        }
+      },
+      {
+        "prompt": "Hochpunkt von $\\cos x$ im Intervall $]0;4\\pi[$: $x=\\;?$",
+        "answer": {
+          "type": "number",
+          "value": "2*pi"
+        }
+      }
+    ]
+  },
+  {
+    "id": "k2-symmetrie-beziehungen",
+    "chapter": "k2",
+    "skills": [
+      "trig-grundfunktionen",
+      "trig-nullstellen"
+    ],
+    "topic": "sin, cos, tan & Bogenmass",
+    "topic_order": 1,
+    "name": "Symmetrie und zweite Lösung",
+    "formula": "$$\\sin(-x)=-\\sin x\\qquad\\cos(-x)=\\cos x\\qquad \\sin(\\pi-x)=\\sin x\\qquad\\cos(2\\pi-x)=\\cos x$$",
+    "symbols": [
+      {
+        "sym": "$x$",
+        "desc": "Winkel im Bogenmass"
+      },
+      {
+        "sym": "$\\pi$",
+        "desc": "Kreiszahl, entspricht $180^\\circ$"
+      },
+      {
+        "sym": "$x_1$",
+        "desc": "Lösung, die der Rechner mit $\\sin^{-1}$ bzw. $\\cos^{-1}$ liefert"
+      }
+    ],
+    "explain": "$\\sin^{-1}$ und $\\cos^{-1}$ liefern nur eine Lösung. Die zweite Lösung in $[0;2\\pi[$: beim Sinus $\\pi-x_1$, beim Kosinus $2\\pi-x_1$.",
+    "example": "$\\sin x=0.5$: $x_1=\\frac\\pi6$, $x_2=\\pi-\\frac\\pi6=\\frac{5\\pi}6$",
+    "pitfall": "Nur die Rechnerlösung angeben und die zweite Lösung vergessen.",
+    "drill": [
+      {
+        "prompt": "$\\sin x=\\frac12$, Lösungen in $[0;2\\pi[$?",
+        "answer": {
+          "type": "set",
+          "value": [
+            "pi/6",
+            "5*pi/6"
+          ]
+        }
+      },
+      {
+        "prompt": "$\\cos x=\\frac12$, Lösungen in $[0;2\\pi[$?",
+        "answer": {
+          "type": "set",
+          "value": [
+            "pi/3",
+            "5*pi/3"
+          ]
+        }
+      },
+      {
+        "prompt": "$\\sin x=-1$, Lösungen in $[0;2\\pi[$?",
+        "answer": {
+          "type": "set",
+          "value": [
+            "3*pi/2"
+          ]
+        }
+      }
+    ]
+  },
+  {
+    "id": "k2-allg-sinus",
+    "chapter": "k2",
+    "skills": [
+      "trig-allg-sinus"
+    ],
+    "topic": "Allgemeine Sinusfunktion",
+    "topic_order": 2,
+    "name": "Allgemeine Sinusfunktion",
+    "formula": "$$y=a\\sin(bx+c)+d=a\\sin\\!\\Big(b\\Big[x+\\frac cb\\Big]\\Big)+d$$",
+    "symbols": [
+      {
+        "sym": "$x$",
+        "desc": "Variable (Winkel, Bogenmass oder Grad)"
+      },
+      {
+        "sym": "$y$",
+        "desc": "Funktionswert"
+      },
+      {
+        "sym": "$a$",
+        "desc": "Streckfaktor in $y$-Richtung (Zahl); Amplitude $|a|$"
+      },
+      {
+        "sym": "$b$",
+        "desc": "Frequenzfaktor (Zahl $>0$), bestimmt die Periode"
+      },
+      {
+        "sym": "$c$",
+        "desc": "Phase (Winkel, gleiche Einheit wie $x$)"
+      },
+      {
+        "sym": "$\\frac cb$",
+        "desc": "Verschiebung in $x$-Richtung: $c>0$ links, $c<0$ rechts"
+      },
+      {
+        "sym": "$d$",
+        "desc": "Verschiebung in $y$-Richtung, Mittellinie $y=d$"
+      }
+    ],
+    "explain": "$|a|$ Amplitude, $b$ bestimmt die Periode $P=\\frac{2\\pi}b$, $\\frac cb$ ist die Verschiebung in $x$-Richtung ($c>0$ links, $c<0$ rechts), $d$ die Verschiebung in $y$-Richtung (Mittellinie $y=d$).",
+    "example": "$y=3\\sin(2x-\\pi)+1=3\\sin(2[x-\\frac\\pi2])+1$: $A=3$, $P=\\pi$, um $\\frac\\pi2$ nach rechts, Mittellinie $y=1$",
+    "pitfall": "Die Verschiebung als $c$ statt $\\frac cb$ ablesen – zuerst $b$ ausklammern!",
+    "drill": [
+      {
+        "prompt": "$y=3\\sin(2x-\\pi)+1$: Gib (Amplitude; Periode) an.",
+        "answer": {
+          "type": "tuple",
+          "value": [
+            "3",
+            "pi"
+          ],
+          "names": [
+            "Amplitude",
+            "Periode"
+          ]
+        }
+      },
+      {
+        "prompt": "$y=3\\sin(2x-\\pi)+1$: Um wie viel ist der Graph nach rechts verschoben?",
+        "answer": {
+          "type": "number",
+          "value": "pi/2"
+        }
+      },
+      {
+        "prompt": "$y=-2\\sin(x)+4$: Mittellinie $y=\\;?$",
+        "answer": {
+          "type": "number",
+          "value": "4"
+        }
+      }
+    ]
+  },
+  {
+    "id": "k2-periode",
+    "chapter": "k2",
+    "skills": [
+      "trig-allg-sinus",
+      "trig-nullstellen"
+    ],
+    "topic": "Allgemeine Sinusfunktion",
+    "topic_order": 2,
+    "name": "Periode",
+    "formula": "$$P=\\frac{2\\pi}{b}=\\frac{360^\\circ}{b}\\qquad b=\\frac{2\\pi}{P}$$",
+    "symbols": [
+      {
+        "sym": "$P$",
+        "desc": "Periode (Bogenmass bzw. Grad)"
+      },
+      {
+        "sym": "$b$",
+        "desc": "Faktor vor $x$ (Zahl $>0$)"
+      },
+      {
+        "sym": "$\\pi$",
+        "desc": "Kreiszahl, Konstante $\\approx3.14159$ (entspricht $180^\\circ$)"
+      }
+    ],
+    "explain": "$b>1$ staucht den Graphen in $x$-Richtung (kürzere Periode), $0<b<1$ streckt ihn.",
+    "example": "$y=\\sin(4x)$: $P=\\frac{2\\pi}4=\\frac\\pi2$",
+    "pitfall": "$P=2\\pi\\cdot b$ rechnen.",
+    "drill": [
+      {
+        "prompt": "Periode von $y=\\sin(4x)$?",
+        "answer": {
+          "type": "number",
+          "value": "pi/2"
+        }
+      },
+      {
+        "prompt": "Periode von $y=2\\cos\\!\\big(\\tfrac x3\\big)$?",
+        "answer": {
+          "type": "number",
+          "value": "6*pi"
+        }
+      },
+      {
+        "prompt": "Periode von $y=\\sin(1.5\\alpha)$ in Grad?",
+        "answer": {
+          "type": "number",
+          "value": "240",
+          "unit": "°"
+        }
+      },
+      {
+        "prompt": "Gesucht $b$ für Periode $P=8$: $b=\\;?$",
+        "answer": {
+          "type": "number",
+          "value": "pi/4"
+        }
+      }
+    ]
+  },
+  {
+    "id": "k2-verschiebung",
+    "chapter": "k2",
+    "skills": [
+      "trig-allg-sinus",
+      "trig-nullstellen"
+    ],
+    "topic": "Allgemeine Sinusfunktion",
+    "topic_order": 2,
+    "name": "Verschiebung und steigende Nullstelle",
+    "formula": "$$bx_0+c=0\\;\\Rightarrow\\;x_0=-\\frac cb$$",
+    "symbols": [
+      {
+        "sym": "$x_0$",
+        "desc": "steigende Nullstelle bzw. Startpunkt der Sinuskurve (Bogenmass oder Grad)"
+      },
+      {
+        "sym": "$b,\\ c$",
+        "desc": "Parameter aus $a\\sin(bx+c)+d$"
+      }
+    ],
+    "explain": "$x_0$ ist die «Start-Nullstelle», an der die Sinuskurve steigend durch die Mittellinie geht. Von dort aus wird gezeichnet und gerechnet.",
+    "example": "$y=\\sin(2x+\\frac\\pi3)$: $x_0=-\\frac{\\pi/3}{2}=-\\frac\\pi6$ (um $\\frac\\pi6$ nach links)",
+    "pitfall": "Vorzeichen: $\\sin(x-30^\\circ)$ ist nach rechts verschoben.",
+    "drill": [
+      {
+        "prompt": "$y=\\sin(2x+\\frac\\pi3)$: steigende Nullstelle $x_0=\\;?$",
+        "answer": {
+          "type": "number",
+          "value": "-pi/6"
+        }
+      },
+      {
+        "prompt": "$y=\\sin(3\\alpha-90^\\circ)$: steigende Nullstelle $\\alpha_0$ in Grad?",
+        "answer": {
+          "type": "number",
+          "value": "30",
+          "unit": "°"
+        }
+      },
+      {
+        "prompt": "$y=4\\sin(\\frac12x-\\pi)$: steigende Nullstelle $x_0=\\;?$",
+        "answer": {
+          "type": "number",
+          "value": "2*pi"
+        }
+      }
+    ]
+  },
+  {
+    "id": "k2-wertebereich",
+    "chapter": "k2",
+    "skills": [
+      "trig-nullstellen",
+      "trig-allg-sinus"
+    ],
+    "topic": "Allgemeine Sinusfunktion",
+    "topic_order": 2,
+    "name": "Wertebereich",
+    "formula": "$$W=\\big[d-|a|\\,;\\,d+|a|\\big]$$",
+    "symbols": [
+      {
+        "sym": "$W$",
+        "desc": "Wertebereich (Intervall der $y$-Werte)"
+      },
+      {
+        "sym": "$|a|$",
+        "desc": "Amplitude (Zahl $\\ge0$)"
+      },
+      {
+        "sym": "$d$",
+        "desc": "Mittellinie $y=d$"
+      }
+    ],
+    "explain": "Die Kurve schwingt um die Mittellinie $y=d$ jeweils um die Amplitude $|a|$ nach oben und unten.",
+    "example": "$y=-2\\sin x+5$: $W=[3;7]$",
+    "pitfall": "Bei negativem $a$ den Betrag vergessen: $W=[5+(-2);\\,5-(-2)]$ ist verkehrt herum.",
+    "drill": [
+      {
+        "prompt": "$y=-2\\sin(x)+5$: Gib $W$ als $(y_{min};y_{max})$ an.",
+        "answer": {
+          "type": "tuple",
+          "value": [
+            "3",
+            "7"
+          ],
+          "names": [
+            "y_min",
+            "y_max"
+          ]
+        }
+      },
+      {
+        "prompt": "$y=0.5\\cos(3x)-1$: Gib $W$ als $(y_{min};y_{max})$ an.",
+        "answer": {
+          "type": "tuple",
+          "value": [
+            "-1.5",
+            "-0.5"
+          ],
+          "names": [
+            "y_min",
+            "y_max"
+          ]
+        }
+      }
+    ]
+  },
+  {
+    "id": "k2-nullstellen-extrema",
+    "chapter": "k2",
+    "skills": [
+      "trig-nullstellen",
+      "trig-skizze"
+    ],
+    "topic": "Allgemeine Sinusfunktion",
+    "topic_order": 2,
+    "name": "Nullstellen, Hoch- und Tiefpunkte",
+    "formula": "$$\\text{Nullstellen: }x_0+k\\cdot\\frac P2\\qquad\\text{Hochpunkt: }x_0+\\frac P4\\qquad\\text{Tiefpunkt: }x_0-\\frac P4\\quad(d=0)$$",
+    "symbols": [
+      {
+        "sym": "$x_0$",
+        "desc": "steigende Nullstelle (Startpunkt)"
+      },
+      {
+        "sym": "$P$",
+        "desc": "Periode"
+      },
+      {
+        "sym": "$k$",
+        "desc": "ganze Zahl"
+      },
+      {
+        "sym": "$d=0$",
+        "desc": "gilt so nur, wenn die Mittellinie die $x$-Achse ist"
+      }
+    ],
+    "explain": "Ausgehend von der steigenden Nullstelle $x_0$ in Schritten von $\\frac P4$ weitergehen: Nullstelle → Hochpunkt → Nullstelle → Tiefpunkt.",
+    "example": "$y=2\\sin(x-\\frac\\pi4)$: $x_0=\\frac\\pi4$, $P=2\\pi$; Nullstellen $\\frac\\pi4+k\\pi$, Hochpunkt $\\frac{3\\pi}4$",
+    "pitfall": "Nullstellen im Abstand $P$ statt $\\frac P2$ suchen.",
+    "drill": [
+      {
+        "prompt": "$y=2\\sin(x-\\frac\\pi4)$: Nullstellen in $[0;2\\pi]$?",
+        "answer": {
+          "type": "set",
+          "value": [
+            "pi/4",
+            "5*pi/4"
+          ]
+        }
+      },
+      {
+        "prompt": "$y=2\\sin(x-\\frac\\pi4)$: Hochpunkt in $[0;2\\pi]$ bei $x=\\;?$",
+        "answer": {
+          "type": "number",
+          "value": "3*pi/4"
+        }
+      },
+      {
+        "prompt": "$y=\\sin(2\\alpha)$: Nullstellen in $[0^\\circ;180^\\circ]$ (in Grad)?",
+        "answer": {
+          "type": "set",
+          "value": [
+            "0",
+            "90",
+            "180"
+          ]
+        }
+      }
+    ]
+  },
+  {
+    "id": "k2-gleichung-aus-graph",
+    "chapter": "k2",
+    "skills": [
+      "trig-gleichung-aus-graph"
+    ],
+    "topic": "Allgemeine Sinusfunktion",
+    "topic_order": 2,
+    "name": "Funktionsgleichung aus dem Graphen",
+    "formula": "$$A=\\frac{y_{max}-y_{min}}2\\qquad d=\\frac{y_{max}+y_{min}}2\\qquad B=\\frac{2\\pi}P\\qquad C=-B\\,x_0$$",
+    "symbols": [
+      {
+        "sym": "$y_{max},\\ y_{min}$",
+        "desc": "grösster bzw. kleinster $y$-Wert (abgelesen)"
+      },
+      {
+        "sym": "$A$",
+        "desc": "Amplitude (Zahl)"
+      },
+      {
+        "sym": "$d$",
+        "desc": "Mittellinie"
+      },
+      {
+        "sym": "$P$",
+        "desc": "abgelesene Periode"
+      },
+      {
+        "sym": "$B$",
+        "desc": "Frequenzfaktor (entspricht $b$)"
+      },
+      {
+        "sym": "$x_0$",
+        "desc": "abgelesene steigende Nullstelle auf der Mittellinie"
+      },
+      {
+        "sym": "$C$",
+        "desc": "Phase (entspricht $c$), gleiche Einheit wie $x$"
+      },
+      {
+        "sym": "$\\pi$",
+        "desc": "Kreiszahl, Konstante $\\approx3.14159$ (entspricht $180^\\circ$)"
+      }
+    ],
+    "explain": "Ablesen: Maximum und Minimum, Periode $P$ (z.B. Abstand zweier Hochpunkte), eine steigende Nullstelle $x_0$ auf der Mittellinie. Dann $y=A\\sin(B[x-x_0])+d$.",
+    "example": "$P=480^\\circ$, $x_0=-80^\\circ$: $B=\\frac34$, $C=60^\\circ$ $\\Rightarrow$ $y=A\\sin(\\frac34\\alpha+60^\\circ)$",
+    "pitfall": "Vorzeichen von $C$: Bei $x_0>0$ ist $C$ negativ.",
+    "drill": [
+      {
+        "prompt": "Graph: $y_{max}=5$, $y_{min}=-1$. Gib $(A;d)$ an.",
+        "answer": {
+          "type": "tuple",
+          "value": [
+            "3",
+            "2"
+          ],
+          "names": [
+            "A",
+            "d"
+          ]
+        }
+      },
+      {
+        "prompt": "Periode $P=6$, steigende Nullstelle $x_0=1$: Gib $(B;C)$ an.",
+        "answer": {
+          "type": "tuple",
+          "value": [
+            "pi/3",
+            "-pi/3"
+          ],
+          "names": [
+            "B",
+            "C"
+          ]
+        }
+      },
+      {
+        "prompt": "Gradmass: $P=480^\\circ$, $x_0=-80^\\circ$. Gib $(B;C)$ an, $C$ in Grad.",
+        "answer": {
+          "type": "tuple",
+          "value": [
+            "3/4",
+            "60"
+          ],
+          "names": [
+            "B",
+            "C"
+          ]
+        }
+      }
+    ]
+  },
+  {
+    "id": "k2-skizze",
+    "chapter": "k2",
+    "skills": [
+      "trig-skizze"
+    ],
+    "topic": "Allgemeine Sinusfunktion",
+    "topic_order": 2,
+    "name": "Sinusfunktion zeichnen",
+    "formula": "$$\\text{Mittellinie }y=d\\;\\to\\;\\text{Start }x_0\\;\\to\\;\\text{Periode in 4 Viertel teilen }\\Big(\\frac P4\\Big)\\;\\to\\;0,\\ +A,\\ 0,\\ -A,\\ 0$$",
+    "symbols": [
+      {
+        "sym": "$y=d$",
+        "desc": "Mittellinie"
+      },
+      {
+        "sym": "$x_0$",
+        "desc": "Startpunkt (steigende Nullstelle)"
+      },
+      {
+        "sym": "$\\frac P4$",
+        "desc": "Viertelperiode: Abstand zwischen benachbarten Nullstellen und Extrema"
+      },
+      {
+        "sym": "$A$",
+        "desc": "Amplitude"
+      }
+    ],
+    "explain": "Auf der $x$-Achse ab $x_0$ in Schritten von $\\frac P4$ markieren. Die fünf Punkte Nullstelle–Hochpunkt–Nullstelle–Tiefpunkt–Nullstelle mit einer glatten Kurve verbinden. Bei $a<0$ beginnt die Kurve fallend.",
+    "example": "$y=2\\sin(\\frac\\pi2x)$: $P=4$, Viertel $=1$: $(0\\mid0),(1\\mid2),(2\\mid0),(3\\mid-2),(4\\mid0)$",
+    "pitfall": "Spitze statt runde Extrema zeichnen, oder ungleiche Abstände zwischen den Punkten.",
+    "drill": [
+      {
+        "prompt": "$y=2\\sin(\\frac\\pi2x)$: Hochpunkt in $[0;4]$ bei $x=\\;?$",
+        "answer": {
+          "type": "number",
+          "value": "1"
+        }
+      },
+      {
+        "prompt": "Periode $P=8$: Abstand von einer Nullstelle zum nächsten Hochpunkt?",
+        "answer": {
+          "type": "number",
+          "value": "2"
+        }
+      },
+      {
+        "prompt": "$y=-3\\sin x$: Gib den Punkt bei $x=\\frac\\pi2$ an als $(x;y)$.",
+        "answer": {
+          "type": "tuple",
+          "value": [
+            "pi/2",
+            "-3"
+          ],
+          "names": [
+            "x",
+            "y"
+          ]
+        }
+      }
+    ]
+  },
+  {
+    "id": "k2-schwingung",
+    "chapter": "k2",
+    "skills": [
+      "schwingung-modell"
+    ],
+    "topic": "Schwingungen",
+    "topic_order": 3,
+    "name": "Harmonische Schwingung: ω, T, f",
+    "formula": "$$y(t)=A\\sin(\\omega t+\\varphi_0)\\qquad \\omega=2\\pi f=\\frac{2\\pi}T\\qquad T=\\frac{2\\pi}\\omega\\qquad f=\\frac1T$$",
+    "symbols": [
+      {
+        "sym": "$y(t)$",
+        "desc": "Auslenkung zur Zeit $t$"
+      },
+      {
+        "sym": "$A$",
+        "desc": "Amplitude (gleiche Einheit wie $y$)"
+      },
+      {
+        "sym": "$t$",
+        "desc": "Zeit (s)"
+      },
+      {
+        "sym": "$\\omega$",
+        "desc": "Kreisfrequenz (rad/s)"
+      },
+      {
+        "sym": "$\\varphi_0$",
+        "desc": "Nullphasenwinkel (rad)"
+      },
+      {
+        "sym": "$T$",
+        "desc": "Periodendauer (s)"
+      },
+      {
+        "sym": "$f$",
+        "desc": "Frequenz (Hz = 1/s)"
+      },
+      {
+        "sym": "$\\pi$",
+        "desc": "Kreiszahl, Konstante $\\approx3.14159$ (entspricht $180^\\circ$)"
+      }
+    ],
+    "explain": "$A$ Amplitude, $\\omega$ Kreisfrequenz (rad/s), $T$ Periodendauer (s), $f$ Frequenz (Hz), $\\varphi_0$ Nullphasenwinkel.",
+    "example": "Netz: $f=50$ Hz $\\Rightarrow$ $\\omega=100\\pi\\approx314\\,\\tfrac{\\text{rad}}{\\text{s}}$, $T=0.02$ s",
+    "pitfall": "$\\omega$ und $f$ verwechseln: $\\omega=2\\pi f$, nicht $\\omega=f$.",
+    "drill": [
+      {
+        "prompt": "$f=50$ Hz: $\\omega$ in rad/s?",
+        "answer": {
+          "type": "number",
+          "value": "314.16"
+        }
+      },
+      {
+        "prompt": "$T=0.02$ s: $f$ in Hz?",
+        "answer": {
+          "type": "number",
+          "value": "50"
+        }
+      },
+      {
+        "prompt": "$y=3\\sin(4t)$: Periodendauer $T=\\;?$",
+        "answer": {
+          "type": "number",
+          "value": "pi/2"
+        }
+      },
+      {
+        "prompt": "$\\omega=18'000\\,{}^\\circ/\\text{s}$: $f$ in Hz?",
+        "answer": {
+          "type": "number",
+          "value": "50"
+        }
+      }
+    ]
+  },
+  {
+    "id": "k2-phasenverschiebung",
+    "chapter": "k2",
+    "skills": [
+      "schwingung-modell",
+      "trig-gleichung-aus-graph"
+    ],
+    "topic": "Schwingungen",
+    "topic_order": 3,
+    "name": "Nullphasenwinkel und Verschiebung",
+    "formula": "$$t_0=-\\frac{\\varphi_0}{\\omega}\\qquad \\varphi_0=-\\omega\\,t_0$$",
+    "symbols": [
+      {
+        "sym": "$t_0$",
+        "desc": "Zeitpunkt der steigenden Nullstelle (s)"
+      },
+      {
+        "sym": "$\\varphi_0$",
+        "desc": "Nullphasenwinkel (rad)"
+      },
+      {
+        "sym": "$\\omega$",
+        "desc": "Kreisfrequenz (rad/s)"
+      }
+    ],
+    "explain": "$t_0$ ist die steigende Nullstelle. $\\varphi_0>0$: nach links verschoben, $\\varphi_0<0$: nach rechts. Bei einer Kosinusschwingung ist $t_0$ die Lage des Hochpunkts.",
+    "example": "$A=4$, $T=4$, $t_0=2$: $\\omega=\\frac\\pi2$, $\\varphi_0=-\\pi$, $y=4\\sin(\\frac\\pi2t-\\pi)$",
+    "pitfall": "$\\varphi_0=t_0$ setzen – es fehlt der Faktor $-\\omega$.",
+    "drill": [
+      {
+        "prompt": "$T=4$, steigende Nullstelle $t_0=2$: $\\varphi_0=\\;?$",
+        "answer": {
+          "type": "number",
+          "value": "-pi"
+        }
+      },
+      {
+        "prompt": "$y=\\sin(2t+\\frac\\pi3)$: $t_0=\\;?$",
+        "answer": {
+          "type": "number",
+          "value": "-pi/6"
+        }
+      },
+      {
+        "prompt": "$\\omega=100\\pi$, $t_0=0.005$ s: $\\varphi_0=\\;?$",
+        "answer": {
+          "type": "number",
+          "value": "-pi/2"
+        }
+      }
+    ]
+  },
+  {
+    "id": "k2-cos-in-sin",
+    "chapter": "k2",
+    "skills": [
+      "zeiger-ueberlagerung",
+      "trig-grundfunktionen"
+    ],
+    "topic": "Zeigermodell",
+    "topic_order": 4,
+    "name": "Kosinus als Sinus schreiben",
+    "formula": "$$A\\cos(\\omega t+\\varphi)=A\\sin\\!\\Big(\\omega t+\\varphi+\\frac\\pi2\\Big)=A\\sin(\\omega t+\\varphi+90^\\circ)$$",
+    "symbols": [
+      {
+        "sym": "$A$",
+        "desc": "Amplitude (Zahl)"
+      },
+      {
+        "sym": "$\\omega$",
+        "desc": "Kreisfrequenz (rad/s bzw. °/s)"
+      },
+      {
+        "sym": "$t$",
+        "desc": "Zeit (s)"
+      },
+      {
+        "sym": "$\\varphi$",
+        "desc": "Phasenwinkel (Bogenmass oder Grad)"
+      },
+      {
+        "sym": "$\\pi$",
+        "desc": "Kreiszahl, Konstante $\\approx3.14159$ (entspricht $180^\\circ$)"
+      }
+    ],
+    "explain": "Der Kosinus-Zeiger eilt dem Sinus-Zeiger um $90^\\circ$ voraus. Vor dem Addieren von Zeigern alles in Sinus-Form bringen.",
+    "example": "$5\\cos(18'000t+120^\\circ)=5\\sin(18'000t+210^\\circ)$",
+    "pitfall": "$90^\\circ$ subtrahieren statt addieren.",
+    "drill": [
+      {
+        "prompt": "$5\\cos(\\omega t+120^\\circ)=5\\sin(\\omega t+\\varphi)$: $\\varphi$ in Grad?",
+        "answer": {
+          "type": "number",
+          "value": "210",
+          "unit": "°"
+        }
+      },
+      {
+        "prompt": "$4\\cos(314t-\\frac\\pi4)=4\\sin(314t+\\varphi)$: $\\varphi=\\;?$",
+        "answer": {
+          "type": "number",
+          "value": "pi/4"
+        }
+      },
+      {
+        "prompt": "$\\cos x=\\sin(x+\\varphi)$ mit $0\\le\\varphi<2\\pi$: $\\varphi=\\;?$",
+        "answer": {
+          "type": "number",
+          "value": "pi/2"
+        }
+      }
+    ]
+  },
+  {
+    "id": "k2-phasen-rlc",
+    "chapter": "k2",
+    "skills": [
+      "komplex-wechselstrom",
+      "zeiger-ueberlagerung",
+      "schwingung-modell"
+    ],
+    "topic": "Zeigermodell",
+    "topic_order": 4,
+    "name": "Phasenlage bei R, L und C",
+    "formula": "$$U=\\hat U\\sin(\\omega t):\\quad I_R=\\hat I\\sin(\\omega t)\\qquad I_C=\\hat I\\sin\\!\\Big(\\omega t+\\frac\\pi2\\Big)\\qquad I_L=\\hat I\\sin\\!\\Big(\\omega t-\\frac\\pi2\\Big)$$",
+    "symbols": [
+      {
+        "sym": "$U$",
+        "desc": "Wechselspannung (V)"
+      },
+      {
+        "sym": "$\\hat U,\\ \\hat I$",
+        "desc": "Scheitelwerte (Amplituden) von Spannung (V) und Strom (A)"
+      },
+      {
+        "sym": "$I_R,\\ I_C,\\ I_L$",
+        "desc": "Strom durch Widerstand, Kondensator, Spule (A)"
+      },
+      {
+        "sym": "$\\omega$",
+        "desc": "Kreisfrequenz (rad/s)"
+      },
+      {
+        "sym": "$t$",
+        "desc": "Zeit (s)"
+      },
+      {
+        "sym": "$\\pi$",
+        "desc": "Kreiszahl, Konstante $\\approx3.14159$ (entspricht $180^\\circ$)"
+      }
+    ],
+    "explain": "Beim Widerstand sind Strom und Spannung in Phase. Beim Kondensator eilt der Strom um $\\frac\\pi2$ voraus, bei der Spule um $\\frac\\pi2$ nach.",
+    "example": "Kondensator: $I=\\hat I\\sin(314t+\\frac\\pi2)$",
+    "pitfall": "Kondensator und Spule verwechseln. Merkhilfe: «Beim Kondensator eilt der Strom vor.»",
+    "drill": [
+      {
+        "prompt": "Spule: $I=\\hat I\\sin(\\omega t+\\varphi)$, $\\varphi=\\;?$",
+        "answer": {
+          "type": "number",
+          "value": "-pi/2"
+        }
+      },
+      {
+        "prompt": "Kondensator: $I=\\hat I\\sin(\\omega t+\\varphi)$, $\\varphi$ in Grad?",
+        "answer": {
+          "type": "number",
+          "value": "90",
+          "unit": "°"
+        }
+      }
+    ]
+  },
+  {
+    "id": "k2-zeigeraddition",
+    "chapter": "k2",
+    "skills": [
+      "zeiger-ueberlagerung"
+    ],
+    "topic": "Zeigermodell",
+    "topic_order": 4,
+    "name": "Überlagerung zweier Schwingungen",
+    "formula": "$$A=\\sqrt{A_1^2+A_2^2+2A_1A_2\\cos(\\varphi_2-\\varphi_1)}\\qquad \\tan\\varphi=\\frac{A_1\\sin\\varphi_1+A_2\\sin\\varphi_2}{A_1\\cos\\varphi_1+A_2\\cos\\varphi_2}$$",
+    "symbols": [
+      {
+        "sym": "$A_1,\\ A_2$",
+        "desc": "Amplituden der beiden Schwingungen (Zahlen $>0$)"
+      },
+      {
+        "sym": "$\\varphi_1,\\ \\varphi_2$",
+        "desc": "Phasenwinkel der beiden Schwingungen (rad oder Grad)"
+      },
+      {
+        "sym": "$A$",
+        "desc": "Amplitude der Summenschwingung"
+      },
+      {
+        "sym": "$\\varphi$",
+        "desc": "Phasenwinkel der Summenschwingung"
+      },
+      {
+        "sym": "$\\omega$",
+        "desc": "gemeinsame Kreisfrequenz"
+      }
+    ],
+    "explain": "Gleichfrequente Schwingungen addieren sich zu einer Sinusschwingung mit derselben Frequenz: $y=A\\sin(\\omega t+\\varphi)$. Die Zeiger werden wie Vektoren addiert. Rechner: Vektorformat zylindrisch, $[A_1\\angle\\varphi_1]+[A_2\\angle\\varphi_2]$.",
+    "example": "$6\\sin(x+\\frac\\pi6)+10\\sin(x+\\frac{5\\pi}6)$: $A=\\sqrt{36+100+120\\cos\\frac{2\\pi}3}=\\sqrt{76}\\approx8.72$",
+    "pitfall": "Die Amplituden einfach addieren: $A\\neq A_1+A_2$ (ausser bei gleicher Phase).",
+    "drill": [
+      {
+        "prompt": "$3\\sin(\\omega t)+4\\sin(\\omega t+\\frac\\pi2)=A\\sin(\\omega t+\\varphi)$: Gib $(A;\\varphi)$ an.",
+        "answer": {
+          "type": "tuple",
+          "value": [
+            "5",
+            "0.9273"
+          ],
+          "names": [
+            "A",
+            "φ"
+          ]
+        }
+      },
+      {
+        "prompt": "$6\\sin(x+\\frac\\pi6)+10\\sin(x+\\frac{5\\pi}6)$: Amplitude $A\\approx\\;?$",
+        "answer": {
+          "type": "number",
+          "value": "8.718"
+        }
+      },
+      {
+        "prompt": "$2\\sin(x)+2\\sin(x+\\pi)$: Amplitude?",
+        "answer": {
+          "type": "number",
+          "value": "0",
+          "tol": 1e-06
+        }
+      }
+    ]
+  },
+  {
+    "id": "k2-zeiger-quadrant",
+    "chapter": "k2",
+    "skills": [
+      "zeiger-ueberlagerung"
+    ],
+    "topic": "Zeigermodell",
+    "topic_order": 4,
+    "name": "Phasenwinkel: Quadrantenkorrektur",
+    "formula": "$$\\text{Nenner }A_1\\cos\\varphi_1+A_2\\cos\\varphi_2<0\\;\\Rightarrow\\;\\varphi=\\tan^{-1}(\\dots)+\\pi\\quad(+180^\\circ)$$",
+    "symbols": [
+      {
+        "sym": "$A_1,\\ A_2$",
+        "desc": "Amplituden"
+      },
+      {
+        "sym": "$\\varphi_1,\\ \\varphi_2$",
+        "desc": "Phasenwinkel"
+      },
+      {
+        "sym": "$\\varphi$",
+        "desc": "Phasenwinkel der Summe (rad bzw. Grad)"
+      },
+      {
+        "sym": "$\\tan^{-1}$",
+        "desc": "Arcustangens, liefert nur Werte zwischen $-90^\\circ$ und $90^\\circ$"
+      },
+      {
+        "sym": "$\\pi$",
+        "desc": "Kreiszahl, Konstante $\\approx3.14159$ (entspricht $180^\\circ$)"
+      }
+    ],
+    "explain": "$\\tan^{-1}$ liefert nur Winkel zwischen $-\\frac\\pi2$ und $\\frac\\pi2$. Zeigt der Summenzeiger nach links (negativer Nenner), muss man $\\pi$ bzw. $180^\\circ$ addieren.",
+    "example": "Zeiger $(-2\\mid2)$: $\\tan^{-1}\\frac{2}{-2}=-\\frac\\pi4$, korrigiert $\\varphi=-\\frac\\pi4+\\pi=\\frac{3\\pi}4$",
+    "pitfall": "Die Korrektur vergessen – der Zeiger zeigt dann in die Gegenrichtung.",
+    "drill": [
+      {
+        "prompt": "$2\\sin(\\omega t+\\pi)+2\\sin(\\omega t+\\frac\\pi2)$: Phase $\\varphi=\\;?$",
+        "answer": {
+          "type": "number",
+          "value": "3*pi/4"
+        }
+      },
+      {
+        "prompt": "$6\\sin(x+\\frac\\pi6)+10\\sin(x+\\frac{5\\pi}6)$: Phase $\\varphi\\approx\\;?$",
+        "answer": {
+          "type": "number",
+          "value": "1.976"
+        }
+      },
+      {
+        "prompt": "Summenzeiger $(-3\\mid-3)$ (in Grad, Bereich $-180^\\circ$ bis $180^\\circ$)?",
+        "answer": {
+          "type": "number",
+          "value": "-135",
+          "unit": "°"
+        }
+      }
+    ]
+  },
+  {
+    "id": "k2-komplexe-zahlen",
+    "chapter": "k2",
+    "skills": [
+      "komplex-grundlagen"
+    ],
+    "topic": "Komplexe Zahlen",
+    "topic_order": 5,
+    "name": "Komplexe Zahlen: Grundlagen",
+    "formula": "$$j^2=-1\\qquad z=x+yj,\\quad \\operatorname{Re}(z)=x,\\ \\operatorname{Im}(z)=y\\qquad z_1\\pm z_2=(x_1\\pm x_2)+(y_1\\pm y_2)j$$",
+    "symbols": [
+      {
+        "sym": "$j$",
+        "desc": "imaginäre Einheit, $j^2=-1$"
+      },
+      {
+        "sym": "$z$",
+        "desc": "komplexe Zahl"
+      },
+      {
+        "sym": "$x$",
+        "desc": "Realteil (reelle Zahl)"
+      },
+      {
+        "sym": "$y$",
+        "desc": "Imaginärteil (reelle Zahl)"
+      },
+      {
+        "sym": "$z_1,\\ z_2$",
+        "desc": "komplexe Zahlen $x_1+y_1j$, $x_2+y_2j$"
+      }
+    ],
+    "explain": "In der Elektrotechnik heisst die imaginäre Einheit $j$ (weil $i$ der Strom ist). $z$ ist ein Punkt bzw. Zeiger in der Gauss'schen Zahlenebene.",
+    "example": "$(2+3j)(1-j)=2-2j+3j-3j^2=5+j$",
+    "pitfall": "$j^2=+1$ rechnen.",
+    "drill": [
+      {
+        "prompt": "$(2+3j)+(1-5j)=\\;?$",
+        "answer": {
+          "type": "number",
+          "value": "3-2*I"
+        }
+      },
+      {
+        "prompt": "$(1+j)(1-j)=\\;?$",
+        "answer": {
+          "type": "number",
+          "value": "2"
+        }
+      },
+      {
+        "prompt": "$j^3=\\;?$",
+        "answer": {
+          "type": "number",
+          "value": "-I"
+        }
+      },
+      {
+        "prompt": "$\\sqrt{-9}=\\;?$",
+        "answer": {
+          "type": "number",
+          "value": "3*I"
+        }
+      }
+    ]
+  },
+  {
+    "id": "k2-polarform",
+    "chapter": "k2",
+    "skills": [
+      "komplex-grundlagen"
+    ],
+    "topic": "Komplexe Zahlen",
+    "topic_order": 5,
+    "name": "Polarform und Umrechnung",
+    "formula": "$$z=x+yj=r(\\cos\\varphi+j\\sin\\varphi)=r\\,e^{j\\varphi}=r\\angle\\varphi\\qquad r=\\sqrt{x^2+y^2},\\ \\ \\tan\\varphi=\\frac yx\\ \\ (x<0:\\ +180^\\circ)$$",
+    "symbols": [
+      {
+        "sym": "$z$",
+        "desc": "komplexe Zahl (Zeiger in der Gauss-Ebene)"
+      },
+      {
+        "sym": "$x,\\ y$",
+        "desc": "Real- und Imaginärteil (Zahlen)"
+      },
+      {
+        "sym": "$r$",
+        "desc": "Betrag $|z|$, Länge des Zeigers (Zahl $\\ge0$)"
+      },
+      {
+        "sym": "$\\varphi$",
+        "desc": "Argument: Winkel zur positiven reellen Achse (Grad oder Bogenmass)"
+      },
+      {
+        "sym": "$j$",
+        "desc": "imaginäre Einheit"
+      },
+      {
+        "sym": "$r\\angle\\varphi$",
+        "desc": "Versorschreibweise: Betrag $r$, Winkel $\\varphi$"
+      },
+      {
+        "sym": "$e$",
+        "desc": "Eulersche Zahl, Konstante $\\approx2.71828$"
+      }
+    ],
+    "explain": "Zurück: $x=r\\cos\\varphi$, $y=r\\sin\\varphi$. Liegt $z$ links der imaginären Achse, $180^\\circ$ zum Rechnerwinkel addieren.",
+    "example": "$z=3+4j$: $r=5$, $\\varphi=\\tan^{-1}\\frac43\\approx53.13^\\circ$",
+    "pitfall": "Bei $x<0$ den Winkel direkt aus $\\tan^{-1}$ übernehmen.",
+    "drill": [
+      {
+        "prompt": "$z=3+4j$: Gib $(r;\\varphi)$ an, $\\varphi$ in Grad.",
+        "answer": {
+          "type": "tuple",
+          "value": [
+            "5",
+            "53.13"
+          ],
+          "names": [
+            "r",
+            "φ"
+          ]
+        }
+      },
+      {
+        "prompt": "$z=-1+j$: Gib $(r;\\varphi)$ an, $\\varphi$ in Grad.",
+        "answer": {
+          "type": "tuple",
+          "value": [
+            "sqrt(2)",
+            "135"
+          ],
+          "names": [
+            "r",
+            "φ"
+          ]
+        }
+      },
+      {
+        "prompt": "$z=2\\angle30^\\circ$: Gib $(x;y)$ an.",
+        "answer": {
+          "type": "tuple",
+          "value": [
+            "sqrt(3)",
+            "1"
+          ],
+          "names": [
+            "x",
+            "y"
+          ]
+        }
+      }
+    ]
+  },
+  {
+    "id": "k2-euler",
+    "chapter": "k2",
+    "skills": [
+      "komplex-grundlagen"
+    ],
+    "topic": "Komplexe Zahlen",
+    "topic_order": 5,
+    "name": "Eulersche Formel",
+    "formula": "$$e^{j\\varphi}=\\cos\\varphi+j\\sin\\varphi$$",
+    "symbols": [
+      {
+        "sym": "$e$",
+        "desc": "Eulersche Zahl $\\approx2.71828$"
+      },
+      {
+        "sym": "$j$",
+        "desc": "imaginäre Einheit, $j^2=-1$"
+      },
+      {
+        "sym": "$\\varphi$",
+        "desc": "Winkel im Bogenmass"
+      }
+    ],
+    "explain": "Verbindet Exponentialfunktion und Winkelfunktionen. $e^{j\\varphi}$ ist ein Zeiger der Länge 1 mit Winkel $\\varphi$.",
+    "example": "$e^{j\\pi}=\\cos\\pi+j\\sin\\pi=-1$",
+    "pitfall": "$|e^{j\\varphi}|=1$ – der Betrag hängt nicht von $\\varphi$ ab.",
+    "drill": [
+      {
+        "prompt": "$e^{j\\pi}=\\;?$",
+        "answer": {
+          "type": "number",
+          "value": "-1"
+        }
+      },
+      {
+        "prompt": "$2e^{j\\pi/2}=\\;?$",
+        "answer": {
+          "type": "number",
+          "value": "2*I"
+        }
+      },
+      {
+        "prompt": "$\\big|5e^{j\\,0.7}\\big|=\\;?$",
+        "answer": {
+          "type": "number",
+          "value": "5"
+        }
+      }
+    ]
+  },
+  {
+    "id": "k2-komplex-mult-div",
+    "chapter": "k2",
+    "skills": [
+      "komplex-grundlagen"
+    ],
+    "topic": "Komplexe Zahlen",
+    "topic_order": 5,
+    "name": "Multiplizieren und Dividieren in Polarform",
+    "formula": "$$z_1z_2=r_1r_2\\,e^{j(\\varphi_1+\\varphi_2)}\\qquad \\frac{z_1}{z_2}=\\frac{r_1}{r_2}\\,e^{j(\\varphi_1-\\varphi_2)}$$",
+    "symbols": [
+      {
+        "sym": "$z_1,\\ z_2$",
+        "desc": "komplexe Zahlen, $z_2\\neq0$"
+      },
+      {
+        "sym": "$r_1,\\ r_2$",
+        "desc": "Beträge (Zahlen $\\ge0$)"
+      },
+      {
+        "sym": "$\\varphi_1,\\ \\varphi_2$",
+        "desc": "Winkel (Argumente)"
+      },
+      {
+        "sym": "$e$",
+        "desc": "Eulersche Zahl, Konstante $\\approx2.71828$"
+      },
+      {
+        "sym": "$j$",
+        "desc": "imaginäre Einheit, $j^2=-1$"
+      }
+    ],
+    "explain": "Beträge multiplizieren bzw. dividieren, Winkel addieren bzw. subtrahieren. Addieren dagegen nur in kartesischer Form.",
+    "example": "$(2\\angle30^\\circ)\\cdot(3\\angle45^\\circ)=6\\angle75^\\circ$",
+    "pitfall": "In Polarform addieren wollen oder die Winkel multiplizieren.",
+    "drill": [
+      {
+        "prompt": "$(2\\angle30^\\circ)\\cdot(3\\angle45^\\circ)$: Gib $(r;\\varphi)$ an, $\\varphi$ in Grad.",
+        "answer": {
+          "type": "tuple",
+          "value": [
+            "6",
+            "75"
+          ],
+          "names": [
+            "r",
+            "φ"
+          ]
+        }
+      },
+      {
+        "prompt": "$\\dfrac{8\\angle100^\\circ}{2\\angle40^\\circ}$: Gib $(r;\\varphi)$ an, $\\varphi$ in Grad.",
+        "answer": {
+          "type": "tuple",
+          "value": [
+            "4",
+            "60"
+          ],
+          "names": [
+            "r",
+            "φ"
+          ]
+        }
+      },
+      {
+        "prompt": "$j\\cdot(1+j)=\\;?$",
+        "answer": {
+          "type": "number",
+          "value": "-1+I"
+        }
+      }
+    ]
+  },
+  {
+    "id": "k2-impedanzen",
+    "chapter": "k2",
+    "skills": [
+      "komplex-wechselstrom"
+    ],
+    "topic": "Wechselstromrechnung",
+    "topic_order": 6,
+    "name": "Komplexe Widerstände (Impedanzen)",
+    "formula": "$$Z_R=R\\qquad Z_L=j\\omega L\\qquad Z_C=\\frac1{j\\omega C}=jX_C\\ \\ \\text{mit}\\ \\ X_C=-\\frac1{\\omega C}$$",
+    "symbols": [
+      {
+        "sym": "$Z_R,\\ Z_L,\\ Z_C$",
+        "desc": "komplexe Widerstände (Impedanzen) von Widerstand, Spule, Kondensator ($\\Omega$)"
+      },
+      {
+        "sym": "$R$",
+        "desc": "ohmscher Widerstand ($\\Omega$)"
+      },
+      {
+        "sym": "$L$",
+        "desc": "Induktivität (H)"
+      },
+      {
+        "sym": "$C$",
+        "desc": "Kapazität (F)"
+      },
+      {
+        "sym": "$\\omega$",
+        "desc": "Kreisfrequenz (1/s)"
+      },
+      {
+        "sym": "$j$",
+        "desc": "imaginäre Einheit"
+      },
+      {
+        "sym": "$X_C$",
+        "desc": "Blindwiderstand des Kondensators ($\\Omega$, negativ)"
+      }
+    ],
+    "explain": "Spule und Kondensator werden zu imaginären Widerständen. Spule: positiver Imaginärteil, Kondensator: negativer.",
+    "example": "$\\omega=500\\ \\text{s}^{-1}$, $C=10\\,\\mu\\text{F}$: $X_C=-\\frac1{500\\cdot10^{-5}}=-200\\,\\Omega$",
+    "pitfall": "Das Minus bei $X_C$ vergessen: $\\frac1j=-j$.",
+    "drill": [
+      {
+        "prompt": "$\\omega=500\\ \\text{s}^{-1}$, $C=10\\,\\mu$F: $X_C$ in $\\Omega$?",
+        "answer": {
+          "type": "number",
+          "value": "-200"
+        }
+      },
+      {
+        "prompt": "$\\omega=1000\\ \\text{s}^{-1}$, $L=0.1$ H: $Z_L=\\;?$ (in $\\Omega$)",
+        "answer": {
+          "type": "number",
+          "value": "100*I"
+        }
+      },
+      {
+        "prompt": "$\\dfrac1j=\\;?$",
+        "answer": {
+          "type": "number",
+          "value": "-I"
+        }
+      }
+    ]
+  },
+  {
+    "id": "k2-reihenschaltung",
+    "chapter": "k2",
+    "skills": [
+      "komplex-wechselstrom"
+    ],
+    "topic": "Wechselstromrechnung",
+    "topic_order": 6,
+    "name": "Reihenschaltung, Scheinwiderstand, Phase",
+    "formula": "$$Z=Z_R+Z_L+Z_C\\qquad |Z|=\\sqrt{\\operatorname{Re}(Z)^2+\\operatorname{Im}(Z)^2}\\qquad \\varphi=\\tan^{-1}\\frac{\\operatorname{Im}Z}{\\operatorname{Re}Z}$$",
+    "symbols": [
+      {
+        "sym": "$Z$",
+        "desc": "Gesamtimpedanz (komplex, $\\Omega$)"
+      },
+      {
+        "sym": "$Z_R,\\ Z_L,\\ Z_C$",
+        "desc": "Einzelimpedanzen"
+      },
+      {
+        "sym": "$|Z|$",
+        "desc": "Scheinwiderstand ($\\Omega$, Zahl $\\ge0$)"
+      },
+      {
+        "sym": "$\\operatorname{Re}Z,\\ \\operatorname{Im}Z$",
+        "desc": "Real- bzw. Imaginärteil von $Z$"
+      },
+      {
+        "sym": "$\\varphi$",
+        "desc": "Phasenverschiebung zwischen Spannung und Strom (Grad oder rad)"
+      }
+    ],
+    "explain": "In Serie addieren sich die Impedanzen. $|Z|$ ist der Scheinwiderstand, $\\varphi$ die Phasenverschiebung zwischen Spannung und Strom.",
+    "example": "$R=150\\,\\Omega$, $X_C=-200\\,\\Omega$: $Z=150-200j=250\\,\\Omega\\angle-53.13^\\circ$",
+    "pitfall": "$|Z|=R+X_L+X_C$ rechnen statt mit Pythagoras.",
+    "drill": [
+      {
+        "prompt": "$R=150\\,\\Omega$, $X_C=-200\\,\\Omega$: Gib $(|Z|;\\varphi)$ an, $\\varphi$ in Grad.",
+        "answer": {
+          "type": "tuple",
+          "value": [
+            "250",
+            "-53.13"
+          ],
+          "names": [
+            "|Z|",
+            "φ"
+          ]
+        }
+      },
+      {
+        "prompt": "$R=30\\,\\Omega$, $X_L=40\\,\\Omega$: $|Z|$ in $\\Omega$?",
+        "answer": {
+          "type": "number",
+          "value": "50"
+        }
+      },
+      {
+        "prompt": "$R=40\\,\\Omega$, $X_L=50\\,\\Omega$, $X_C=-20\\,\\Omega$: $|Z|$ in $\\Omega$?",
+        "answer": {
+          "type": "number",
+          "value": "50"
+        }
+      }
+    ]
+  }
+]

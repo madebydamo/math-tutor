@@ -1,0 +1,483 @@
+{
+  "course": "Mathematik II (ZbW HF)",
+  "chapters": [
+    {
+      "id": "g1",
+      "nr": 0,
+      "code": "G1",
+      "title": "Grundlagen: Rechnen & Terme",
+      "icon": "🧮",
+      "optional": true,
+      "skills": [
+        {
+          "id": "g-brueche",
+          "title": "Bruchrechnen",
+          "skript": "Grundlagen"
+        },
+        {
+          "id": "g-potenzen",
+          "title": "Potenzgesetze",
+          "skript": "Grundlagen"
+        },
+        {
+          "id": "g-wurzeln",
+          "title": "Wurzeln und gebrochene Exponenten",
+          "skript": "Grundlagen"
+        },
+        {
+          "id": "g-terme",
+          "title": "Terme umformen: Klammern, Ausklammern",
+          "skript": "Grundlagen"
+        },
+        {
+          "id": "g-binome",
+          "title": "Binomische Formeln",
+          "skript": "Grundlagen"
+        },
+        {
+          "id": "g-prozent",
+          "title": "Prozentrechnen und Zinsen",
+          "skript": "Grundlagen"
+        }
+      ]
+    },
+    {
+      "id": "g2",
+      "nr": 0,
+      "code": "G2",
+      "title": "Grundlagen: Gleichungen",
+      "icon": "⚖️",
+      "optional": true,
+      "skills": [
+        {
+          "id": "g-lin-gleichung",
+          "title": "Lineare Gleichungen",
+          "skript": "Grundlagen"
+        },
+        {
+          "id": "g-quad-gleichung",
+          "title": "Quadratische Gleichungen (Mitternachtsformel)",
+          "skript": "Grundlagen"
+        },
+        {
+          "id": "g-lgs",
+          "title": "Lineare Gleichungssysteme (2×2, 3×3)",
+          "skript": "Grundlagen"
+        },
+        {
+          "id": "g-formeln-umstellen",
+          "title": "Formeln umstellen",
+          "skript": "Grundlagen"
+        },
+        {
+          "id": "g-logarithmen",
+          "title": "Logarithmengesetze",
+          "skript": "Grundlagen"
+        }
+      ]
+    },
+    {
+      "id": "g3",
+      "nr": 0,
+      "code": "G3",
+      "title": "Grundlagen: Geometrie & Funktionen",
+      "icon": "📏",
+      "optional": true,
+      "skills": [
+        {
+          "id": "g-pythagoras",
+          "title": "Satz des Pythagoras",
+          "skript": "Grundlagen"
+        },
+        {
+          "id": "g-trig-dreieck",
+          "title": "sin, cos, tan im rechtwinkligen Dreieck",
+          "skript": "Grundlagen"
+        },
+        {
+          "id": "g-bogenmass",
+          "title": "Bogenmass und Grad",
+          "skript": "Grundlagen"
+        },
+        {
+          "id": "g-geraden",
+          "title": "Geraden: Steigung und y-Achsenabschnitt",
+          "skript": "Grundlagen"
+        },
+        {
+          "id": "g-einheiten",
+          "title": "Einheiten umrechnen, wissenschaftliche Schreibweise",
+          "skript": "Grundlagen"
+        }
+      ]
+    },
+    {
+      "id": "k1",
+      "nr": 1,
+      "title": "Polynomfunktionen",
+      "icon": "📈",
+      "skills": [
+        {
+          "id": "poly-verhalten",
+          "title": "Verhalten für grosse und kleine x",
+          "skript": "1.1.2, 1.2.3"
+        },
+        {
+          "id": "poly-faktorisieren",
+          "title": "Linearfaktorzerlegung und Nullstellen",
+          "skript": "1.2.4"
+        },
+        {
+          "id": "poly-mehrfach",
+          "title": "Mehrfache Nullstellen (Berühren / Schneiden)",
+          "skript": "1.2.6"
+        },
+        {
+          "id": "poly-skizze",
+          "title": "Graph einer Polynomfunktion skizzieren",
+          "skript": "1.2.3"
+        },
+        {
+          "id": "poly-produktform",
+          "title": "Funktionsgleichung aus Nullstellen und Punkt",
+          "skript": "1.2.7, 1.2.8"
+        },
+        {
+          "id": "poly-anan",
+          "title": "Polynom durch gegebene Punkte (Gleichungssystem)",
+          "skript": "1.2.7"
+        },
+        {
+          "id": "poly-regression",
+          "title": "Von Daten zur Funktion, Regression",
+          "skript": "1.3"
+        },
+        {
+          "id": "poly-optimierung",
+          "title": "Extremwertaufgaben mit Nebenbedingungen",
+          "skript": "1.4"
+        }
+      ]
+    },
+    {
+      "id": "k2",
+      "nr": 2,
+      "title": "Trigonometrische Funktionen",
+      "icon": "〰️",
+      "skills": [
+        {
+          "id": "trig-grundfunktionen",
+          "title": "Eigenschaften von sin, cos, tan; Bogenmass",
+          "skript": "2.1, 2.2"
+        },
+        {
+          "id": "trig-allg-sinus",
+          "title": "Allgemeine Sinusfunktion: Amplitude, Periode, Verschiebung",
+          "skript": "2.3.1, 2.3.2"
+        },
+        {
+          "id": "trig-gleichung-aus-graph",
+          "title": "Funktionsgleichung aus dem Graphen",
+          "skript": "2.3.3"
+        },
+        {
+          "id": "trig-skizze",
+          "title": "Graph einer Sinusfunktion zeichnen",
+          "skript": "2.3.4"
+        },
+        {
+          "id": "trig-nullstellen",
+          "title": "Wertebereich, Periode und Nullstellen berechnen",
+          "skript": "2.3.5"
+        },
+        {
+          "id": "schwingung-modell",
+          "title": "Schwingungen: Periodendauer, Frequenz, Phase",
+          "skript": "2.4"
+        },
+        {
+          "id": "zeiger-ueberlagerung",
+          "title": "Zeigermodell und Überlagerung",
+          "skript": "2.5"
+        },
+        {
+          "id": "komplex-grundlagen",
+          "title": "Komplexe Zahlen: Gauss-Ebene, Polarform",
+          "skript": "2.6.1–2.6.3"
+        },
+        {
+          "id": "komplex-wechselstrom",
+          "title": "Komplexe Wechselstromrechnung",
+          "skript": "2.6.4"
+        }
+      ]
+    },
+    {
+      "id": "k3",
+      "nr": 3,
+      "title": "Exponentialfunktion",
+      "icon": "🚀",
+      "skills": [
+        {
+          "id": "exp-wachstumsformen",
+          "title": "Lineares vs. exponentielles Wachstum",
+          "skript": "3.1"
+        },
+        {
+          "id": "exp-funktion-aufstellen",
+          "title": "Exponentialfunktion aufstellen (Daten, Prozent)",
+          "skript": "3.3, 3.4.3"
+        },
+        {
+          "id": "exp-eigenschaften",
+          "title": "Eigenschaften der Exponentialfunktion",
+          "skript": "3.4.1"
+        },
+        {
+          "id": "exp-basis-e",
+          "title": "Basis e: Umrechnen a^x ↔ e^(kx)",
+          "skript": "3.5.1"
+        },
+        {
+          "id": "exp-logarithmus",
+          "title": "Exponentialgleichungen mit Logarithmus lösen",
+          "skript": "3.5"
+        },
+        {
+          "id": "exp-halbwertszeit",
+          "title": "Verdopplungs- und Halbwertszeit",
+          "skript": "3.5.3"
+        },
+        {
+          "id": "exp-begrenzt",
+          "title": "Beschränktes Wachstum, Lade-/Entladekurven",
+          "skript": "3.2.2, 3.5.2"
+        },
+        {
+          "id": "exp-logistisch",
+          "title": "Logistisches Wachstum, Systemdynamik",
+          "skript": "3.2"
+        }
+      ]
+    },
+    {
+      "id": "k4",
+      "nr": 4,
+      "title": "Differentialrechnung",
+      "icon": "📐",
+      "skills": [
+        {
+          "id": "diff-differenzenquotient",
+          "title": "Differenzen- und Differentialquotient",
+          "skript": "4.1, 4.2"
+        },
+        {
+          "id": "diff-potenzregel",
+          "title": "Potenz-, Summen- und Faktorregel",
+          "skript": "4.3"
+        },
+        {
+          "id": "diff-spezielle",
+          "title": "Ableitung von sin, cos, e^x, ln x",
+          "skript": "4.5.1, 4.5.2"
+        },
+        {
+          "id": "diff-kettenregel",
+          "title": "Kettenregel (Verkettung)",
+          "skript": "4.5.3"
+        },
+        {
+          "id": "diff-kurvendiskussion",
+          "title": "Kurvendiskussion: Extrema, Wendepunkte",
+          "skript": "4.4.1, 4.4.2"
+        },
+        {
+          "id": "diff-tangente",
+          "title": "Tangente und Linearisierung",
+          "skript": "4.6.2"
+        },
+        {
+          "id": "diff-optimierung",
+          "title": "Optimierungsaufgaben mit Ableitung",
+          "skript": "4.4.3"
+        },
+        {
+          "id": "diff-steckbrief",
+          "title": "Steckbriefaufgaben",
+          "skript": "4.4.4"
+        },
+        {
+          "id": "diff-kinematik",
+          "title": "Bewegungslehre: s, v, a",
+          "skript": "4.1.2, 4.6.1"
+        }
+      ]
+    },
+    {
+      "id": "k5",
+      "nr": 5,
+      "title": "Integralrechnung",
+      "icon": "∫",
+      "skills": [
+        {
+          "id": "int-riemann",
+          "title": "Riemannsumme, Ober- und Untersumme",
+          "skript": "5.1"
+        },
+        {
+          "id": "int-stammfunktion",
+          "title": "Stammfunktionen, Integrationsregeln",
+          "skript": "5.2.1–5.2.7"
+        },
+        {
+          "id": "int-bestimmt",
+          "title": "Bestimmtes Integral, Hauptsatz",
+          "skript": "5.2.4"
+        },
+        {
+          "id": "int-flaeche-xachse",
+          "title": "Fläche zwischen Graph und x-Achse",
+          "skript": "5.3.1"
+        },
+        {
+          "id": "int-flaeche-zwei",
+          "title": "Fläche zwischen zwei Funktionen",
+          "skript": "5.3.3"
+        },
+        {
+          "id": "int-mittelwert",
+          "title": "Linearer Mittelwert",
+          "skript": "5.3.2"
+        },
+        {
+          "id": "int-schwerpunkt",
+          "title": "Flächen- und Volumenschwerpunkt",
+          "skript": "5.3.4, 5.3.6"
+        },
+        {
+          "id": "int-rotation",
+          "title": "Volumen von Rotationskörpern",
+          "skript": "5.3.5"
+        },
+        {
+          "id": "int-anwendung",
+          "title": "Bewegungsaufgaben und Arbeit (Physik)",
+          "skript": "5.1.4–5.1.6, 5.3.7"
+        }
+      ]
+    },
+    {
+      "id": "k6",
+      "nr": 6,
+      "title": "Vektoren",
+      "icon": "➡️",
+      "skills": [
+        {
+          "id": "vek-operationen",
+          "title": "Addition, Differenz, Vielfaches (geometrisch)",
+          "skript": "6.1, 6.2"
+        },
+        {
+          "id": "vek-kraefte",
+          "title": "Kräfte und Gleichgewicht",
+          "skript": "6.1.3, 6.2.3"
+        },
+        {
+          "id": "vek-koordinaten",
+          "title": "Koordinaten, Betrag, Einheitsvektor",
+          "skript": "6.3"
+        },
+        {
+          "id": "vek-linearkombination",
+          "title": "Linearkombinationen",
+          "skript": "6.2.7, 6.3.6"
+        },
+        {
+          "id": "vek-gerade",
+          "title": "Parameterdarstellung einer Geraden, Punktprobe",
+          "skript": "6.4.1, 6.4.2"
+        },
+        {
+          "id": "vek-gerade-lage",
+          "title": "Gegenseitige Lage von Geraden, Schnittpunkt",
+          "skript": "6.4.2"
+        },
+        {
+          "id": "vek-abstand",
+          "title": "Abstand Punkt–Gerade",
+          "skript": "6.4.3"
+        },
+        {
+          "id": "vek-skalarprodukt",
+          "title": "Skalarprodukt",
+          "skript": "6.5.1–6.5.3"
+        },
+        {
+          "id": "vek-winkel",
+          "title": "Winkel zwischen Vektoren",
+          "skript": "6.5.4"
+        },
+        {
+          "id": "vek-orthogonal",
+          "title": "Orthogonale Vektoren",
+          "skript": "6.5.5"
+        },
+        {
+          "id": "vek-vektorprodukt",
+          "title": "Vektorprodukt, Flächen, Normalenvektor",
+          "skript": "6.5.6"
+        }
+      ]
+    }
+  ],
+  "error_categories": [
+    {
+      "id": "vorzeichen",
+      "title": "Vorzeichenfehler"
+    },
+    {
+      "id": "rechenfehler",
+      "title": "Rechenfehler (Arithmetik)"
+    },
+    {
+      "id": "algebra",
+      "title": "Umformungsfehler (Algebra, Klammern, Brüche)"
+    },
+    {
+      "id": "regel",
+      "title": "Falsche Regel angewendet (z.B. Ableitungs-/Integrationsregel)"
+    },
+    {
+      "id": "konzept",
+      "title": "Konzept nicht verstanden"
+    },
+    {
+      "id": "ansatz",
+      "title": "Falscher oder fehlender Ansatz"
+    },
+    {
+      "id": "aufgabe-gelesen",
+      "title": "Aufgabenstellung falsch gelesen / unvollständig"
+    },
+    {
+      "id": "einheiten",
+      "title": "Einheiten / Bogenmass vs. Grad"
+    },
+    {
+      "id": "rechner",
+      "title": "Taschenrechner falsch bedient"
+    },
+    {
+      "id": "runden",
+      "title": "Rundungsfehler / Genauigkeit"
+    },
+    {
+      "id": "notation",
+      "title": "Mathematische Schreibweise"
+    },
+    {
+      "id": "interpretation",
+      "title": "Resultat falsch interpretiert"
+    }
+  ]
+}

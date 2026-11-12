@@ -1,0 +1,1373 @@
+[
+  {
+    "id": "k5-riemannsumme",
+    "chapter": "k5",
+    "skills": [
+      "int-riemann"
+    ],
+    "topic": "Riemannsumme",
+    "topic_order": 1,
+    "name": "Riemannsumme",
+    "formula": "$$\\int_a^bf(x)\\,dx=\\lim_{n\\to\\infty}\\sum_{i=1}^nf(x_i)\\,\\Delta x\\qquad\\Delta x=\\frac{b-a}{n}$$",
+    "symbols": [
+      {
+        "sym": "$f(x)$",
+        "desc": "Funktion (Höhe der Rechtecke)"
+      },
+      {
+        "sym": "$a,\\ b$",
+        "desc": "untere und obere Grenze, $a<b$"
+      },
+      {
+        "sym": "$n$",
+        "desc": "Anzahl Rechtecke (Streifen)"
+      },
+      {
+        "sym": "$\\Delta x$",
+        "desc": "Breite eines Streifens (Zahl)"
+      },
+      {
+        "sym": "$x_i$",
+        "desc": "Stützstelle im $i$-ten Streifen (z.B. rechter Rand)"
+      },
+      {
+        "sym": "$\\sum$",
+        "desc": "Summenzeichen: alle Rechteckflächen addieren"
+      },
+      {
+        "sym": "$\\int\\dots\\,dx$",
+        "desc": "Integral: über die Variable $x$ integrieren ($dx$ bzw. $dt$, $ds$ nennt die Integrationsvariable)"
+      }
+    ],
+    "explain": "Die Fläche unter dem Graphen wird durch $n$ Rechtecke der Breite $\\Delta x$ angenähert. Je mehr Rechtecke, desto genauer.",
+    "example": "$f(x)=x$ auf $[0;2]$, $n=4$, rechte Ränder: $\\Delta x=0.5$, Summe $=(0.5+1+1.5+2)\\cdot0.5=2.5$",
+    "pitfall": "$\\Delta x$ falsch: $\\frac{b-a}{n}$, nicht $\\frac{n}{b-a}$.",
+    "drill": [
+      {
+        "prompt": "$[1;5]$ in $n=8$ Streifen: $\\Delta x=\\;?$",
+        "answer": {
+          "type": "number",
+          "value": "0.5"
+        }
+      },
+      {
+        "prompt": "$f(x)=x$ auf $[0;2]$, $n=4$, rechte Ränder: Summe?",
+        "answer": {
+          "type": "number",
+          "value": "2.5"
+        }
+      },
+      {
+        "prompt": "$f(x)=x$ auf $[0;2]$, $n=4$, linke Ränder: Summe?",
+        "answer": {
+          "type": "number",
+          "value": "1.5"
+        }
+      }
+    ]
+  },
+  {
+    "id": "k5-ober-untersumme",
+    "chapter": "k5",
+    "skills": [
+      "int-riemann"
+    ],
+    "topic": "Riemannsumme",
+    "topic_order": 1,
+    "name": "Ober- und Untersumme",
+    "formula": "$$U_n\\le\\int_a^bf(x)\\,dx\\le O_n\\qquad\\text{steigendes }f:\\ U_n=\\sum_{i=0}^{n-1}f(x_i)\\Delta x,\\ \\ O_n=\\sum_{i=1}^{n}f(x_i)\\Delta x$$",
+    "symbols": [
+      {
+        "sym": "$U_n,\\ O_n$",
+        "desc": "Unter- bzw. Obersumme mit $n$ Streifen (Zahlen)"
+      },
+      {
+        "sym": "$x_i$",
+        "desc": "Streifengrenzen $x_i=a+i\\cdot\\Delta x$"
+      },
+      {
+        "sym": "$\\Delta x$",
+        "desc": "Streifenbreite $\\frac{b-a}{n}$"
+      },
+      {
+        "sym": "$a,\\ b$",
+        "desc": "Intervallgrenzen"
+      },
+      {
+        "sym": "$f(x_i)$",
+        "desc": "Funktionswert an der Streifengrenze $x_i$ (Rechteckhöhe)"
+      },
+      {
+        "sym": "$\\int\\dots\\,dx$",
+        "desc": "Integral: über die Variable $x$ integrieren ($dx$ bzw. $dt$, $ds$ nennt die Integrationsvariable)"
+      }
+    ],
+    "explain": "Untersumme: Rechtecke unter dem Graphen (kleinster Funktionswert pro Streifen), Obersumme: darüber. Bei steigendem $f$: links bzw. rechts.",
+    "example": "$f(x)=x^2$ auf $[0;1]$, $n=2$: $U=0.5(0+0.25)=0.125$, $O=0.5(0.25+1)=0.625$, exakt $\\frac13$",
+    "pitfall": "Bei fallenden Funktionen links und rechts vertauschen.",
+    "drill": [
+      {
+        "prompt": "$f(x)=x^2$ auf $[0;1]$, $n=2$: Untersumme?",
+        "answer": {
+          "type": "number",
+          "value": "0.125"
+        }
+      },
+      {
+        "prompt": "$f(x)=x^2$ auf $[0;1]$, $n=2$: Obersumme?",
+        "answer": {
+          "type": "number",
+          "value": "0.625"
+        }
+      },
+      {
+        "prompt": "$f(x)=4-x$ auf $[0;2]$, $n=2$: Obersumme?",
+        "answer": {
+          "type": "number",
+          "value": "7"
+        }
+      }
+    ]
+  },
+  {
+    "id": "k5-stammfunktion",
+    "chapter": "k5",
+    "skills": [
+      "int-stammfunktion"
+    ],
+    "topic": "Stammfunktion & Grundintegrale",
+    "topic_order": 2,
+    "name": "Stammfunktion und Integrationskonstante",
+    "formula": "$$F'(x)=f(x)\\qquad\\int f(x)\\,dx=F(x)+C$$",
+    "symbols": [
+      {
+        "sym": "$f(x)$",
+        "desc": "gegebene Funktion (Integrand)"
+      },
+      {
+        "sym": "$F(x)$",
+        "desc": "Stammfunktion von $f$"
+      },
+      {
+        "sym": "$C$",
+        "desc": "Integrationskonstante (beliebige Zahl)"
+      },
+      {
+        "sym": "$dx$",
+        "desc": "zeigt an, dass nach $x$ integriert wird"
+      },
+      {
+        "sym": "$\\int\\dots\\,dx$",
+        "desc": "Integral: über die Variable $x$ integrieren ($dx$ bzw. $dt$, $ds$ nennt die Integrationsvariable)"
+      }
+    ],
+    "explain": "Integrieren ist die Umkehrung des Ableitens. Stammfunktionen unterscheiden sich nur durch eine Konstante $C$. Eine Anfangsbedingung $F(x_1)=y_1$ legt $C$ fest.",
+    "example": "$f(x)=2x$: $F(x)=x^2+C$; mit $F(0)=5$: $C=5$",
+    "pitfall": "Die Konstante $C$ vergessen bzw. bei einer Anfangsbedingung nicht bestimmen.",
+    "drill": [
+      {
+        "prompt": "Eine Stammfunktion von $f(x)=6x^2$?",
+        "answer": {
+          "type": "expr",
+          "value": "2*x**3"
+        }
+      },
+      {
+        "prompt": "$F'(x)=2x$ und $F(0)=5$. $F(3)=\\;?$",
+        "answer": {
+          "type": "number",
+          "value": "14"
+        }
+      },
+      {
+        "prompt": "$F'(x)=3x^2$ und $F(1)=0$. Konstante $C=\\;?$",
+        "answer": {
+          "type": "number",
+          "value": "-1"
+        }
+      }
+    ]
+  },
+  {
+    "id": "k5-potenzregel-integral",
+    "chapter": "k5",
+    "skills": [
+      "int-stammfunktion"
+    ],
+    "topic": "Stammfunktion & Grundintegrale",
+    "topic_order": 2,
+    "name": "Potenzregel der Integration",
+    "formula": "$$\\int a\\,x^n\\,dx=\\frac{a}{n+1}\\,x^{n+1}+C\\quad(n\\neq-1)\\qquad\\int\\sqrt[n]{x^m}\\,dx=\\frac{x^{\\frac mn+1}}{\\frac mn+1}+C$$",
+    "symbols": [
+      {
+        "sym": "$a$",
+        "desc": "konstanter Faktor (Zahl)"
+      },
+      {
+        "sym": "$n$",
+        "desc": "Exponent (Zahl), $n\\neq-1$"
+      },
+      {
+        "sym": "$m,\\ n$ (Wurzel)",
+        "desc": "Exponent unter der Wurzel bzw. Wurzelexponent"
+      },
+      {
+        "sym": "$C$",
+        "desc": "Integrationskonstante"
+      },
+      {
+        "sym": "$x$",
+        "desc": "Integrationsvariable"
+      },
+      {
+        "sym": "$\\int\\dots\\,dx$",
+        "desc": "Integral: über die Variable $x$ integrieren ($dx$ bzw. $dt$, $ds$ nennt die Integrationsvariable)"
+      }
+    ],
+    "explain": "Exponent um 1 erhöhen und durch den neuen Exponenten teilen. Wurzeln und Brüche zuerst als Potenzen schreiben.",
+    "example": "$\\int\\sqrt x\\,dx=\\int x^{1/2}\\,dx=\\frac23x^{3/2}+C$",
+    "pitfall": "Mit dem alten statt dem neuen Exponenten teilen, oder $\\int\\frac1x\\,dx$ mit der Potenzregel rechnen.",
+    "drill": [
+      {
+        "prompt": "$\\int x^4\\,dx=\\;?$",
+        "answer": {
+          "type": "expr",
+          "value": "x**5/5"
+        }
+      },
+      {
+        "prompt": "$\\int\\dfrac1{x^2}\\,dx=\\;?$",
+        "answer": {
+          "type": "expr",
+          "value": "-1/x"
+        }
+      },
+      {
+        "prompt": "$\\int\\sqrt x\\,dx=\\;?$",
+        "answer": {
+          "type": "expr",
+          "value": "2/3*x**(3/2)"
+        }
+      },
+      {
+        "prompt": "$\\int(3x^2-4x+1)\\,dx=\\;?$",
+        "answer": {
+          "type": "expr",
+          "value": "x**3-2*x**2+x"
+        }
+      }
+    ]
+  },
+  {
+    "id": "k5-grundintegrale-exp-ln",
+    "chapter": "k5",
+    "skills": [
+      "int-stammfunktion"
+    ],
+    "topic": "Stammfunktion & Grundintegrale",
+    "topic_order": 2,
+    "name": "Grundintegrale: 1/x, e, aˣ",
+    "formula": "$$\\int\\frac1x\\,dx=\\ln|x|+C\\qquad\\int e^{kx}\\,dx=\\frac1k\\,e^{kx}+C\\qquad\\int a^x\\,dx=\\frac{a^x}{\\ln a}+C$$",
+    "symbols": [
+      {
+        "sym": "$\\ln|x|$",
+        "desc": "natürlicher Logarithmus des Betrags, $x\\neq0$"
+      },
+      {
+        "sym": "$e$",
+        "desc": "Eulersche Zahl"
+      },
+      {
+        "sym": "$k$",
+        "desc": "Konstante (Zahl), $k\\neq0$"
+      },
+      {
+        "sym": "$a$",
+        "desc": "Basis (Zahl), $a>0$, $a\\neq1$"
+      },
+      {
+        "sym": "$C$",
+        "desc": "Integrationskonstante"
+      },
+      {
+        "sym": "$\\int\\dots\\,dx$",
+        "desc": "Integral: über die Variable $x$ integrieren ($dx$ bzw. $dt$, $ds$ nennt die Integrationsvariable)"
+      }
+    ],
+    "explain": "$\\frac1x=x^{-1}$ ist die Ausnahme der Potenzregel. Bei $e^{kx}$ durch $k$ teilen (nicht multiplizieren!).",
+    "example": "$\\int e^{2x}\\,dx=\\frac12e^{2x}+C$",
+    "pitfall": "$\\int e^{2x}\\,dx=2e^{2x}$ – das ist die Ableitung.",
+    "drill": [
+      {
+        "prompt": "$\\int\\dfrac3x\\,dx=\\;?$ (für $x>0$)",
+        "answer": {
+          "type": "expr",
+          "value": "3*log(x)"
+        }
+      },
+      {
+        "prompt": "$\\int e^{2x}\\,dx=\\;?$",
+        "answer": {
+          "type": "expr",
+          "value": "exp(2*x)/2"
+        }
+      },
+      {
+        "prompt": "$\\int 2^x\\,dx=\\;?$",
+        "answer": {
+          "type": "expr",
+          "value": "2**x/log(2)"
+        }
+      }
+    ]
+  },
+  {
+    "id": "k5-grundintegrale-trig",
+    "chapter": "k5",
+    "skills": [
+      "int-stammfunktion",
+      "int-bestimmt"
+    ],
+    "topic": "Stammfunktion & Grundintegrale",
+    "topic_order": 2,
+    "name": "Grundintegrale: sin und cos",
+    "formula": "$$\\int\\sin x\\,dx=-\\cos x+C\\qquad\\int\\cos x\\,dx=\\sin x+C\\qquad\\int\\sin(kx)\\,dx=-\\frac1k\\cos(kx)+C$$",
+    "symbols": [
+      {
+        "sym": "$x$",
+        "desc": "Variable im Bogenmass"
+      },
+      {
+        "sym": "$k$",
+        "desc": "Konstante (Zahl), $k\\neq0$"
+      },
+      {
+        "sym": "$C$",
+        "desc": "Integrationskonstante"
+      },
+      {
+        "sym": "$\\int\\dots\\,dx$",
+        "desc": "Integral: über die Variable $x$ integrieren ($dx$ bzw. $dt$, $ds$ nennt die Integrationsvariable)"
+      }
+    ],
+    "explain": "Gegenrichtung zum Ableiten: $\\sin\\leftarrow\\cos\\leftarrow-\\sin\\leftarrow-\\cos$. Immer im Bogenmass rechnen (Rechner auf RAD).",
+    "example": "$\\int_0^\\pi\\sin x\\,dx=[-\\cos x]_0^\\pi=1-(-1)=2$",
+    "pitfall": "Vorzeichen: $\\int\\sin x\\,dx=-\\cos x$, nicht $+\\cos x$.",
+    "drill": [
+      {
+        "prompt": "$\\int\\sin(3x)\\,dx=\\;?$",
+        "answer": {
+          "type": "expr",
+          "value": "-cos(3*x)/3"
+        }
+      },
+      {
+        "prompt": "$\\int4\\cos(2x)\\,dx=\\;?$",
+        "answer": {
+          "type": "expr",
+          "value": "2*sin(2*x)"
+        }
+      },
+      {
+        "prompt": "$\\int_0^\\pi\\sin x\\,dx=\\;?$",
+        "answer": {
+          "type": "number",
+          "value": "2"
+        }
+      }
+    ]
+  },
+  {
+    "id": "k5-lineare-substitution",
+    "chapter": "k5",
+    "skills": [
+      "int-stammfunktion"
+    ],
+    "topic": "Stammfunktion & Grundintegrale",
+    "topic_order": 2,
+    "name": "Lineare Substitution",
+    "formula": "$$\\int f(kx+d)\\,dx=\\frac1k\\,F(kx+d)+C$$",
+    "symbols": [
+      {
+        "sym": "$f$",
+        "desc": "Funktion mit bekannter Stammfunktion $F$"
+      },
+      {
+        "sym": "$k$",
+        "desc": "Faktor vor $x$ (Zahl), $k\\neq0$"
+      },
+      {
+        "sym": "$d$",
+        "desc": "Konstante (Zahl)"
+      },
+      {
+        "sym": "$C$",
+        "desc": "Integrationskonstante"
+      },
+      {
+        "sym": "$F$",
+        "desc": "Stammfunktion von $f$"
+      },
+      {
+        "sym": "$\\int\\dots\\,dx$",
+        "desc": "Integral: über die Variable $x$ integrieren ($dx$ bzw. $dt$, $ds$ nennt die Integrationsvariable)"
+      }
+    ],
+    "explain": "Ist das Innere linear, integriert man wie gewohnt und teilt durch die innere Ableitung $k$.",
+    "example": "$\\int(2x+1)^3\\,dx=\\frac12\\cdot\\frac{(2x+1)^4}{4}=\\frac{(2x+1)^4}{8}+C$",
+    "pitfall": "Mit $k$ multiplizieren statt durch $k$ teilen; bei nichtlinearem Inneren funktioniert die Regel nicht.",
+    "drill": [
+      {
+        "prompt": "$\\int(2x+1)^3\\,dx=\\;?$",
+        "answer": {
+          "type": "expr",
+          "value": "(2*x+1)**4/8"
+        }
+      },
+      {
+        "prompt": "$\\int e^{-x/2}\\,dx=\\;?$",
+        "answer": {
+          "type": "expr",
+          "value": "-2*exp(-x/2)"
+        }
+      },
+      {
+        "prompt": "$\\int\\dfrac{1}{3x+1}\\,dx=\\;?$ (für $3x+1>0$)",
+        "answer": {
+          "type": "expr",
+          "value": "log(3*x+1)/3"
+        }
+      }
+    ]
+  },
+  {
+    "id": "k5-hauptsatz",
+    "chapter": "k5",
+    "skills": [
+      "int-bestimmt"
+    ],
+    "topic": "Bestimmtes Integral",
+    "topic_order": 3,
+    "name": "Hauptsatz der Differential- und Integralrechnung",
+    "formula": "$$\\int_a^bf(x)\\,dx=\\big[F(x)\\big]_a^b=F(b)-F(a)$$",
+    "symbols": [
+      {
+        "sym": "$a,\\ b$",
+        "desc": "untere bzw. obere Integrationsgrenze (Zahlen)"
+      },
+      {
+        "sym": "$f(x)$",
+        "desc": "Integrand"
+      },
+      {
+        "sym": "$F(x)$",
+        "desc": "beliebige Stammfunktion von $f$"
+      },
+      {
+        "sym": "$\\big[F(x)\\big]_a^b$",
+        "desc": "Abkürzung für $F(b)-F(a)$"
+      },
+      {
+        "sym": "$\\int\\dots\\,dx$",
+        "desc": "Integral: über die Variable $x$ integrieren ($dx$ bzw. $dt$, $ds$ nennt die Integrationsvariable)"
+      }
+    ],
+    "explain": "Bestimmtes Integral = Differenz der Stammfunktion an den Grenzen. $C$ hebt sich weg. Rechner: `∫(f(x),x,a,b)` (Menü 6/4/3).",
+    "example": "$\\int_0^2 3x^2\\,dx=[x^3]_0^2=8-0=8$",
+    "pitfall": "$F(a)-F(b)$ rechnen oder bei der unteren Grenze die Klammern vergessen: $-F(a)$ wirkt auf alle Terme.",
+    "drill": [
+      {
+        "prompt": "$\\int_0^2 3x^2\\,dx=\\;?$",
+        "answer": {
+          "type": "number",
+          "value": "8"
+        }
+      },
+      {
+        "prompt": "$\\int_1^e\\frac1x\\,dx=\\;?$",
+        "answer": {
+          "type": "number",
+          "value": "1"
+        }
+      },
+      {
+        "prompt": "$\\int_0^1e^x\\,dx=\\;?$",
+        "answer": {
+          "type": "number",
+          "value": "E-1"
+        }
+      },
+      {
+        "prompt": "$\\int_{-1}^{2}(2x+1)\\,dx=\\;?$",
+        "answer": {
+          "type": "number",
+          "value": "6"
+        }
+      }
+    ]
+  },
+  {
+    "id": "k5-integralregeln",
+    "chapter": "k5",
+    "skills": [
+      "int-bestimmt"
+    ],
+    "topic": "Bestimmtes Integral",
+    "topic_order": 3,
+    "name": "Rechenregeln für bestimmte Integrale",
+    "formula": "$$\\int_a^af\\,dx=0\\qquad\\int_b^af\\,dx=-\\int_a^bf\\,dx\\qquad\\int_a^bf\\,dx+\\int_b^cf\\,dx=\\int_a^cf\\,dx$$",
+    "symbols": [
+      {
+        "sym": "$a,\\ b,\\ c$",
+        "desc": "Integrationsgrenzen (Zahlen)"
+      },
+      {
+        "sym": "$f$",
+        "desc": "Integrand (Funktion)"
+      },
+      {
+        "sym": "$\\int\\dots\\,dx$",
+        "desc": "Integral: über die Variable $x$ integrieren ($dx$ bzw. $dt$, $ds$ nennt die Integrationsvariable)"
+      }
+    ],
+    "explain": "Grenzen vertauschen kehrt das Vorzeichen um; Intervalle lassen sich zusammensetzen. Dazu Faktor- und Summenregel wie beim Ableiten.",
+    "example": "$\\int_0^2f=3$, $\\int_2^5f=4$ $\\Rightarrow$ $\\int_0^5f=7$",
+    "pitfall": "$\\int_a^bf\\cdot g\\,dx=\\int_a^bf\\,dx\\cdot\\int_a^bg\\,dx$ – gilt nicht!",
+    "drill": [
+      {
+        "prompt": "$\\int_a^bf\\,dx=5$. $\\int_b^af\\,dx=\\;?$",
+        "answer": {
+          "type": "number",
+          "value": "-5"
+        }
+      },
+      {
+        "prompt": "$\\int_0^2f\\,dx=3$, $\\int_2^5f\\,dx=4$. $\\int_0^5f\\,dx=\\;?$",
+        "answer": {
+          "type": "number",
+          "value": "7"
+        }
+      },
+      {
+        "prompt": "$\\int_1^3f\\,dx=2$. $\\int_1^3\\big(4f(x)+1\\big)\\,dx=\\;?$",
+        "answer": {
+          "type": "number",
+          "value": "10"
+        }
+      }
+    ]
+  },
+  {
+    "id": "k5-flaeche-xachse",
+    "chapter": "k5",
+    "skills": [
+      "int-flaeche-xachse"
+    ],
+    "topic": "Flächen",
+    "topic_order": 4,
+    "name": "Fläche zwischen Graph und x-Achse",
+    "formula": "$$A=\\sum\\Big|\\int_{x_i}^{x_{i+1}}f(x)\\,dx\\Big|\\qquad x_i:\\ \\text{Nullstellen und Intervallgrenzen}$$",
+    "symbols": [
+      {
+        "sym": "$A$",
+        "desc": "Fläche (Zahl $\\ge0$, Flächeneinheit)"
+      },
+      {
+        "sym": "$x_i$",
+        "desc": "Nullstellen von $f$ und Intervallgrenzen, der Grösse nach geordnet"
+      },
+      {
+        "sym": "$|\\dots|$",
+        "desc": "Betrag: Teilflächen unter der $x$-Achse positiv zählen"
+      },
+      {
+        "sym": "$\\int\\dots\\,dx$",
+        "desc": "Integral: über die Variable $x$ integrieren ($dx$ bzw. $dt$, $ds$ nennt die Integrationsvariable)"
+      }
+    ],
+    "explain": "Unterhalb der $x$-Achse ist das Integral negativ. Darum an den Nullstellen aufteilen, abschnittsweise integrieren und die Beträge addieren.",
+    "example": "$f(x)=x^2-1$ auf $[0;2]$: $\\int_0^1=-\\frac23$, $\\int_1^2=\\frac43$, $A=\\frac23+\\frac43=2$",
+    "pitfall": "Über die Nullstelle hinweg integrieren: $\\int_0^2(x^2-1)\\,dx=\\frac23\\neq A$.",
+    "drill": [
+      {
+        "prompt": "$f(x)=x^2-1$ auf $[0;2]$: Fläche mit der $x$-Achse?",
+        "answer": {
+          "type": "number",
+          "value": "2"
+        }
+      },
+      {
+        "prompt": "$\\int_{-1}^1x^3\\,dx=\\;?$",
+        "answer": {
+          "type": "number",
+          "value": "0",
+          "tol": 1e-09
+        }
+      },
+      {
+        "prompt": "$f(x)=x^3$ auf $[-1;1]$: Fläche mit der $x$-Achse?",
+        "answer": {
+          "type": "number",
+          "value": "1/2"
+        }
+      },
+      {
+        "prompt": "$f(x)=\\sin x$ auf $[0;2\\pi]$: Fläche?",
+        "answer": {
+          "type": "number",
+          "value": "4"
+        }
+      }
+    ]
+  },
+  {
+    "id": "k5-flaeche-nullstellen",
+    "chapter": "k5",
+    "skills": [
+      "int-flaeche-xachse"
+    ],
+    "topic": "Flächen",
+    "topic_order": 4,
+    "name": "Fläche zwischen den Nullstellen",
+    "formula": "$$A=\\Big|\\int_{x_1}^{x_2}f(x)\\,dx\\Big|\\qquad x_1,x_2:\\ f(x)=0$$",
+    "symbols": [
+      {
+        "sym": "$A$",
+        "desc": "eingeschlossene Fläche (Zahl $\\ge0$)"
+      },
+      {
+        "sym": "$x_1,\\ x_2$",
+        "desc": "benachbarte Nullstellen von $f$"
+      },
+      {
+        "sym": "$f(x)$",
+        "desc": "Funktion"
+      },
+      {
+        "sym": "$\\int\\dots\\,dx$",
+        "desc": "Integral: über die Variable $x$ integrieren ($dx$ bzw. $dt$, $ds$ nennt die Integrationsvariable)"
+      }
+    ],
+    "explain": "Häufige Aufgabe: Fläche, die der Graph mit der $x$-Achse einschliesst. Zuerst Nullstellen bestimmen (`solve(f(x)=0,x)`), sie sind die Grenzen.",
+    "example": "$f(x)=4-x^2$: Nullstellen $\\pm2$, $A=\\int_{-2}^2(4-x^2)\\,dx=\\frac{32}3$",
+    "pitfall": "Die Grenzen raten statt die Nullstellen zu berechnen.",
+    "drill": [
+      {
+        "prompt": "$f(x)=4-x^2$: Fläche mit der $x$-Achse?",
+        "answer": {
+          "type": "number",
+          "value": "32/3"
+        }
+      },
+      {
+        "prompt": "$f(x)=x(x-3)$: eingeschlossene Fläche mit der $x$-Achse?",
+        "answer": {
+          "type": "number",
+          "value": "4.5"
+        }
+      },
+      {
+        "prompt": "$f(x)=x^3-x$: gesamte eingeschlossene Fläche mit der $x$-Achse?",
+        "answer": {
+          "type": "number",
+          "value": "1/2"
+        }
+      }
+    ]
+  },
+  {
+    "id": "k5-flaeche-zwei-kurven",
+    "chapter": "k5",
+    "skills": [
+      "int-flaeche-zwei"
+    ],
+    "topic": "Flächen",
+    "topic_order": 4,
+    "name": "Fläche zwischen zwei Kurven",
+    "formula": "$$A=\\int_{x_1}^{x_2}\\big(f_{\\text{oben}}(x)-f_{\\text{unten}}(x)\\big)\\,dx\\qquad x_1,x_2:\\ f(x)=g(x)$$",
+    "symbols": [
+      {
+        "sym": "$A$",
+        "desc": "Fläche zwischen den Kurven (Zahl $\\ge0$)"
+      },
+      {
+        "sym": "$f_{\\text{oben}},\\ f_{\\text{unten}}$",
+        "desc": "obere bzw. untere Funktion im Intervall"
+      },
+      {
+        "sym": "$x_1,\\ x_2$",
+        "desc": "Schnittstellen: Lösungen von $f(x)=g(x)$"
+      },
+      {
+        "sym": "$f,\\ g$",
+        "desc": "die beiden Funktionen"
+      },
+      {
+        "sym": "$\\int\\dots\\,dx$",
+        "desc": "Integral: über die Variable $x$ integrieren ($dx$ bzw. $dt$, $ds$ nennt die Integrationsvariable)"
+      }
+    ],
+    "explain": "Grenzen sind die Schnittstellen. Oben minus unten – dann ist es egal, ob die Fläche über oder unter der $x$-Achse liegt. Rechner: `solve(f1(x)=f2(x),x)`, `∫(f1(x)-f2(x),x,x1,x2)`.",
+    "example": "$f(x)=x$, $g(x)=x^2$: Schnitt bei $0$ und $1$, $A=\\int_0^1(x-x^2)\\,dx=\\frac16$",
+    "pitfall": "Unten minus oben rechnen (negatives Resultat) oder Schnittpunkte im Intervall übersehen.",
+    "drill": [
+      {
+        "prompt": "Fläche zwischen $y=x$ und $y=x^2$?",
+        "answer": {
+          "type": "number",
+          "value": "1/6"
+        }
+      },
+      {
+        "prompt": "Schnittstellen von $y=4-x^2$ und $y=x+2$?",
+        "answer": {
+          "type": "set",
+          "value": [
+            "-2",
+            "1"
+          ]
+        }
+      },
+      {
+        "prompt": "Fläche zwischen $y=4-x^2$ und $y=x+2$?",
+        "answer": {
+          "type": "number",
+          "value": "4.5"
+        }
+      }
+    ]
+  },
+  {
+    "id": "k5-flaeche-mehrere-schnitte",
+    "chapter": "k5",
+    "skills": [
+      "int-flaeche-zwei"
+    ],
+    "topic": "Flächen",
+    "topic_order": 4,
+    "name": "Mehrere Schnittpunkte",
+    "formula": "$$A=\\Big|\\int_{x_1}^{x_2}(f-g)\\,dx\\Big|+\\Big|\\int_{x_2}^{x_3}(f-g)\\,dx\\Big|+\\dots$$",
+    "symbols": [
+      {
+        "sym": "$A$",
+        "desc": "Gesamtfläche (Zahl $\\ge0$)"
+      },
+      {
+        "sym": "$f,\\ g$",
+        "desc": "die beiden Funktionen"
+      },
+      {
+        "sym": "$x_1,\\ x_2,\\ x_3$",
+        "desc": "Schnittstellen, der Grösse nach geordnet"
+      },
+      {
+        "sym": "$\\int\\dots\\,dx$",
+        "desc": "Integral: über die Variable $x$ integrieren ($dx$ bzw. $dt$, $ds$ nennt die Integrationsvariable)"
+      }
+    ],
+    "explain": "Schneiden sich die Graphen mehr als zweimal, wechselt «oben» und «unten». Abschnittsweise integrieren und Beträge addieren.",
+    "example": "$f(x)=x^3$, $g(x)=x$: Schnitt bei $-1,0,1$; $A=\\frac14+\\frac14=\\frac12$",
+    "pitfall": "In einem Zug von $x_1$ bis $x_3$ integrieren – Teilflächen heben sich auf.",
+    "drill": [
+      {
+        "prompt": "Fläche zwischen $y=x^3$ und $y=x$?",
+        "answer": {
+          "type": "number",
+          "value": "1/2"
+        }
+      },
+      {
+        "prompt": "$\\int_{-1}^1(x^3-x)\\,dx=\\;?$",
+        "answer": {
+          "type": "number",
+          "value": "0",
+          "tol": 1e-09
+        }
+      }
+    ]
+  },
+  {
+    "id": "k5-mittelwert",
+    "chapter": "k5",
+    "skills": [
+      "int-mittelwert"
+    ],
+    "topic": "Mittelwerte",
+    "topic_order": 5,
+    "name": "Linearer Mittelwert",
+    "formula": "$$f_m=\\frac{1}{b-a}\\int_a^bf(x)\\,dx$$",
+    "symbols": [
+      {
+        "sym": "$f_m$",
+        "desc": "linearer Mittelwert (Zahl, gleiche Einheit wie $f$)"
+      },
+      {
+        "sym": "$a,\\ b$",
+        "desc": "Intervallgrenzen, $a<b$"
+      },
+      {
+        "sym": "$f(x)$",
+        "desc": "Funktion"
+      },
+      {
+        "sym": "$\\int\\dots\\,dx$",
+        "desc": "Integral: über die Variable $x$ integrieren ($dx$ bzw. $dt$, $ds$ nennt die Integrationsvariable)"
+      }
+    ],
+    "explain": "Höhe des Rechtecks über $[a;b]$, das dieselbe Fläche hat wie der Graph. Beispiel: mittlere Geschwindigkeit, mittlere Leistung.",
+    "example": "$f(x)=x^2$ auf $[0;3]$: $f_m=\\frac13\\cdot9=3$",
+    "pitfall": "Den Mittelwert der Randwerte $\\frac{f(a)+f(b)}2$ nehmen.",
+    "drill": [
+      {
+        "prompt": "Mittelwert von $f(x)=x^2$ auf $[0;3]$?",
+        "answer": {
+          "type": "number",
+          "value": "3"
+        }
+      },
+      {
+        "prompt": "Mittelwert von $\\sin x$ auf $[0;\\pi]$?",
+        "answer": {
+          "type": "number",
+          "value": "2/pi"
+        }
+      },
+      {
+        "prompt": "$v(t)=2t$ (m/s) auf $[0;5]$: mittlere Geschwindigkeit?",
+        "answer": {
+          "type": "number",
+          "value": "5"
+        }
+      }
+    ]
+  },
+  {
+    "id": "k5-effektivwert",
+    "chapter": "k5",
+    "skills": [
+      "int-mittelwert"
+    ],
+    "topic": "Mittelwerte",
+    "topic_order": 5,
+    "name": "Quadratischer Mittelwert (Effektivwert)",
+    "formula": "$$U_{\\text{eff}}=\\sqrt{\\frac1T\\int_0^Tu(t)^2\\,dt}\\qquad u=U_0\\sin(\\omega t):\\ U_{\\text{eff}}=\\frac{U_0}{\\sqrt2}$$",
+    "symbols": [
+      {
+        "sym": "$U_{\\text{eff}}$",
+        "desc": "Effektivwert der Spannung (V)"
+      },
+      {
+        "sym": "$T$",
+        "desc": "Periodendauer (s)"
+      },
+      {
+        "sym": "$u(t)$",
+        "desc": "Momentanspannung (V)"
+      },
+      {
+        "sym": "$U_0$",
+        "desc": "Scheitelwert (Amplitude) der Spannung (V)"
+      },
+      {
+        "sym": "$\\omega$",
+        "desc": "Kreisfrequenz (rad/s)"
+      },
+      {
+        "sym": "$t$",
+        "desc": "Zeit (s)"
+      },
+      {
+        "sym": "$\\int\\dots\\,dx$",
+        "desc": "Integral: über die Variable $x$ integrieren ($dx$ bzw. $dt$, $ds$ nennt die Integrationsvariable)"
+      }
+    ],
+    "explain": "Der Effektivwert liefert dieselbe Wärmeleistung wie eine Gleichspannung. Der lineare Mittelwert einer Sinusspannung über eine Periode ist 0.",
+    "example": "$U_0=325$ V: $U_{\\text{eff}}=\\frac{325}{\\sqrt2}\\approx230$ V",
+    "pitfall": "Wurzel oder Quadrat vergessen; mit $U_0/2$ rechnen.",
+    "drill": [
+      {
+        "prompt": "$U_0=325$ V: $U_{\\text{eff}}$ in V?",
+        "answer": {
+          "type": "number",
+          "value": "229.8"
+        }
+      },
+      {
+        "prompt": "$u=10\\sin t$: Effektivwert über $[0;2\\pi]$?",
+        "answer": {
+          "type": "number",
+          "value": "7.071"
+        }
+      },
+      {
+        "prompt": "$u=10\\sin t$: linearer Mittelwert über $[0;2\\pi]$?",
+        "answer": {
+          "type": "number",
+          "value": "0",
+          "tol": 1e-09
+        }
+      }
+    ]
+  },
+  {
+    "id": "k5-rotationsvolumen",
+    "chapter": "k5",
+    "skills": [
+      "int-rotation"
+    ],
+    "topic": "Rotationskörper & Schwerpunkt",
+    "topic_order": 6,
+    "name": "Rotationsvolumen um die x-Achse",
+    "formula": "$$V=\\pi\\int_a^bf(x)^2\\,dx$$",
+    "symbols": [
+      {
+        "sym": "$V$",
+        "desc": "Volumen des Rotationskörpers (Volumeneinheit)"
+      },
+      {
+        "sym": "$f(x)$",
+        "desc": "Randkurve = Radius der Scheibe an der Stelle $x$"
+      },
+      {
+        "sym": "$a,\\ b$",
+        "desc": "Grenzen auf der $x$-Achse (Drehachse)"
+      },
+      {
+        "sym": "$\\pi$",
+        "desc": "Kreiszahl"
+      },
+      {
+        "sym": "$\\int\\dots\\,dx$",
+        "desc": "Integral: über die Variable $x$ integrieren ($dx$ bzw. $dt$, $ds$ nennt die Integrationsvariable)"
+      }
+    ],
+    "explain": "Der Körper besteht aus dünnen Scheiben mit Radius $f(x)$ und Volumen $\\pi f(x)^2\\,dx$. Rechner: `π·∫(f(x)^2,x,a,b)`.",
+    "example": "$f(x)=\\sqrt x$ auf $[0;4]$: $V=\\pi\\int_0^4x\\,dx=8\\pi$",
+    "pitfall": "$\\pi\\left(\\int f\\,dx\\right)^2$ rechnen – zuerst quadrieren, dann integrieren.",
+    "drill": [
+      {
+        "prompt": "$f(x)=\\sqrt x$ auf $[0;4]$: $V=\\;?$",
+        "answer": {
+          "type": "number",
+          "value": "8*pi"
+        }
+      },
+      {
+        "prompt": "$f(x)=x$ auf $[0;3]$ (Kegel): $V=\\;?$",
+        "answer": {
+          "type": "number",
+          "value": "9*pi"
+        }
+      },
+      {
+        "prompt": "$f(x)=2$ auf $[0;5]$ (Zylinder): $V=\\;?$",
+        "answer": {
+          "type": "number",
+          "value": "20*pi"
+        }
+      }
+    ]
+  },
+  {
+    "id": "k5-rotationsvolumen-hohl",
+    "chapter": "k5",
+    "skills": [
+      "int-rotation"
+    ],
+    "topic": "Rotationskörper & Schwerpunkt",
+    "topic_order": 6,
+    "name": "Rotationsvolumen zwischen zwei Kurven",
+    "formula": "$$V=\\pi\\int_{x_1}^{x_2}\\big(f_o(x)^2-f_u(x)^2\\big)\\,dx$$",
+    "symbols": [
+      {
+        "sym": "$V$",
+        "desc": "Volumen des Hohlkörpers"
+      },
+      {
+        "sym": "$f_o,\\ f_u$",
+        "desc": "äussere (obere) und innere (untere) Randkurve, $f_o\\ge f_u\\ge0$"
+      },
+      {
+        "sym": "$x_1,\\ x_2$",
+        "desc": "Grenzen (oft Schnittstellen)"
+      },
+      {
+        "sym": "$\\pi$",
+        "desc": "Kreiszahl, Konstante $\\approx3.14159$ (entspricht $180^\\circ$)"
+      },
+      {
+        "sym": "$\\int\\dots\\,dx$",
+        "desc": "Integral: über die Variable $x$ integrieren ($dx$ bzw. $dt$, $ds$ nennt die Integrationsvariable)"
+      }
+    ],
+    "explain": "Hohlkörper (Ring): Volumen der äusseren Kurve minus Volumen der inneren Kurve.",
+    "example": "$f_o=x$, $f_u=x^2$ auf $[0;1]$: $V=\\pi\\left(\\frac13-\\frac15\\right)=\\frac{2\\pi}{15}$",
+    "pitfall": "$\\pi\\int(f_o-f_u)^2\\,dx$ rechnen – das ist falsch!",
+    "drill": [
+      {
+        "prompt": "$f_o=2$, $f_u=1$ auf $[0;3]$: $V=\\;?$",
+        "answer": {
+          "type": "number",
+          "value": "9*pi"
+        }
+      },
+      {
+        "prompt": "$f_o=x$, $f_u=x^2$ auf $[0;1]$: $V=\\;?$",
+        "answer": {
+          "type": "number",
+          "value": "2*pi/15"
+        }
+      }
+    ]
+  },
+  {
+    "id": "k5-schwerpunkt-flaeche",
+    "chapter": "k5",
+    "skills": [
+      "int-schwerpunkt"
+    ],
+    "topic": "Rotationskörper & Schwerpunkt",
+    "topic_order": 6,
+    "name": "Flächenschwerpunkt",
+    "formula": "$$x_S=\\frac1A\\int_a^bx\\,f(x)\\,dx\\qquad y_S=\\frac1{2A}\\int_a^bf(x)^2\\,dx\\qquad A=\\int_a^bf(x)\\,dx$$",
+    "symbols": [
+      {
+        "sym": "$x_S,\\ y_S$",
+        "desc": "Koordinaten des Flächenschwerpunkts"
+      },
+      {
+        "sym": "$A$",
+        "desc": "Fläche zwischen $f$ und $x$-Achse (Zahl $>0$)"
+      },
+      {
+        "sym": "$f(x)$",
+        "desc": "obere Randfunktion, $f\\ge0$ auf $[a;b]$"
+      },
+      {
+        "sym": "$a,\\ b$",
+        "desc": "Intervallgrenzen"
+      },
+      {
+        "sym": "$\\int\\dots\\,dx$",
+        "desc": "Integral: über die Variable $x$ integrieren ($dx$ bzw. $dt$, $ds$ nennt die Integrationsvariable)"
+      }
+    ],
+    "explain": "Für die Fläche zwischen $f$ und $x$-Achse. Zwischen zwei Kurven: $x\\,(f_o-f_u)$ bzw. $f_o^2-f_u^2$.",
+    "example": "Dreieck unter $f(x)=x$ auf $[0;3]$: $A=4.5$, $x_S=\\frac{9}{4.5}=2$, $y_S=\\frac{9}{9}=1$",
+    "pitfall": "Bei $y_S$ den Faktor $\\frac12$ vergessen.",
+    "drill": [
+      {
+        "prompt": "$f(x)=x$ auf $[0;3]$: Schwerpunkt $(x_S;y_S)$?",
+        "answer": {
+          "type": "tuple",
+          "value": [
+            "2",
+            "1"
+          ],
+          "names": [
+            "x_S",
+            "y_S"
+          ]
+        }
+      },
+      {
+        "prompt": "$f(x)=2$ auf $[0;4]$ (Rechteck): $(x_S;y_S)$?",
+        "answer": {
+          "type": "tuple",
+          "value": [
+            "2",
+            "1"
+          ],
+          "names": [
+            "x_S",
+            "y_S"
+          ]
+        }
+      },
+      {
+        "prompt": "$f(x)=x^2$ auf $[0;1]$: $(x_S;y_S)$?",
+        "answer": {
+          "type": "tuple",
+          "value": [
+            "3/4",
+            "3/10"
+          ],
+          "names": [
+            "x_S",
+            "y_S"
+          ]
+        }
+      }
+    ]
+  },
+  {
+    "id": "k5-schwerpunkt-volumen",
+    "chapter": "k5",
+    "skills": [
+      "int-schwerpunkt",
+      "int-rotation"
+    ],
+    "topic": "Rotationskörper & Schwerpunkt",
+    "topic_order": 6,
+    "name": "Volumenschwerpunkt eines Rotationskörpers",
+    "formula": "$$x_S=\\frac{\\pi}{V}\\int_a^bx\\,f(x)^2\\,dx\\qquad y_S=0\\qquad V=\\pi\\int_a^bf(x)^2\\,dx$$",
+    "symbols": [
+      {
+        "sym": "$x_S$",
+        "desc": "$x$-Koordinate des Volumenschwerpunkts"
+      },
+      {
+        "sym": "$y_S$",
+        "desc": "$=0$: Schwerpunkt liegt auf der Drehachse"
+      },
+      {
+        "sym": "$V$",
+        "desc": "Volumen des Rotationskörpers"
+      },
+      {
+        "sym": "$f(x)$",
+        "desc": "Randkurve (Radius an der Stelle $x$)"
+      },
+      {
+        "sym": "$a,\\ b$",
+        "desc": "Intervallgrenzen"
+      },
+      {
+        "sym": "$\\pi$",
+        "desc": "Kreiszahl, Konstante $\\approx3.14159$ (entspricht $180^\\circ$)"
+      },
+      {
+        "sym": "$\\int\\dots\\,dx$",
+        "desc": "Integral: über die Variable $x$ integrieren ($dx$ bzw. $dt$, $ds$ nennt die Integrationsvariable)"
+      }
+    ],
+    "explain": "Bei Rotation um die $x$-Achse liegt der Schwerpunkt auf der Achse. Nur $x_S$ muss berechnet werden.",
+    "example": "Kegel aus $f(x)=x$ auf $[0;3]$: $V=9\\pi$, $x_S=\\frac{\\pi}{9\\pi}\\cdot\\frac{81}4=2.25$ (also $\\frac34$ der Höhe von der Spitze)",
+    "pitfall": "$f$ statt $f^2$ im Integral verwenden (das wäre der Flächenschwerpunkt).",
+    "drill": [
+      {
+        "prompt": "Kegel: $f(x)=x$ auf $[0;3]$ rotiert. $x_S=\\;?$",
+        "answer": {
+          "type": "number",
+          "value": "9/4"
+        }
+      },
+      {
+        "prompt": "Zylinder: $f(x)=2$ auf $[0;6]$ rotiert. $x_S=\\;?$",
+        "answer": {
+          "type": "number",
+          "value": "3"
+        }
+      },
+      {
+        "prompt": "Paraboloid: $f(x)=\\sqrt x$ auf $[0;3]$ rotiert. $x_S=\\;?$",
+        "answer": {
+          "type": "number",
+          "value": "2"
+        }
+      }
+    ]
+  },
+  {
+    "id": "k5-weg-geschwindigkeit",
+    "chapter": "k5",
+    "skills": [
+      "int-anwendung"
+    ],
+    "topic": "Physik: Bewegung & Arbeit",
+    "topic_order": 7,
+    "name": "Weg aus Geschwindigkeit",
+    "formula": "$$s(t)=\\int v(t)\\,dt\\qquad v(t)=\\int a(t)\\,dt\\qquad\\Delta s=\\int_{t_1}^{t_2}v(t)\\,dt$$",
+    "symbols": [
+      {
+        "sym": "$s(t)$",
+        "desc": "Ort/Weg (m)"
+      },
+      {
+        "sym": "$v(t)$",
+        "desc": "Geschwindigkeit (m/s)"
+      },
+      {
+        "sym": "$a(t)$",
+        "desc": "Beschleunigung (m/s²)"
+      },
+      {
+        "sym": "$t,\\ t_1,\\ t_2$",
+        "desc": "Zeit, Anfangs- und Endzeit (s)"
+      },
+      {
+        "sym": "$\\Delta s$",
+        "desc": "zurückgelegter Weg im Zeitintervall (m)"
+      },
+      {
+        "sym": "$\\int\\dots\\,dx$",
+        "desc": "Integral: über die Variable $x$ integrieren ($dx$ bzw. $dt$, $ds$ nennt die Integrationsvariable)"
+      }
+    ],
+    "explain": "Umkehrung von $v=s'$ und $a=v'$. Der zurückgelegte Weg ist die Fläche unter dem $v$-$t$-Diagramm. Anfangswerte $s_0$, $v_0$ bestimmen die Konstanten.",
+    "example": "$v(t)=3t^2$: Weg in $[0;2]$: $\\int_0^23t^2\\,dt=8$ m",
+    "pitfall": "Die Anfangsgeschwindigkeit $v_0$ bzw. den Anfangsort $s_0$ als Konstante vergessen.",
+    "drill": [
+      {
+        "prompt": "$v(t)=3t^2$ (m/s): Weg in $[0;2]$ in m?",
+        "answer": {
+          "type": "number",
+          "value": "8"
+        }
+      },
+      {
+        "prompt": "$a=2\\ \\text{m/s}^2$, $v(0)=5$: $v(t)=\\;?$",
+        "answer": {
+          "type": "expr",
+          "value": "2*t+5",
+          "var": "t"
+        }
+      },
+      {
+        "prompt": "$v(t)=2t+5$: Weg in den ersten 4 s?",
+        "answer": {
+          "type": "number",
+          "value": "36"
+        }
+      }
+    ]
+  },
+  {
+    "id": "k5-gleichmaessig-beschleunigt",
+    "chapter": "k5",
+    "skills": [
+      "int-anwendung"
+    ],
+    "topic": "Physik: Bewegung & Arbeit",
+    "topic_order": 7,
+    "name": "Gleichmässig beschleunigte Bewegung",
+    "formula": "$$v=a\\,t+v_0\\qquad s=\\frac a2\\,t^2+v_0\\,t+s_0\\qquad\\text{freier Fall: }s=\\frac g2t^2,\\ g\\approx9.81\\,\\tfrac{\\text{m}}{\\text{s}^2}$$",
+    "symbols": [
+      {
+        "sym": "$a$",
+        "desc": "konstante Beschleunigung (m/s²)"
+      },
+      {
+        "sym": "$t$",
+        "desc": "Zeit (s)"
+      },
+      {
+        "sym": "$v_0$",
+        "desc": "Anfangsgeschwindigkeit (m/s)"
+      },
+      {
+        "sym": "$s_0$",
+        "desc": "Anfangsort (m)"
+      },
+      {
+        "sym": "$v,\\ s$",
+        "desc": "Geschwindigkeit (m/s) und Ort (m) zur Zeit $t$"
+      },
+      {
+        "sym": "$g$",
+        "desc": "Fallbeschleunigung, Konstante $\\approx9.81$ m/s²"
+      }
+    ],
+    "explain": "Entsteht durch zweimaliges Integrieren der konstanten Beschleunigung $a$.",
+    "example": "Freier Fall, $t=3$ s: $s=\\frac{9.81}2\\cdot9\\approx44.1$ m, $v=29.4$ m/s",
+    "pitfall": "Den Faktor $\\frac12$ bei $s$ vergessen.",
+    "drill": [
+      {
+        "prompt": "Freier Fall ($g=9.81$): Fallweg nach 3 s in m?",
+        "answer": {
+          "type": "number",
+          "value": "44.145"
+        }
+      },
+      {
+        "prompt": "Freier Fall ($g=9.81$): Geschwindigkeit nach 3 s in m/s?",
+        "answer": {
+          "type": "number",
+          "value": "29.43"
+        }
+      },
+      {
+        "prompt": "$a=2\\,\\tfrac{\\text{m}}{\\text{s}^2}$, aus dem Stand: Weg nach 10 s in m?",
+        "answer": {
+          "type": "number",
+          "value": "100"
+        }
+      }
+    ]
+  },
+  {
+    "id": "k5-arbeit",
+    "chapter": "k5",
+    "skills": [
+      "int-anwendung"
+    ],
+    "topic": "Physik: Bewegung & Arbeit",
+    "topic_order": 7,
+    "name": "Arbeit als Integral",
+    "formula": "$$W=\\int_{s_1}^{s_2}F(s)\\,ds\\qquad\\text{Feder }(F=D\\,x):\\ W=\\frac D2\\big(x_2^2-x_1^2\\big)\\qquad W_{12}=-mRT\\ln\\frac{V_2}{V_1}$$",
+    "symbols": [
+      {
+        "sym": "$W$",
+        "desc": "Arbeit (J = N·m)"
+      },
+      {
+        "sym": "$F(s)$",
+        "desc": "Kraft in Abhängigkeit vom Weg (N)"
+      },
+      {
+        "sym": "$s_1,\\ s_2$",
+        "desc": "Anfangs- und Endposition (m)"
+      },
+      {
+        "sym": "$D$",
+        "desc": "Federkonstante (N/m)"
+      },
+      {
+        "sym": "$x_1,\\ x_2$",
+        "desc": "Anfangs- und Enddehnung der Feder (m)"
+      },
+      {
+        "sym": "$m,\\ R,\\ T$",
+        "desc": "Masse (kg), spezifische Gaskonstante (J/(kg·K)), Temperatur (K)"
+      },
+      {
+        "sym": "$V_1,\\ V_2$",
+        "desc": "Anfangs- und Endvolumen (m³)"
+      },
+      {
+        "sym": "$W_{12}$",
+        "desc": "Volumenänderungsarbeit bei isothermer Expansion (J)"
+      },
+      {
+        "sym": "$\\int\\dots\\,dx$",
+        "desc": "Integral: über die Variable $x$ integrieren ($dx$ bzw. $dt$, $ds$ nennt die Integrationsvariable)"
+      }
+    ],
+    "explain": "Ist die Kraft nicht konstant, ist die Arbeit die Fläche unter dem $F$-$s$-Diagramm.",
+    "example": "Feder $D=200$ N/m von $0$ auf $0.1$ m: $W=100\\cdot0.01=1$ J",
+    "pitfall": "$W=F\\cdot s$ mit der Endkraft rechnen – das gilt nur bei konstanter Kraft.",
+    "drill": [
+      {
+        "prompt": "Feder $D=200$ N/m, von $0$ auf $0.1$ m: $W$ in J?",
+        "answer": {
+          "type": "number",
+          "value": "1"
+        }
+      },
+      {
+        "prompt": "Feder $D=200$ N/m, von $0.1$ m auf $0.2$ m: $W$ in J?",
+        "answer": {
+          "type": "number",
+          "value": "3"
+        }
+      },
+      {
+        "prompt": "$F(s)=3s^2$ (N, m), von $0$ bis $2$ m: $W$ in J?",
+        "answer": {
+          "type": "number",
+          "value": "8"
+        }
+      }
+    ]
+  }
+]

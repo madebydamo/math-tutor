@@ -1,0 +1,1260 @@
+[
+  {
+    "id": "k3-linear-vs-exponentiell",
+    "chapter": "k3",
+    "skills": [
+      "exp-wachstumsformen"
+    ],
+    "topic": "Wachstumsformen",
+    "topic_order": 1,
+    "name": "Lineares vs. exponentielles Wachstum",
+    "formula": "$$\\text{linear: }y=k\\,t+y_0\\ \\ (\\text{gleiche Differenz pro Schritt})\\qquad\\text{exponentiell: }y=y_0\\cdot q^t\\ \\ (\\text{gleicher Faktor pro Schritt})$$",
+    "symbols": [
+      {
+        "sym": "$t$",
+        "desc": "Zeit (z.B. Jahre)"
+      },
+      {
+        "sym": "$y$",
+        "desc": "Bestand zur Zeit $t$"
+      },
+      {
+        "sym": "$y_0$",
+        "desc": "Anfangsbestand bei $t=0$"
+      },
+      {
+        "sym": "$k$",
+        "desc": "konstante Zunahme pro Zeiteinheit (Zahl mit Einheit)"
+      },
+      {
+        "sym": "$q$",
+        "desc": "Wachstumsfaktor pro Zeiteinheit (Zahl $>0$)"
+      }
+    ],
+    "explain": "Test an einer Wertetabelle mit gleichen Zeitschritten: Sind die Differenzen konstant → linear. Sind die Quotienten konstant → exponentiell.",
+    "example": "$5,8,11,14$: Differenz $3$ → linear. $\\;2,6,18,54$: Faktor $3$ → exponentiell",
+    "pitfall": "Bei exponentiellem Wachstum mit Differenzen statt Quotienten prüfen.",
+    "drill": [
+      {
+        "prompt": "Tabelle (gleiche Zeitschritte): $2,\\ 6,\\ 18,\\ 54$. Welches Wachstum?",
+        "answer": {
+          "type": "choice",
+          "value": 1,
+          "options": [
+            "linear",
+            "exponentiell"
+          ]
+        }
+      },
+      {
+        "prompt": "Tabelle (gleiche Zeitschritte): $5,\\ 8,\\ 11,\\ 14$. Welches Wachstum?",
+        "answer": {
+          "type": "choice",
+          "value": 0,
+          "options": [
+            "linear",
+            "exponentiell"
+          ]
+        }
+      },
+      {
+        "prompt": "$800,\\ 600,\\ 450,\\ \\dots$: Faktor $q$ pro Schritt?",
+        "answer": {
+          "type": "number",
+          "value": "0.75"
+        }
+      }
+    ]
+  },
+  {
+    "id": "k3-wachstumsformen",
+    "chapter": "k3",
+    "skills": [
+      "exp-wachstumsformen",
+      "exp-begrenzt",
+      "exp-logistisch"
+    ],
+    "topic": "Wachstumsformen",
+    "topic_order": 1,
+    "name": "Änderungsraten der Wachstumsformen",
+    "formula": "$$\\begin{array}{l|l|l}&\\frac{\\Delta y}{\\Delta t}&y(t)\\\\\\hline\\text{linear}&k&k\\,t+y_0\\\\\\text{exponentiell}&k\\,y&y_0\\,e^{kt}\\\\\\text{beschränkt}&k\\,(G-y)&G-(G-y_0)\\,e^{-kt}\\\\\\text{logistisch}&k\\,y\\,\\frac{G-y}{G}&\\dfrac{y_0\\,G}{y_0+(G-y_0)\\,e^{-kt}}\\end{array}$$",
+    "symbols": [
+      {
+        "sym": "$y$",
+        "desc": "Bestand"
+      },
+      {
+        "sym": "$\\frac{\\Delta y}{\\Delta t}$",
+        "desc": "Änderungsrate: Änderung des Bestands pro Zeiteinheit"
+      },
+      {
+        "sym": "$k$",
+        "desc": "Wachstumskonstante (Zahl $>0$, Einheit 1/Zeit; linear: Bestand/Zeit)"
+      },
+      {
+        "sym": "$G$",
+        "desc": "Schranke bzw. Kapazität (Sättigungswert)"
+      },
+      {
+        "sym": "$y_0$",
+        "desc": "Anfangsbestand"
+      },
+      {
+        "sym": "$t$",
+        "desc": "Zeit"
+      },
+      {
+        "sym": "$e$",
+        "desc": "Eulersche Zahl $\\approx2.71828$"
+      }
+    ],
+    "explain": "Die Form der Änderungsrate verrät den Wachstumstyp: konstant, proportional zum Bestand, proportional zum Restbestand bis zur Schranke $G$, oder beides kombiniert.",
+    "example": "$\\frac{\\Delta y}{\\Delta t}=0.2\\,(100-y)$: beschränktes Wachstum mit $G=100$",
+    "pitfall": "Beschränkt und logistisch verwechseln: Beim logistischen Wachstum ist die Rate am Anfang klein (Faktor $y$).",
+    "drill": [
+      {
+        "prompt": "$\\frac{\\Delta y}{\\Delta t}=0.2\\,(100-y)$. Welches Wachstum?",
+        "answer": {
+          "type": "choice",
+          "value": 2,
+          "options": [
+            "linear",
+            "exponentiell",
+            "beschränkt",
+            "logistisch"
+          ]
+        }
+      },
+      {
+        "prompt": "$\\frac{\\Delta y}{\\Delta t}=0.03\\,y$. Welches Wachstum?",
+        "answer": {
+          "type": "choice",
+          "value": 1,
+          "options": [
+            "linear",
+            "exponentiell",
+            "beschränkt",
+            "logistisch"
+          ]
+        }
+      },
+      {
+        "prompt": "$\\frac{\\Delta y}{\\Delta t}=0.5\\,y\\,\\frac{1000-y}{1000}$. Welches Wachstum?",
+        "answer": {
+          "type": "choice",
+          "value": 3,
+          "options": [
+            "linear",
+            "exponentiell",
+            "beschränkt",
+            "logistisch"
+          ]
+        }
+      }
+    ]
+  },
+  {
+    "id": "k3-exponentialfunktion",
+    "chapter": "k3",
+    "skills": [
+      "exp-eigenschaften"
+    ],
+    "topic": "Exponentialfunktion & Prozent",
+    "topic_order": 2,
+    "name": "Exponentialfunktion und Eigenschaften",
+    "formula": "$$f(x)=a\\cdot q^x,\\quad q>0,\\ q\\neq1\\qquad f(0)=a\\qquad W=\\,]0;\\infty[\\ \\ (a>0)$$",
+    "symbols": [
+      {
+        "sym": "$x$",
+        "desc": "Variable (oft die Zeit)"
+      },
+      {
+        "sym": "$a$",
+        "desc": "Anfangswert $f(0)$ (Zahl)"
+      },
+      {
+        "sym": "$q$",
+        "desc": "Basis bzw. Wachstumsfaktor (Zahl), $q>0$, $q\\neq1$"
+      },
+      {
+        "sym": "$W$",
+        "desc": "Wertebereich"
+      },
+      {
+        "sym": "$f(x)$",
+        "desc": "Funktionswert an der Stelle $x$"
+      }
+    ],
+    "explain": "Der Graph geht durch $(0\\mid a)$, die $x$-Achse ist Asymptote, es gibt keine Nullstelle. $q>1$: Wachstum, $0<q<1$: Zerfall.",
+    "example": "$f(x)=3\\cdot2^x$: $f(0)=3$, $f(3)=24$, $f(-1)=1.5$",
+    "pitfall": "$a\\cdot q^x$ als $(a\\cdot q)^x$ rechnen: $3\\cdot2^3=24$, nicht $6^3$.",
+    "drill": [
+      {
+        "prompt": "$f(x)=3\\cdot2^x$: $f(3)=\\;?$",
+        "answer": {
+          "type": "number",
+          "value": "24"
+        }
+      },
+      {
+        "prompt": "$f(x)=5\\cdot0.8^x$ beschreibt …",
+        "answer": {
+          "type": "choice",
+          "value": 1,
+          "options": [
+            "Wachstum",
+            "Zerfall"
+          ]
+        }
+      },
+      {
+        "prompt": "$f(x)=4\\cdot\\left(\\frac12\\right)^x$: $f(-2)=\\;?$",
+        "answer": {
+          "type": "number",
+          "value": "16"
+        }
+      }
+    ]
+  },
+  {
+    "id": "k3-spiegelungen",
+    "chapter": "k3",
+    "skills": [
+      "exp-eigenschaften"
+    ],
+    "topic": "Exponentialfunktion & Prozent",
+    "topic_order": 2,
+    "name": "Spiegelungen und Umformungen",
+    "formula": "$$\\Big(\\frac1q\\Big)^x=q^{-x}\\ \\ (\\text{Spiegelung an der }y\\text{-Achse})\\qquad -q^x\\ \\ (\\text{an der }x\\text{-Achse})\\qquad q^{bx}=(q^b)^x$$",
+    "symbols": [
+      {
+        "sym": "$q$",
+        "desc": "Basis (Zahl $>0$, $\\neq1$)"
+      },
+      {
+        "sym": "$x$",
+        "desc": "Variable"
+      },
+      {
+        "sym": "$b$",
+        "desc": "Faktor im Exponenten (Zahl)"
+      }
+    ],
+    "explain": "Mit den Potenzgesetzen lassen sich Exponentialfunktionen in die Form $a\\cdot q^x$ bringen.",
+    "example": "$2^{3x}=(2^3)^x=8^x$; $\\;0.5^x=2^{-x}$",
+    "pitfall": "$2^{x+3}=2^3\\cdot2^x=8\\cdot2^x$, nicht $2^x+8$.",
+    "drill": [
+      {
+        "prompt": "$2^{3x}=q^x$, $q=\\;?$",
+        "answer": {
+          "type": "number",
+          "value": "8"
+        }
+      },
+      {
+        "prompt": "Der Graph von $y=2^{-x}$ entsteht aus $y=2^x$ durch Spiegelung an der …",
+        "answer": {
+          "type": "choice",
+          "value": 1,
+          "options": [
+            "x-Achse",
+            "y-Achse",
+            "Winkelhalbierenden"
+          ]
+        }
+      },
+      {
+        "prompt": "$3^{x+2}=a\\cdot3^x$, $a=\\;?$",
+        "answer": {
+          "type": "number",
+          "value": "9"
+        }
+      }
+    ]
+  },
+  {
+    "id": "k3-prozentuales-wachstum",
+    "chapter": "k3",
+    "skills": [
+      "exp-funktion-aufstellen"
+    ],
+    "topic": "Exponentialfunktion & Prozent",
+    "topic_order": 2,
+    "name": "Prozentuales Wachstum",
+    "formula": "$$y(t)=y_0\\cdot q^t\\qquad q=1+\\frac p{100}\\ \\ (\\text{Zunahme})\\qquad q=1-\\frac p{100}\\ \\ (\\text{Abnahme})\\qquad p=(q-1)\\cdot100$$",
+    "symbols": [
+      {
+        "sym": "$y(t)$",
+        "desc": "Bestand nach $t$ Zeiteinheiten"
+      },
+      {
+        "sym": "$y_0$",
+        "desc": "Anfangsbestand"
+      },
+      {
+        "sym": "$t$",
+        "desc": "Anzahl Zeiteinheiten (Zahl)"
+      },
+      {
+        "sym": "$q$",
+        "desc": "Wachstumsfaktor pro Zeiteinheit (Zahl $>0$)"
+      },
+      {
+        "sym": "$p$",
+        "desc": "Prozentsatz der Zu- bzw. Abnahme (Zahl, z.B. 5 für 5 %)"
+      }
+    ],
+    "explain": "Wächst eine Grösse pro Zeiteinheit um $p\\,\\%$, wird sie jedes Mal mit $q$ multipliziert.",
+    "example": "$200$ Bakterien, $+5\\,\\%$ pro Stunde: $y(4)=200\\cdot1.05^4\\approx243.1$",
+    "pitfall": "$q=0.12$ statt $q=0.88$ bei einer Abnahme um $12\\,\\%$.",
+    "drill": [
+      {
+        "prompt": "Abnahme um 12 %: $q=\\;?$",
+        "answer": {
+          "type": "number",
+          "value": "0.88"
+        }
+      },
+      {
+        "prompt": "$q=0.92$: Um wie viel Prozent nimmt die Grösse ab?",
+        "answer": {
+          "type": "number",
+          "value": "8",
+          "unit": "%"
+        }
+      },
+      {
+        "prompt": "$y_0=200$, Zunahme $5\\,\\%$ pro Stunde. $y(4)\\approx\\;?$",
+        "answer": {
+          "type": "number",
+          "value": "243.1"
+        }
+      }
+    ]
+  },
+  {
+    "id": "k3-zurueckrechnen",
+    "chapter": "k3",
+    "skills": [
+      "exp-funktion-aufstellen"
+    ],
+    "topic": "Exponentialfunktion & Prozent",
+    "topic_order": 2,
+    "name": "Zurückrechnen",
+    "formula": "$$y(-t)=y_0\\cdot q^{-t}=\\frac{y_0}{q^t}$$",
+    "symbols": [
+      {
+        "sym": "$y_0$",
+        "desc": "heutiger Bestand (bei $t=0$)"
+      },
+      {
+        "sym": "$q$",
+        "desc": "Wachstumsfaktor pro Zeiteinheit"
+      },
+      {
+        "sym": "$t$",
+        "desc": "Anzahl Zeiteinheiten zurück (Zahl $>0$)"
+      },
+      {
+        "sym": "$y(-t)$",
+        "desc": "Bestand vor $t$ Zeiteinheiten"
+      }
+    ],
+    "explain": "Werte in der Vergangenheit erhält man mit negativen Zeiten bzw. durch Teilen durch $q^t$.",
+    "example": "Heute $1210$, $+10\\,\\%$ pro Jahr: vor 2 Jahren $1210\\cdot1.1^{-2}=1000$",
+    "pitfall": "Mit $q=1-\\frac{p}{100}$ zurückrechnen: $1210\\cdot0.9^2=980.1\\neq1000$.",
+    "drill": [
+      {
+        "prompt": "Heute $1210$, Zunahme $10\\,\\%$ pro Jahr. Wert vor 2 Jahren?",
+        "answer": {
+          "type": "number",
+          "value": "1000"
+        }
+      },
+      {
+        "prompt": "Heute $500$, Abnahme $20\\,\\%$ pro Jahr. Wert vor 1 Jahr?",
+        "answer": {
+          "type": "number",
+          "value": "625"
+        }
+      }
+    ]
+  },
+  {
+    "id": "k3-zwei-punkte",
+    "chapter": "k3",
+    "skills": [
+      "exp-funktion-aufstellen"
+    ],
+    "topic": "Exponentialfunktion & Prozent",
+    "topic_order": 2,
+    "name": "Exponentialfunktion aus zwei Punkten",
+    "formula": "$$y=a\\cdot q^t:\\qquad q=\\Big(\\frac{y_2}{y_1}\\Big)^{\\frac1{t_2-t_1}}\\qquad a=\\frac{y_1}{q^{t_1}}$$",
+    "symbols": [
+      {
+        "sym": "$y,\\ t$",
+        "desc": "Funktionswert und Zeit"
+      },
+      {
+        "sym": "$a$",
+        "desc": "Anfangswert (Zahl)"
+      },
+      {
+        "sym": "$q$",
+        "desc": "Wachstumsfaktor (Zahl $>0$)"
+      },
+      {
+        "sym": "$(t_1\\mid y_1),\\ (t_2\\mid y_2)$",
+        "desc": "zwei gegebene Datenpunkte"
+      }
+    ],
+    "explain": "Zwei Punkte durcheinander teilen: $a$ fällt weg, $q$ bleibt. Rechner: `solve({a*q^2=18, a*q^4=162},{a,q})` (nur $q>0$). Bei Messreihen: `ExpReg`.",
+    "example": "$(2\\mid18)$, $(4\\mid162)$: $q^2=9\\Rightarrow q=3$, $a=\\frac{18}{9}=2$",
+    "pitfall": "Den Quotienten nicht mit $\\frac{1}{t_2-t_1}$ potenzieren, sondern durch $t_2-t_1$ teilen.",
+    "drill": [
+      {
+        "prompt": "$y=a\\cdot q^t$ durch $(0\\mid5)$ und $(3\\mid40)$: Gib $(a;q)$ an.",
+        "answer": {
+          "type": "tuple",
+          "value": [
+            "5",
+            "2"
+          ],
+          "names": [
+            "a",
+            "q"
+          ]
+        }
+      },
+      {
+        "prompt": "$y=a\\cdot q^t$ durch $(2\\mid18)$ und $(4\\mid162)$: Gib $(a;q)$ an.",
+        "answer": {
+          "type": "tuple",
+          "value": [
+            "2",
+            "3"
+          ],
+          "names": [
+            "a",
+            "q"
+          ]
+        }
+      },
+      {
+        "prompt": "Bestand $1000$ (Jahr 0), $1440$ (Jahr 2): jährlicher Faktor $q=\\;?$",
+        "answer": {
+          "type": "number",
+          "value": "1.2"
+        }
+      }
+    ]
+  },
+  {
+    "id": "k3-allgemeiner-prozess",
+    "chapter": "k3",
+    "skills": [
+      "exp-funktion-aufstellen",
+      "exp-halbwertszeit"
+    ],
+    "topic": "Exponentialfunktion & Prozent",
+    "topic_order": 2,
+    "name": "Allgemeiner exponentieller Prozess",
+    "formula": "$$G(t)=G_0\\cdot q^{t/T}\\qquad\\text{in der Zeit }T\\text{ ändert sich }G\\text{ um den Faktor }q$$",
+    "symbols": [
+      {
+        "sym": "$G(t)$",
+        "desc": "Grösse zur Zeit $t$"
+      },
+      {
+        "sym": "$G_0$",
+        "desc": "Anfangswert bei $t=0$"
+      },
+      {
+        "sym": "$q$",
+        "desc": "Faktor, um den sich $G$ in der Zeit $T$ ändert (Zahl $>0$)"
+      },
+      {
+        "sym": "$T$",
+        "desc": "Zeitspanne, zu der $q$ gehört (gleiche Einheit wie $t$)"
+      },
+      {
+        "sym": "$t$",
+        "desc": "Zeit"
+      }
+    ],
+    "explain": "Praktisch, wenn der Faktor für eine andere Zeitspanne als 1 gegeben ist (Verdopplung alle 5 h, Faktor 1.5 pro Jahrzehnt).",
+    "example": "Verdopplung alle 5 h: $G(t)=G_0\\cdot2^{t/5}$, $G(15)=8G_0$",
+    "pitfall": "$q^{t/T}$ mit $q^{t\\cdot T}$ verwechseln.",
+    "drill": [
+      {
+        "prompt": "Verdopplung alle 5 h. Faktor nach 15 h?",
+        "answer": {
+          "type": "number",
+          "value": "8"
+        }
+      },
+      {
+        "prompt": "Faktor 1.5 pro 10 Jahre. Jährlicher Faktor $q\\approx\\;?$",
+        "answer": {
+          "type": "number",
+          "value": "1.0414"
+        }
+      },
+      {
+        "prompt": "$G(t)=100\\cdot3^{t/4}$: $G(2)\\approx\\;?$",
+        "answer": {
+          "type": "number",
+          "value": "173.2"
+        }
+      }
+    ]
+  },
+  {
+    "id": "k3-halbwertszeit",
+    "chapter": "k3",
+    "skills": [
+      "exp-halbwertszeit"
+    ],
+    "topic": "Halbwertszeit & Verdopplung",
+    "topic_order": 3,
+    "name": "Halbwertszeit und Verdopplungszeit",
+    "formula": "$$N(t)=N_0\\cdot\\Big(\\frac12\\Big)^{t/T_{1/2}}\\qquad G(t)=G_0\\cdot2^{t/T_2}$$",
+    "symbols": [
+      {
+        "sym": "$N(t),\\ G(t)$",
+        "desc": "Bestand zur Zeit $t$"
+      },
+      {
+        "sym": "$N_0,\\ G_0$",
+        "desc": "Anfangsbestand"
+      },
+      {
+        "sym": "$T_{1/2}$",
+        "desc": "Halbwertszeit (Zeit)"
+      },
+      {
+        "sym": "$T_2$",
+        "desc": "Verdopplungszeit (Zeit)"
+      },
+      {
+        "sym": "$t$",
+        "desc": "Zeit (gleiche Einheit wie $T_{1/2}$ bzw. $T_2$)"
+      }
+    ],
+    "explain": "Nach jeder Halbwertszeit $T_{1/2}$ ist noch die Hälfte da, nach $n$ Halbwertszeiten noch $\\left(\\frac12\\right)^n$.",
+    "example": "$T_{1/2}=8$ d, nach 24 d: $\\left(\\frac12\\right)^3=\\frac18$ übrig",
+    "pitfall": "Nach zwei Halbwertszeiten ist nicht alles weg, sondern noch ein Viertel da.",
+    "drill": [
+      {
+        "prompt": "$T_{1/2}=8$ Tage. Welcher Anteil ist nach 24 Tagen noch da?",
+        "answer": {
+          "type": "number",
+          "value": "1/8"
+        }
+      },
+      {
+        "prompt": "100 g C-14, $T_{1/2}=5730$ a. Masse nach 11460 a in g?",
+        "answer": {
+          "type": "number",
+          "value": "25"
+        }
+      },
+      {
+        "prompt": "$T_{1/2}=3$ h. Anteil nach 1 h?",
+        "answer": {
+          "type": "number",
+          "value": "0.7937"
+        }
+      }
+    ]
+  },
+  {
+    "id": "k3-zeiten-berechnen",
+    "chapter": "k3",
+    "skills": [
+      "exp-halbwertszeit",
+      "exp-logarithmus"
+    ],
+    "topic": "Halbwertszeit & Verdopplung",
+    "topic_order": 3,
+    "name": "Verdopplungs- und Halbwertszeit aus q",
+    "formula": "$$T_2=\\frac{\\ln2}{\\ln q}\\qquad T_{1/2}=\\frac{\\ln0.5}{\\ln q}$$",
+    "symbols": [
+      {
+        "sym": "$T_2,\\ T_{1/2}$",
+        "desc": "Verdopplungs- bzw. Halbwertszeit (in der Zeiteinheit von $q$)"
+      },
+      {
+        "sym": "$q$",
+        "desc": "Wachstumsfaktor pro Zeiteinheit (Zahl $>0$)"
+      },
+      {
+        "sym": "$\\ln$",
+        "desc": "natürlicher Logarithmus"
+      }
+    ],
+    "explain": "Aus $q^T=2$ bzw. $q^T=\\frac12$ durch Logarithmieren. Die Zeiteinheit ist dieselbe wie bei $q$.",
+    "example": "$+5\\,\\%$ pro Jahr: $T_2=\\frac{\\ln2}{\\ln1.05}\\approx14.2$ Jahre",
+    "pitfall": "$\\frac{\\ln q}{\\ln2}$ (Bruch verkehrt).",
+    "drill": [
+      {
+        "prompt": "$q=1.05$ pro Jahr: Verdopplungszeit in Jahren?",
+        "answer": {
+          "type": "number",
+          "value": "14.21"
+        }
+      },
+      {
+        "prompt": "$q=0.9$ pro Tag: Halbwertszeit in Tagen?",
+        "answer": {
+          "type": "number",
+          "value": "6.579"
+        }
+      },
+      {
+        "prompt": "$q=1.5$ pro Stunde: Verdopplungszeit in h?",
+        "answer": {
+          "type": "number",
+          "value": "1.7095"
+        }
+      }
+    ]
+  },
+  {
+    "id": "k3-basis-e",
+    "chapter": "k3",
+    "skills": [
+      "exp-basis-e"
+    ],
+    "topic": "Basis e & Logarithmus",
+    "topic_order": 4,
+    "name": "Umrechnen zwischen q und e",
+    "formula": "$$q^t=e^{\\lambda t}\\quad\\text{mit}\\quad\\lambda=\\ln q\\qquad q=e^{\\lambda}\\qquad e\\approx2.71828$$",
+    "symbols": [
+      {
+        "sym": "$q$",
+        "desc": "Wachstumsfaktor pro Zeiteinheit (Zahl $>0$)"
+      },
+      {
+        "sym": "$\\lambda$",
+        "desc": "Wachstumskonstante (Zahl, Einheit 1/Zeit): $>0$ Wachstum, $<0$ Zerfall"
+      },
+      {
+        "sym": "$t$",
+        "desc": "Zeit"
+      },
+      {
+        "sym": "$e$",
+        "desc": "Eulersche Zahl $\\approx2.71828$"
+      },
+      {
+        "sym": "$\\ln$",
+        "desc": "natürlicher Logarithmus"
+      }
+    ],
+    "explain": "Jede Exponentialfunktion lässt sich mit der Basis $e$ schreiben. $\\lambda>0$: Wachstum, $\\lambda<0$: Zerfall.",
+    "example": "$1.05^t=e^{\\ln(1.05)\\,t}=e^{0.0488\\,t}$",
+    "pitfall": "$\\lambda=q-1$ setzen: Das stimmt nur ungefähr für $q$ nahe 1.",
+    "drill": [
+      {
+        "prompt": "$2^t=e^{\\lambda t}$: $\\lambda\\approx\\;?$",
+        "answer": {
+          "type": "number",
+          "value": "0.6931"
+        }
+      },
+      {
+        "prompt": "$e^{-0.1t}=q^t$: $q\\approx\\;?$",
+        "answer": {
+          "type": "number",
+          "value": "0.9048"
+        }
+      },
+      {
+        "prompt": "$1.05^t=e^{\\lambda t}$: $\\lambda\\approx\\;?$",
+        "answer": {
+          "type": "number",
+          "value": "0.04879"
+        }
+      }
+    ]
+  },
+  {
+    "id": "k3-zerfallskonstante",
+    "chapter": "k3",
+    "skills": [
+      "exp-basis-e",
+      "exp-halbwertszeit"
+    ],
+    "topic": "Basis e & Logarithmus",
+    "topic_order": 4,
+    "name": "Zerfallskonstante und Halbwertszeit",
+    "formula": "$$N(t)=N_0\\,e^{-\\lambda t}\\qquad \\lambda\\cdot T_{1/2}=\\ln2\\qquad T_2=\\frac{\\ln2}{\\lambda}\\ \\ (\\text{bei }e^{\\lambda t})$$",
+    "symbols": [
+      {
+        "sym": "$N(t)$",
+        "desc": "Bestand zur Zeit $t$"
+      },
+      {
+        "sym": "$N_0$",
+        "desc": "Anfangsbestand"
+      },
+      {
+        "sym": "$\\lambda$",
+        "desc": "Zerfalls- bzw. Wachstumskonstante (Zahl $>0$, Einheit 1/Zeit)"
+      },
+      {
+        "sym": "$T_{1/2}$",
+        "desc": "Halbwertszeit"
+      },
+      {
+        "sym": "$T_2$",
+        "desc": "Verdopplungszeit"
+      },
+      {
+        "sym": "$t$",
+        "desc": "Zeit"
+      },
+      {
+        "sym": "$e$",
+        "desc": "Eulersche Zahl, Konstante $\\approx2.71828$"
+      },
+      {
+        "sym": "$\\ln$",
+        "desc": "natürlicher Logarithmus"
+      }
+    ],
+    "explain": "Zwischen Zerfallskonstante $\\lambda$ und Halbwertszeit besteht ein fester Zusammenhang: $e^{-\\lambda T_{1/2}}=\\frac12$.",
+    "example": "$T_{1/2}=10$ min: $\\lambda=\\frac{\\ln2}{10}\\approx0.0693\\ \\text{min}^{-1}$",
+    "pitfall": "$\\lambda=\\frac{1}{T_{1/2}}$ setzen – es fehlt $\\ln2$.",
+    "drill": [
+      {
+        "prompt": "$T_{1/2}=10$ min: $\\lambda\\approx\\;?$",
+        "answer": {
+          "type": "number",
+          "value": "0.06931"
+        }
+      },
+      {
+        "prompt": "$y=y_0e^{0.02t}$: Verdopplungszeit?",
+        "answer": {
+          "type": "number",
+          "value": "34.66"
+        }
+      },
+      {
+        "prompt": "$\\lambda=0.5\\ \\text{h}^{-1}$: Halbwertszeit in h?",
+        "answer": {
+          "type": "number",
+          "value": "1.3863"
+        }
+      }
+    ]
+  },
+  {
+    "id": "k3-exponentialgleichung",
+    "chapter": "k3",
+    "skills": [
+      "exp-logarithmus"
+    ],
+    "topic": "Basis e & Logarithmus",
+    "topic_order": 4,
+    "name": "Exponentialgleichung lösen",
+    "formula": "$$a\\cdot q^t=b\\;\\Rightarrow\\;t=\\frac{\\ln(b/a)}{\\ln q}\\qquad a\\,e^{kt}=b\\;\\Rightarrow\\;t=\\frac{\\ln(b/a)}{k}$$",
+    "symbols": [
+      {
+        "sym": "$t$",
+        "desc": "gesuchte Zeit"
+      },
+      {
+        "sym": "$a$",
+        "desc": "Anfangswert (Zahl $\\neq0$)"
+      },
+      {
+        "sym": "$q$",
+        "desc": "Wachstumsfaktor (Zahl $>0$, $\\neq1$)"
+      },
+      {
+        "sym": "$b$",
+        "desc": "Zielwert (Zahl, $b/a>0$)"
+      },
+      {
+        "sym": "$k$",
+        "desc": "Konstante im Exponenten (Zahl $\\neq0$)"
+      },
+      {
+        "sym": "$\\ln$",
+        "desc": "natürlicher Logarithmus"
+      },
+      {
+        "sym": "$e$",
+        "desc": "Eulersche Zahl, Konstante $\\approx2.71828$"
+      }
+    ],
+    "explain": "Potenz isolieren, dann logarithmieren. Rechner: `solve(500*1.04^t=1000,t)`.",
+    "example": "$500\\cdot1.04^t=1000\\Rightarrow1.04^t=2\\Rightarrow t=\\frac{\\ln2}{\\ln1.04}\\approx17.67$",
+    "pitfall": "$\\ln(500\\cdot1.04^t)$ als $t\\cdot\\ln(500\\cdot1.04)$ behandeln – zuerst durch 500 teilen.",
+    "drill": [
+      {
+        "prompt": "$500\\cdot1.04^t=1000$, $t\\approx\\;?$",
+        "answer": {
+          "type": "number",
+          "value": "17.67"
+        }
+      },
+      {
+        "prompt": "$3^x=81$, $x=\\;?$",
+        "answer": {
+          "type": "number",
+          "value": "4"
+        }
+      },
+      {
+        "prompt": "$100\\,e^{-0.2t}=25$, $t\\approx\\;?$",
+        "answer": {
+          "type": "number",
+          "value": "6.931"
+        }
+      }
+    ]
+  },
+  {
+    "id": "k3-ln-regeln",
+    "chapter": "k3",
+    "skills": [
+      "exp-logarithmus",
+      "exp-basis-e"
+    ],
+    "topic": "Basis e & Logarithmus",
+    "topic_order": 4,
+    "name": "Rechnen mit ln und e",
+    "formula": "$$\\ln(e^x)=x\\qquad e^{\\ln x}=x\\qquad \\ln(u\\,v)=\\ln u+\\ln v\\qquad \\ln(u^r)=r\\ln u\\qquad \\ln1=0$$",
+    "symbols": [
+      {
+        "sym": "$\\ln$",
+        "desc": "natürlicher Logarithmus (Basis $e$)"
+      },
+      {
+        "sym": "$e$",
+        "desc": "Eulersche Zahl $\\approx2.71828$"
+      },
+      {
+        "sym": "$x$",
+        "desc": "Zahl (bei $e^{\\ln x}$: $x>0$)"
+      },
+      {
+        "sym": "$u,\\ v$",
+        "desc": "positive Zahlen"
+      },
+      {
+        "sym": "$r$",
+        "desc": "beliebige Zahl (Exponent)"
+      }
+    ],
+    "explain": "$\\ln$ ist die Umkehrfunktion von $e^x$. Beide heben sich gegenseitig auf.",
+    "example": "$e^{2\\ln3}=e^{\\ln(3^2)}=9$",
+    "pitfall": "$\\ln(a+b)=\\ln a+\\ln b$ – falsch!",
+    "drill": [
+      {
+        "prompt": "$\\ln\\big(e^5\\big)=\\;?$",
+        "answer": {
+          "type": "number",
+          "value": "5"
+        }
+      },
+      {
+        "prompt": "$e^{2\\ln3}=\\;?$",
+        "answer": {
+          "type": "number",
+          "value": "9"
+        }
+      },
+      {
+        "prompt": "$\\ln(2e)-\\ln2=\\;?$",
+        "answer": {
+          "type": "number",
+          "value": "1"
+        }
+      }
+    ]
+  },
+  {
+    "id": "k3-stetige-verzinsung",
+    "chapter": "k3",
+    "skills": [
+      "exp-basis-e"
+    ],
+    "topic": "Basis e & Logarithmus",
+    "topic_order": 4,
+    "name": "Stetige Verzinsung",
+    "formula": "$$K(t)=K_0\\,e^{p\\,t}\\qquad e=\\lim_{k\\to\\infty}\\Big(1+\\frac1k\\Big)^k$$",
+    "symbols": [
+      {
+        "sym": "$K(t)$",
+        "desc": "Kapital nach $t$ Jahren"
+      },
+      {
+        "sym": "$K_0$",
+        "desc": "Anfangskapital"
+      },
+      {
+        "sym": "$p$",
+        "desc": "Zinssatz als Dezimalzahl (3 % → 0.03)"
+      },
+      {
+        "sym": "$t$",
+        "desc": "Zeit in Jahren"
+      },
+      {
+        "sym": "$e$",
+        "desc": "Eulersche Zahl"
+      },
+      {
+        "sym": "$k$",
+        "desc": "Anzahl Verzinsungen (Hilfsvariable im Grenzwert)"
+      }
+    ],
+    "explain": "Wird ein Zins in immer kürzeren Abständen gutgeschrieben, ergibt sich im Grenzfall die Basis $e$. $p$ als Dezimalzahl einsetzen ($3\\,\\%\\to0.03$).",
+    "example": "$1000$ CHF, $p=3\\,\\%$, 10 Jahre: $1000\\,e^{0.3}\\approx1349.86$ CHF",
+    "pitfall": "$p=3$ statt $0.03$ einsetzen.",
+    "drill": [
+      {
+        "prompt": "$K_0=1000$, $p=3\\,\\%$, stetig, $t=10$ Jahre: $K\\approx\\;?$",
+        "answer": {
+          "type": "number",
+          "value": "1349.86"
+        }
+      },
+      {
+        "prompt": "Stetig mit $p=5\\,\\%$: entsprechender jährlicher Faktor $q\\approx\\;?$",
+        "answer": {
+          "type": "number",
+          "value": "1.0513"
+        }
+      }
+    ]
+  },
+  {
+    "id": "k3-abkuehlung",
+    "chapter": "k3",
+    "skills": [
+      "exp-begrenzt"
+    ],
+    "topic": "Beschränktes Wachstum",
+    "topic_order": 5,
+    "name": "Abkühlung und Erwärmung",
+    "formula": "$$T(t)=T_U+(T_0-T_U)\\,e^{-t/\\tau}$$",
+    "symbols": [
+      {
+        "sym": "$T(t)$",
+        "desc": "Temperatur zur Zeit $t$ (°C)"
+      },
+      {
+        "sym": "$T_U$",
+        "desc": "Umgebungstemperatur (°C)"
+      },
+      {
+        "sym": "$T_0$",
+        "desc": "Anfangstemperatur (°C)"
+      },
+      {
+        "sym": "$\\tau$",
+        "desc": "Zeitkonstante (Zeit, z.B. min)"
+      },
+      {
+        "sym": "$t$",
+        "desc": "Zeit (gleiche Einheit wie $\\tau$)"
+      },
+      {
+        "sym": "$e$",
+        "desc": "Eulersche Zahl"
+      }
+    ],
+    "explain": "$T_U$ Umgebungstemperatur (Schranke), $T_0$ Anfangstemperatur, $\\tau$ Zeitkonstante. Nach $\\tau$ ist der Abstand zu $T_U$ auf $e^{-1}\\approx36.8\\,\\%$ gesunken, nach $5\\tau$ praktisch null.",
+    "example": "$T_U=20^\\circ$C, $T_0=90^\\circ$C, $\\tau=10$ min: $T(10)=20+70e^{-1}\\approx45.75^\\circ$C",
+    "pitfall": "$T(t)=T_U$ lösen wollen – das wird nie exakt erreicht (Auskühlzeit $5\\tau$).",
+    "drill": [
+      {
+        "prompt": "$T_U=20$, $T_0=90$, $\\tau=10$ min: $T(10)\\approx\\;?$",
+        "answer": {
+          "type": "number",
+          "value": "45.75"
+        }
+      },
+      {
+        "prompt": "$T_U=20$, $T_0=90$, $\\tau=10$ min: Nach wie vielen min ist $T=55$?",
+        "answer": {
+          "type": "number",
+          "value": "6.931"
+        }
+      },
+      {
+        "prompt": "Welcher Anteil der Anfangsdifferenz ist nach $5\\tau$ noch übrig?",
+        "answer": {
+          "type": "number",
+          "value": "0.006738"
+        }
+      }
+    ]
+  },
+  {
+    "id": "k3-kondensator",
+    "chapter": "k3",
+    "skills": [
+      "exp-begrenzt"
+    ],
+    "topic": "Beschränktes Wachstum",
+    "topic_order": 5,
+    "name": "Kondensator laden und entladen",
+    "formula": "$$\\tau=R\\cdot C\\qquad\\text{Laden: }U(t)=U_0\\,\\big(1-e^{-t/\\tau}\\big)\\qquad\\text{Entladen: }U(t)=U_0\\,e^{-t/\\tau}$$",
+    "symbols": [
+      {
+        "sym": "$\\tau$",
+        "desc": "Zeitkonstante (s)"
+      },
+      {
+        "sym": "$R$",
+        "desc": "Widerstand ($\\Omega$)"
+      },
+      {
+        "sym": "$C$",
+        "desc": "Kapazität (F)"
+      },
+      {
+        "sym": "$U(t)$",
+        "desc": "Spannung am Kondensator (V)"
+      },
+      {
+        "sym": "$U_0$",
+        "desc": "Quellen- bzw. Anfangsspannung (V)"
+      },
+      {
+        "sym": "$t$",
+        "desc": "Zeit (s)"
+      },
+      {
+        "sym": "$e$",
+        "desc": "Eulersche Zahl, Konstante $\\approx2.71828$"
+      }
+    ],
+    "explain": "Nach $\\tau$ ist der Kondensator zu $63.2\\,\\%$ geladen, nach $5\\tau$ gilt er als voll bzw. leer.",
+    "example": "$R=10\\,\\text{k}\\Omega$, $C=100\\,\\mu$F: $\\tau=10^4\\cdot10^{-4}=1$ s",
+    "pitfall": "Vorsätze falsch umrechnen ($\\mu=10^{-6}$, k $=10^3$).",
+    "drill": [
+      {
+        "prompt": "$R=10\\,\\text{k}\\Omega$, $C=100\\,\\mu\\text{F}$: $\\tau$ in s?",
+        "answer": {
+          "type": "number",
+          "value": "1"
+        }
+      },
+      {
+        "prompt": "Laden, $U_0=10$ V: Spannung nach $t=\\tau$ in V?",
+        "answer": {
+          "type": "number",
+          "value": "6.321"
+        }
+      },
+      {
+        "prompt": "Entladen: Welcher Anteil von $U_0$ ist nach $2\\tau$ noch da?",
+        "answer": {
+          "type": "number",
+          "value": "0.1353"
+        }
+      }
+    ]
+  },
+  {
+    "id": "k3-beschraenkt-allgemein",
+    "chapter": "k3",
+    "skills": [
+      "exp-begrenzt"
+    ],
+    "topic": "Beschränktes Wachstum",
+    "topic_order": 5,
+    "name": "Beschränktes Wachstum in der Technik",
+    "formula": "$$y=G-(G-y_0)\\,e^{-kt}\\quad\\overset{y_0=0}{\\Longrightarrow}\\quad y=G\\big(1-e^{-t/\\tau}\\big),\\ \\ \\tau=\\frac1k$$",
+    "symbols": [
+      {
+        "sym": "$y$",
+        "desc": "Bestand bzw. Messgrösse"
+      },
+      {
+        "sym": "$G$",
+        "desc": "Schranke (Endwert)"
+      },
+      {
+        "sym": "$y_0$",
+        "desc": "Anfangswert"
+      },
+      {
+        "sym": "$k$",
+        "desc": "Konstante (1/Zeit)"
+      },
+      {
+        "sym": "$\\tau$",
+        "desc": "Zeitkonstante, $\\tau=\\frac1k$"
+      },
+      {
+        "sym": "$t$",
+        "desc": "Zeit"
+      },
+      {
+        "sym": "$e$",
+        "desc": "Eulersche Zahl, Konstante $\\approx2.71828$"
+      }
+    ],
+    "explain": "Spule: $I_{max}=\\frac{U_0}R$, $\\tau=\\frac LR$. Boot: $v_{max}=\\frac{F_M}\\beta$, $\\tau=\\frac m\\beta$. Kondensator: $Q_{max}=U_0C$, $\\tau=RC$.",
+    "example": "Spule $U_0=12$ V, $R=4\\,\\Omega$, $L=2$ H: $I(t)=3\\,(1-e^{-2t})$",
+    "pitfall": "$\\tau$ und $k$ verwechseln: $e^{-t/\\tau}=e^{-kt}$ mit $k=\\frac1\\tau$.",
+    "drill": [
+      {
+        "prompt": "Spule: $U_0=12$ V, $R=4\\,\\Omega$. $I_{max}$ in A?",
+        "answer": {
+          "type": "number",
+          "value": "3"
+        }
+      },
+      {
+        "prompt": "Spule: $L=2$ H, $R=4\\,\\Omega$. $\\tau$ in s?",
+        "answer": {
+          "type": "number",
+          "value": "0.5"
+        }
+      },
+      {
+        "prompt": "$y=50\\,(1-e^{-0.1t})$: $y(10)\\approx\\;?$",
+        "answer": {
+          "type": "number",
+          "value": "31.61"
+        }
+      }
+    ]
+  },
+  {
+    "id": "k3-logistisch",
+    "chapter": "k3",
+    "skills": [
+      "exp-logistisch"
+    ],
+    "topic": "Logistisches Wachstum & Simulation",
+    "topic_order": 6,
+    "name": "Logistisches Wachstum",
+    "formula": "$$y(t)=\\frac{y_0\\,G}{y_0+(G-y_0)\\,e^{-kt}}\\qquad \\frac{\\Delta y}{\\Delta t}=k\\,y\\,\\frac{G-y}{G}$$",
+    "symbols": [
+      {
+        "sym": "$y(t)$",
+        "desc": "Bestand zur Zeit $t$"
+      },
+      {
+        "sym": "$y_0$",
+        "desc": "Anfangsbestand"
+      },
+      {
+        "sym": "$G$",
+        "desc": "Kapazität (Sättigungsgrenze)"
+      },
+      {
+        "sym": "$k$",
+        "desc": "Wachstumskonstante (1/Zeit)"
+      },
+      {
+        "sym": "$t$",
+        "desc": "Zeit"
+      },
+      {
+        "sym": "$\\frac{\\Delta y}{\\Delta t}$",
+        "desc": "Änderungsrate"
+      },
+      {
+        "sym": "$e$",
+        "desc": "Eulersche Zahl, Konstante $\\approx2.71828$"
+      }
+    ],
+    "explain": "Anfangs fast exponentiell, dann Sättigung bei der Kapazität $G$. Am schnellsten wächst $y$ bei $y=\\frac G2$ (Wendepunkt). Rechner: `Logistic` liefert $y=\\frac{c}{1+a\\,e^{-bx}}$.",
+    "example": "$G=1000$, $y_0=100$, $k=0.5$: $y=\\frac G2$ bei $t=\\frac{\\ln9}{0.5}\\approx4.39$",
+    "pitfall": "Die Sättigung $G$ mit dem Startwert verwechseln.",
+    "drill": [
+      {
+        "prompt": "$G=1000$: Bei welchem Bestand ist das Wachstum am schnellsten?",
+        "answer": {
+          "type": "number",
+          "value": "500"
+        }
+      },
+      {
+        "prompt": "$y=\\dfrac{100\\cdot1000}{100+900\\,e^{-0.5t}}$: Wann ist $y=500$?",
+        "answer": {
+          "type": "number",
+          "value": "4.394"
+        }
+      },
+      {
+        "prompt": "$y=\\dfrac{2000}{1+4e^{-0.3t}}$: Startwert $y(0)=\\;?$",
+        "answer": {
+          "type": "number",
+          "value": "400"
+        }
+      }
+    ]
+  },
+  {
+    "id": "k3-systemdynamik",
+    "chapter": "k3",
+    "skills": [
+      "exp-logistisch",
+      "exp-wachstumsformen"
+    ],
+    "topic": "Logistisches Wachstum & Simulation",
+    "topic_order": 6,
+    "name": "Simulation (Systemdynamik)",
+    "formula": "$$\\text{Zustand}_{\\text{neu}}=\\text{Zustand}_{\\text{alt}}+\\text{Änderungsrate}\\cdot dt$$",
+    "symbols": [
+      {
+        "sym": "Zustand",
+        "desc": "Bestandsgrösse (z.B. Population, Temperatur)"
+      },
+      {
+        "sym": "Änderungsrate",
+        "desc": "Änderung pro Zeiteinheit, aus dem alten Zustand berechnet"
+      },
+      {
+        "sym": "$dt$",
+        "desc": "Zeitschritt der Simulation"
+      }
+    ],
+    "explain": "Schrittweise Simulation: Aus dem aktuellen Bestand die Änderungsrate berechnen, mit dem Zeitschritt multiplizieren und addieren.",
+    "example": "$y_0=0$, Rate $0.2\\,(100-y)$, $dt=1$: $y_1=20$, $y_2=20+0.2\\cdot80=36$",
+    "pitfall": "Die Rate mit dem neuen statt dem alten Bestand berechnen.",
+    "drill": [
+      {
+        "prompt": "$y_0=100$, Rate $0.1\\,y$, $dt=1$: Gib $(y_1;y_2)$ an.",
+        "answer": {
+          "type": "tuple",
+          "value": [
+            "110",
+            "121"
+          ],
+          "names": [
+            "y1",
+            "y2"
+          ]
+        }
+      },
+      {
+        "prompt": "$y_0=0$, Rate $0.2\\,(100-y)$, $dt=1$: Gib $(y_1;y_2)$ an.",
+        "answer": {
+          "type": "tuple",
+          "value": [
+            "20",
+            "36"
+          ],
+          "names": [
+            "y1",
+            "y2"
+          ]
+        }
+      }
+    ]
+  }
+]

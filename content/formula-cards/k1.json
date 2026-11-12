@@ -1,0 +1,1038 @@
+[
+  {
+    "id": "k1-potenzfunktion",
+    "chapter": "k1",
+    "skills": [
+      "poly-verhalten",
+      "poly-skizze"
+    ],
+    "topic": "Potenz- & Polynomfunktionen",
+    "topic_order": 1,
+    "name": "Potenzfunktion (Parabel n-ter Ordnung)",
+    "formula": "$$f(x)=a\\cdot x^n,\\quad a\\neq0,\\ n\\in\\mathbb N$$",
+    "symbols": [
+      {
+        "sym": "$x$",
+        "desc": "Variable (reelle Zahl)"
+      },
+      {
+        "sym": "$f(x)$",
+        "desc": "Funktionswert ($y$-Wert)"
+      },
+      {
+        "sym": "$a$",
+        "desc": "Streckfaktor (Zahl), $a\\neq0$"
+      },
+      {
+        "sym": "$n$",
+        "desc": "Exponent, natürliche Zahl $1,2,3,\\dots$"
+      },
+      {
+        "sym": "$\\mathbb N$",
+        "desc": "Menge der natürlichen Zahlen"
+      }
+    ],
+    "explain": "$n$ gerade: Graph achsensymmetrisch zur $y$-Achse (wie $x^2$). $n$ ungerade: punktsymmetrisch zum Ursprung (wie $x^3$). $a<0$ spiegelt an der $x$-Achse.",
+    "example": "$f(x)=-2x^4$: achsensymmetrisch, nach unten geöffnet, $f(-3)=-162$",
+    "pitfall": "$-3^4=-81$, aber $(-3)^4=+81$: Klammern beim Einsetzen negativer Zahlen.",
+    "drill": [
+      {
+        "prompt": "Symmetrie von $f(x)=x^5$?",
+        "answer": {
+          "type": "choice",
+          "value": 1,
+          "options": [
+            "achsensymmetrisch zur y-Achse",
+            "punktsymmetrisch zum Ursprung",
+            "keine Symmetrie"
+          ]
+        }
+      },
+      {
+        "prompt": "$f(x)=-2x^4$: $f(-3)=\\;?$",
+        "answer": {
+          "type": "number",
+          "value": "-162"
+        }
+      },
+      {
+        "prompt": "Symmetrie von $f(x)=-\\frac12x^6$?",
+        "answer": {
+          "type": "choice",
+          "value": 0,
+          "options": [
+            "achsensymmetrisch zur y-Achse",
+            "punktsymmetrisch zum Ursprung",
+            "keine Symmetrie"
+          ]
+        }
+      }
+    ]
+  },
+  {
+    "id": "k1-polynom-grundform",
+    "chapter": "k1",
+    "skills": [
+      "poly-verhalten",
+      "poly-skizze"
+    ],
+    "topic": "Potenz- & Polynomfunktionen",
+    "topic_order": 1,
+    "name": "Polynomfunktion: Grundform, Grad, y-Achsenabschnitt",
+    "formula": "$$f(x)=a_nx^n+a_{n-1}x^{n-1}+\\dots+a_1x+a_0,\\quad a_n\\neq0\\qquad y_D=f(0)=a_0$$",
+    "symbols": [
+      {
+        "sym": "$x$",
+        "desc": "Variable"
+      },
+      {
+        "sym": "$a_n,\\dots,a_0$",
+        "desc": "Koeffizienten (Zahlen)"
+      },
+      {
+        "sym": "$a_n$",
+        "desc": "Leitkoeffizient (Zahl), $a_n\\neq0$"
+      },
+      {
+        "sym": "$n$",
+        "desc": "Grad: höchster Exponent (natürliche Zahl)"
+      },
+      {
+        "sym": "$a_0$",
+        "desc": "konstantes Glied"
+      },
+      {
+        "sym": "$y_D$",
+        "desc": "$y$-Achsenabschnitt: Schnittpunkt $(0\\mid a_0)$ mit der $y$-Achse"
+      },
+      {
+        "sym": "$f(x)$",
+        "desc": "Funktionswert der Polynomfunktion an der Stelle $x$"
+      }
+    ],
+    "explain": "Der Grad $n$ ist der höchste Exponent, $a_n$ der Leitkoeffizient. Grad eines Produkts = Summe der Grade der Faktoren. $a_0$ ist der $y$-Achsenabschnitt.",
+    "example": "$f(x)=(2x-1)(x^2+3)(x+4)$: Grad $1+2+1=4$, $a_4=2\\cdot1\\cdot1=2$, $f(0)=-12$",
+    "pitfall": "Für Grad und Leitkoeffizient muss man nicht ausmultiplizieren – die höchsten Terme der Faktoren genügen.",
+    "drill": [
+      {
+        "prompt": "$f(x)=(2x-1)(x^2+3)(x+4)$: Gib (Grad; $a_n$; $a_0$) an.",
+        "answer": {
+          "type": "tuple",
+          "value": [
+            "4",
+            "2",
+            "-12"
+          ],
+          "names": [
+            "Grad",
+            "a_n",
+            "a_0"
+          ]
+        }
+      },
+      {
+        "prompt": "$y$-Achsenabschnitt von $f(x)=-3(x-2)^2(x+1)$?",
+        "answer": {
+          "type": "number",
+          "value": "-12"
+        }
+      },
+      {
+        "prompt": "Grad von $f(x)=x^2(x-1)^3(x^2+1)$?",
+        "answer": {
+          "type": "number",
+          "value": "7"
+        }
+      }
+    ]
+  },
+  {
+    "id": "k1-verhalten",
+    "chapter": "k1",
+    "skills": [
+      "poly-verhalten",
+      "poly-skizze"
+    ],
+    "topic": "Potenz- & Polynomfunktionen",
+    "topic_order": 1,
+    "name": "Verhalten für grosse und kleine x",
+    "formula": "$$\\begin{array}{c|cc}&a_n>0&a_n<0\\\\\\hline n\\text{ gerade}&\\text{Q2}\\to\\text{Q1}&\\text{Q3}\\to\\text{Q4}\\\\ n\\text{ ungerade}&\\text{Q3}\\to\\text{Q1}&\\text{Q2}\\to\\text{Q4}\\end{array}$$",
+    "symbols": [
+      {
+        "sym": "$a_n$",
+        "desc": "Leitkoeffizient (Zahl vor der höchsten Potenz)"
+      },
+      {
+        "sym": "$n$",
+        "desc": "Grad des Polynoms"
+      },
+      {
+        "sym": "Q1–Q4",
+        "desc": "Quadranten: Q1 oben rechts, Q2 oben links, Q3 unten links, Q4 unten rechts"
+      },
+      {
+        "sym": "Q2 → Q1",
+        "desc": "kommt von links oben, geht nach rechts oben"
+      }
+    ],
+    "explain": "Für $|x|\\to\\infty$ bestimmt allein der höchste Term $a_nx^n$ den Verlauf. Man liest ab, aus welchem Quadranten der Graph kommt und in welchen er geht.",
+    "example": "$f(x)=-x^3+5x^2$: $n=3$ ungerade, $a_n<0$ $\\Rightarrow$ Q2 → Q4",
+    "pitfall": "Bei der Produktform den Leitterm falsch bestimmen: $(1-x)$ liefert $-x$!",
+    "drill": [
+      {
+        "prompt": "Verlauf von $f(x)=-x^3+5x^2-1$?",
+        "answer": {
+          "type": "choice",
+          "value": 3,
+          "options": [
+            "Q2 → Q1",
+            "Q3 → Q4",
+            "Q3 → Q1",
+            "Q2 → Q4"
+          ]
+        }
+      },
+      {
+        "prompt": "Verlauf von $f(x)=-2x^4+x$?",
+        "answer": {
+          "type": "choice",
+          "value": 1,
+          "options": [
+            "Q2 → Q1",
+            "Q3 → Q4",
+            "Q3 → Q1",
+            "Q2 → Q4"
+          ]
+        }
+      },
+      {
+        "prompt": "Verlauf von $f(x)=x(x-2)(1-x)^2$?",
+        "answer": {
+          "type": "choice",
+          "value": 0,
+          "options": [
+            "Q2 → Q1",
+            "Q3 → Q4",
+            "Q3 → Q1",
+            "Q2 → Q4"
+          ]
+        }
+      },
+      {
+        "prompt": "Verlauf von $f(x)=(3-x)(x+1)^2$?",
+        "answer": {
+          "type": "choice",
+          "value": 3,
+          "options": [
+            "Q2 → Q1",
+            "Q3 → Q4",
+            "Q3 → Q1",
+            "Q2 → Q4"
+          ]
+        }
+      }
+    ]
+  },
+  {
+    "id": "k1-linearfaktoren",
+    "chapter": "k1",
+    "skills": [
+      "poly-faktorisieren",
+      "poly-produktform"
+    ],
+    "topic": "Nullstellen & Skizze",
+    "topic_order": 2,
+    "name": "Linearfaktorzerlegung",
+    "formula": "$$f(x_0)=0\\iff(x-x_0)\\text{ ist Linearfaktor}\\qquad f(x)=a\\,(x-x_1)(x-x_2)\\cdots(x-x_n)$$",
+    "symbols": [
+      {
+        "sym": "$f(x)$",
+        "desc": "Polynomfunktion vom Grad $n$"
+      },
+      {
+        "sym": "$x_0$",
+        "desc": "Nullstelle (Zahl): $f(x_0)=0$"
+      },
+      {
+        "sym": "$x-x_0$",
+        "desc": "Linearfaktor zur Nullstelle $x_0$"
+      },
+      {
+        "sym": "$x_1,\\dots,x_n$",
+        "desc": "Nullstellen (Zahlen, mehrfache werden mehrmals aufgeführt)"
+      },
+      {
+        "sym": "$a$",
+        "desc": "Leitkoeffizient (Zahl), $a=a_n$"
+      }
+    ],
+    "explain": "Ein Polynom vom Grad $n$ hat höchstens $n$ Nullstellen; ist $n$ ungerade, mindestens eine. Faktoren wie $x^2+1$ haben keine Nullstellen. Rechner: `factor(f(x),x)`, `solve(f(x)=0,x)`.",
+    "example": "$x^3-4x=x(x^2-4)=x(x+2)(x-2)$, Nullstellen $0,\\ \\pm2$",
+    "pitfall": "Aus der Nullstelle $x_0=-3$ wird der Faktor $(x+3)$, nicht $(x-3)$.",
+    "drill": [
+      {
+        "prompt": "Nullstellen von $f(x)=x^3-4x$?",
+        "answer": {
+          "type": "set",
+          "value": [
+            "-2",
+            "0",
+            "2"
+          ]
+        }
+      },
+      {
+        "prompt": "$f(x)=x^3-6x^2+11x-6$ hat die Nullstelle $1$. Alle Nullstellen?",
+        "answer": {
+          "type": "set",
+          "value": [
+            "1",
+            "2",
+            "3"
+          ]
+        }
+      },
+      {
+        "prompt": "Nullstellen von $f(x)=(x^2+1)(x-5)(2x+3)$?",
+        "answer": {
+          "type": "set",
+          "value": [
+            "5",
+            "-3/2"
+          ]
+        }
+      }
+    ]
+  },
+  {
+    "id": "k1-ausklammern-nullprodukt",
+    "chapter": "k1",
+    "skills": [
+      "poly-faktorisieren"
+    ],
+    "topic": "Nullstellen & Skizze",
+    "topic_order": 2,
+    "name": "Ausklammern und Satz vom Nullprodukt",
+    "formula": "$$a\\cdot b=0\\iff a=0\\ \\text{oder}\\ b=0\\qquad a_nx^n+\\dots+a_kx^k=x^k\\cdot(\\dots)$$",
+    "symbols": [
+      {
+        "sym": "$a,\\ b$",
+        "desc": "Faktoren (Zahlen oder Terme)"
+      },
+      {
+        "sym": "$a_n,\\dots,a_k$",
+        "desc": "Koeffizienten (Zahlen)"
+      },
+      {
+        "sym": "$x^k$",
+        "desc": "kleinste vorkommende Potenz von $x$, wird ausgeklammert"
+      }
+    ],
+    "explain": "Fehlt das konstante Glied, zuerst die kleinste $x$-Potenz ausklammern. Jeder Faktor liefert seine Nullstellen.",
+    "example": "$2x^4-18x^2=2x^2(x^2-9)=2x^2(x+3)(x-3)$",
+    "pitfall": "Durch $x$ dividieren und damit die Nullstelle $x=0$ verlieren.",
+    "drill": [
+      {
+        "prompt": "Nullstellen von $2x^4-18x^2$?",
+        "answer": {
+          "type": "set",
+          "value": [
+            "-3",
+            "0",
+            "3"
+          ]
+        }
+      },
+      {
+        "prompt": "Nullstellen von $x^3+x$?",
+        "answer": {
+          "type": "set",
+          "value": [
+            "0"
+          ]
+        }
+      },
+      {
+        "prompt": "Nullstellen von $x^3-2x^2-8x$?",
+        "answer": {
+          "type": "set",
+          "value": [
+            "0",
+            "4",
+            "-2"
+          ]
+        }
+      }
+    ]
+  },
+  {
+    "id": "k1-substitution",
+    "chapter": "k1",
+    "skills": [
+      "poly-faktorisieren"
+    ],
+    "topic": "Nullstellen & Skizze",
+    "topic_order": 2,
+    "name": "Biquadratische Gleichung (Substitution)",
+    "formula": "$$ax^4+bx^2+c=0\\;\\xrightarrow{\\;u=x^2\\;}\\;au^2+bu+c=0\\;\\Rightarrow\\;x=\\pm\\sqrt{u}\\ \\ (u\\ge0)$$",
+    "symbols": [
+      {
+        "sym": "$x$",
+        "desc": "ursprüngliche Variable"
+      },
+      {
+        "sym": "$u$",
+        "desc": "Hilfsvariable, $u=x^2$"
+      },
+      {
+        "sym": "$a,\\ b,\\ c$",
+        "desc": "Koeffizienten (Zahlen), $a\\neq0$"
+      }
+    ],
+    "explain": "Kommen nur gerade Potenzen vor, $x^2=u$ setzen, die quadratische Gleichung lösen und zurücksubstituieren. Negative $u$ liefern keine Nullstelle.",
+    "example": "$x^4-5x^2+4=0\\Rightarrow u^2-5u+4=0\\Rightarrow u=1,4\\Rightarrow x=\\pm1,\\pm2$",
+    "pitfall": "Beim Zurücksubstituieren das negative Vorzeichen vergessen.",
+    "drill": [
+      {
+        "prompt": "Nullstellen von $x^4-5x^2+4$?",
+        "answer": {
+          "type": "set",
+          "value": [
+            "-2",
+            "-1",
+            "1",
+            "2"
+          ]
+        }
+      },
+      {
+        "prompt": "Nullstellen von $x^4-3x^2-4$?",
+        "answer": {
+          "type": "set",
+          "value": [
+            "-2",
+            "2"
+          ]
+        }
+      }
+    ]
+  },
+  {
+    "id": "k1-vieta",
+    "chapter": "k1",
+    "skills": [
+      "poly-faktorisieren",
+      "poly-produktform"
+    ],
+    "topic": "Nullstellen & Skizze",
+    "topic_order": 2,
+    "name": "Satz von Vieta",
+    "formula": "$$x^2+px+q=(x-x_1)(x-x_2)\\quad\\text{mit}\\quad x_1+x_2=-p,\\;\\;x_1\\cdot x_2=q$$",
+    "symbols": [
+      {
+        "sym": "$x$",
+        "desc": "Variable"
+      },
+      {
+        "sym": "$p,\\ q$",
+        "desc": "Koeffizienten (Zahlen) der normierten Gleichung"
+      },
+      {
+        "sym": "$x_1,\\ x_2$",
+        "desc": "Nullstellen (Zahlen)"
+      }
+    ],
+    "explain": "Schnelles Faktorisieren quadratischer Terme ohne Mitternachtsformel – und umgekehrt: aus zwei Nullstellen die Gleichung aufstellen.",
+    "example": "$x^2-7x+10=(x-2)(x-5)$, denn $2+5=7$ und $2\\cdot5=10$",
+    "pitfall": "Vorzeichen von $p$: Die Summe der Nullstellen ist $-p$.",
+    "drill": [
+      {
+        "prompt": "Nullstellen von $x^2-x-12$?",
+        "answer": {
+          "type": "set",
+          "value": [
+            "4",
+            "-3"
+          ]
+        }
+      },
+      {
+        "prompt": "Nullstellen $2$ und $-5$: $x^2+px+q$. Gib $(p;q)$ an.",
+        "answer": {
+          "type": "tuple",
+          "value": [
+            "3",
+            "-10"
+          ],
+          "names": [
+            "p",
+            "q"
+          ]
+        }
+      },
+      {
+        "prompt": "Nullstellen von $x^2+8x+15$?",
+        "answer": {
+          "type": "set",
+          "value": [
+            "-3",
+            "-5"
+          ]
+        }
+      }
+    ]
+  },
+  {
+    "id": "k1-vielfachheit",
+    "chapter": "k1",
+    "skills": [
+      "poly-mehrfach",
+      "poly-skizze"
+    ],
+    "topic": "Nullstellen & Skizze",
+    "topic_order": 2,
+    "name": "Vielfachheit von Nullstellen",
+    "formula": "$$\\begin{array}{c|c}\\text{Nullstelle}&\\text{Graph}\\\\\\hline\\text{einfach}&\\text{schneidet}\\\\\\text{doppelt (gerade)}&\\text{berührt}\\\\\\text{dreifach (ungerade}\\ge3)&\\text{Sattelpunkt}\\end{array}$$",
+    "symbols": [
+      {
+        "sym": "Vielfachheit",
+        "desc": "Exponent $k$ des Linearfaktors $(x-x_0)^k$ (natürliche Zahl)"
+      },
+      {
+        "sym": "einfach / doppelt / dreifach",
+        "desc": "$k=1$ / $k=2$ / $k=3$"
+      }
+    ],
+    "explain": "Die Vielfachheit ist der Exponent des Linearfaktors. Bei gerader Vielfachheit wechselt $f$ das Vorzeichen nicht.",
+    "example": "$f(x)=(x-2)^2(x+1)$: bei $x=2$ berührt, bei $x=-1$ schneidet der Graph",
+    "pitfall": "Faktoren zusammenfassen vergessen: $(x-1)^3(x^2-1)$ enthält $(x-1)^4$.",
+    "drill": [
+      {
+        "prompt": "$f(x)=(x-2)^2(x+1)$: Verhalten bei $x=2$?",
+        "answer": {
+          "type": "choice",
+          "value": 1,
+          "options": [
+            "schneidet",
+            "berührt (Extremum auf der x-Achse)",
+            "Sattelpunkt (berührt und schneidet)"
+          ]
+        }
+      },
+      {
+        "prompt": "$f(x)=x^3(x-4)$: Verhalten bei $x=0$?",
+        "answer": {
+          "type": "choice",
+          "value": 2,
+          "options": [
+            "schneidet",
+            "berührt (Extremum auf der x-Achse)",
+            "Sattelpunkt (berührt und schneidet)"
+          ]
+        }
+      },
+      {
+        "prompt": "Vielfachheit der Nullstelle $x=1$ von $f(x)=(x-1)^3(x^2-1)$?",
+        "answer": {
+          "type": "number",
+          "value": "4"
+        }
+      }
+    ]
+  },
+  {
+    "id": "k1-skizze",
+    "chapter": "k1",
+    "skills": [
+      "poly-skizze",
+      "poly-mehrfach",
+      "poly-verhalten"
+    ],
+    "topic": "Nullstellen & Skizze",
+    "topic_order": 2,
+    "name": "Graph skizzieren: Vorgehen",
+    "formula": "$$\\text{Verhalten }(a_nx^n)\\;\\to\\;\\text{Nullstellen + Vielfachheit}\\;\\to\\;y\\text{-Achsenabschnitt }f(0)\\;\\to\\;\\text{Vorzeichenbereiche}$$",
+    "symbols": [
+      {
+        "sym": "$a_nx^n$",
+        "desc": "höchster Term: bestimmt das Verhalten für grosse $|x|$"
+      },
+      {
+        "sym": "$f(0)$",
+        "desc": "$y$-Achsenabschnitt (Zahl)"
+      },
+      {
+        "sym": "Vielfachheit",
+        "desc": "Exponent des Linearfaktors: entscheidet über Schneiden/Berühren"
+      }
+    ],
+    "explain": "Von links nach rechts zeichnen: an einfachen Nullstellen durchstossen, an doppelten umkehren. Den $y$-Achsenabschnitt als Kontrolle nutzen.",
+    "example": "$f(x)=-(x+1)^2(x-3)$: Q2 → Q4, berührt bei $-1$, schneidet bei $3$, $f(0)=3$",
+    "pitfall": "Das Vorzeichen zwischen den Nullstellen raten, statt einen Testwert einzusetzen.",
+    "drill": [
+      {
+        "prompt": "$f(x)=-(x+1)^2(x-3)$: $y$-Achsenabschnitt?",
+        "answer": {
+          "type": "number",
+          "value": "3"
+        }
+      },
+      {
+        "prompt": "$f(x)=-(x+1)^2(x-3)$: Für $x>3$ ist $f(x)$ …",
+        "answer": {
+          "type": "choice",
+          "value": 1,
+          "options": [
+            "positiv",
+            "negativ"
+          ]
+        }
+      },
+      {
+        "prompt": "Wie oft wechselt $f(x)=x^2(x-1)(x+2)^2$ das Vorzeichen?",
+        "answer": {
+          "type": "number",
+          "value": "1"
+        }
+      }
+    ]
+  },
+  {
+    "id": "k1-produktform-ansatz",
+    "chapter": "k1",
+    "skills": [
+      "poly-produktform",
+      "poly-mehrfach"
+    ],
+    "topic": "Funktionsgleichung bestimmen",
+    "topic_order": 3,
+    "name": "Funktion aus Nullstellen und Punkt",
+    "formula": "$$y=a\\,(x-x_1)(x-x_2)\\cdots(x-x_n)\\quad\\text{dann }P(x_P\\mid y_P)\\text{ einsetzen}\\Rightarrow a$$",
+    "symbols": [
+      {
+        "sym": "$y$",
+        "desc": "Funktionswert"
+      },
+      {
+        "sym": "$a$",
+        "desc": "Streckfaktor (Zahl), $a\\neq0$, wird mit $P$ bestimmt"
+      },
+      {
+        "sym": "$x_1,\\dots,x_n$",
+        "desc": "gegebene Nullstellen (Zahlen)"
+      },
+      {
+        "sym": "$P(x_P\\mid y_P)$",
+        "desc": "gegebener Punkt auf dem Graphen, keine Nullstelle"
+      }
+    ],
+    "explain": "Mit den Nullstellen (Vielfachheiten als Exponent!) den Ansatz bilden. Der zusätzliche Punkt bestimmt den Streckfaktor $a$.",
+    "example": "Nullstellen $-1,\\ 2$, $P(0\\mid4)$: $4=a(1)(-2)\\Rightarrow a=-2$, $y=-2(x+1)(x-2)$",
+    "pitfall": "Den Faktor $a$ vergessen oder doppelte Nullstellen nur einfach ansetzen.",
+    "drill": [
+      {
+        "prompt": "Parabel mit Nullstellen $-1$ und $2$ durch $P(0\\mid4)$: $y=\\;?$",
+        "answer": {
+          "type": "expr",
+          "value": "-2*(x+1)*(x-2)"
+        }
+      },
+      {
+        "prompt": "Parabel mit doppelter Nullstelle $3$ durch $P(1\\mid8)$: $y=\\;?$",
+        "answer": {
+          "type": "expr",
+          "value": "2*(x-3)**2"
+        }
+      },
+      {
+        "prompt": "Grad 3: doppelte Nullstelle $0$, einfache Nullstelle $3$, $P(1\\mid-4)$: $y=\\;?$",
+        "answer": {
+          "type": "expr",
+          "value": "2*x**2*(x-3)"
+        }
+      }
+    ]
+  },
+  {
+    "id": "k1-satz-von-anan",
+    "chapter": "k1",
+    "skills": [
+      "poly-anan"
+    ],
+    "topic": "Funktionsgleichung bestimmen",
+    "topic_order": 3,
+    "name": "Polynom durch Punkte (Satz von Anan)",
+    "formula": "$$\\text{Grad }n\\iff n+1\\text{ Unbekannte }a_n,\\dots,a_0\\iff n+1\\text{ Punkte}\\qquad P(x_P\\mid y_P):\\ f(x_P)=y_P$$",
+    "symbols": [
+      {
+        "sym": "$n$",
+        "desc": "Grad des Polynoms"
+      },
+      {
+        "sym": "$a_n,\\dots,a_0$",
+        "desc": "gesuchte Koeffizienten (Zahlen)"
+      },
+      {
+        "sym": "$P(x_P\\mid y_P)$",
+        "desc": "gegebener Punkt (Zahlen)"
+      },
+      {
+        "sym": "$f(x_P)=y_P$",
+        "desc": "Gleichung, die der Punkt liefert"
+      }
+    ],
+    "explain": "Jeder Punkt liefert eine lineare Gleichung für die Koeffizienten. Rechner: `solve({f(0)=1, f(1)=2, f(2)=7},{a,b,c})` oder Menü 3/7/2.",
+    "example": "Parabel durch $(0\\mid1),(1\\mid2),(2\\mid7)$: $c=1$, $a+b=1$, $4a+2b=6$ $\\Rightarrow$ $y=2x^2-x+1$",
+    "pitfall": "Zu wenige Punkte für den gewünschten Grad – dann ist die Lösung nicht eindeutig.",
+    "drill": [
+      {
+        "prompt": "Wie viele Punkte braucht man für ein Polynom 3. Grades?",
+        "answer": {
+          "type": "number",
+          "value": "4"
+        }
+      },
+      {
+        "prompt": "Parabel $y=ax^2+bx+c$ durch $(0\\mid1)$, $(1\\mid2)$, $(2\\mid7)$: Gib $(a;b;c)$ an.",
+        "answer": {
+          "type": "tuple",
+          "value": [
+            "2",
+            "-1",
+            "1"
+          ],
+          "names": [
+            "a",
+            "b",
+            "c"
+          ]
+        }
+      },
+      {
+        "prompt": "Parabel $y=ax^2+bx+c$ durch $(-1\\mid0)$, $(0\\mid-3)$, $(1\\mid-4)$: Gib $(a;b;c)$ an.",
+        "answer": {
+          "type": "tuple",
+          "value": [
+            "1",
+            "-2",
+            "-3"
+          ],
+          "names": [
+            "a",
+            "b",
+            "c"
+          ]
+        }
+      }
+    ]
+  },
+  {
+    "id": "k1-anan-symmetrie",
+    "chapter": "k1",
+    "skills": [
+      "poly-anan"
+    ],
+    "topic": "Funktionsgleichung bestimmen",
+    "topic_order": 3,
+    "name": "Symmetrie im Ansatz nutzen",
+    "formula": "$$\\text{achsensymmetrisch: nur gerade Potenzen }(a_4x^4+a_2x^2+a_0)\\qquad\\text{punktsymmetrisch: nur ungerade }(a_3x^3+a_1x)$$",
+    "symbols": [
+      {
+        "sym": "$a_4,\\ a_3,\\ a_2,\\ a_1,\\ a_0$",
+        "desc": "Koeffizienten (Zahlen)"
+      },
+      {
+        "sym": "achsensymmetrisch",
+        "desc": "symmetrisch zur $y$-Achse: $f(-x)=f(x)$"
+      },
+      {
+        "sym": "punktsymmetrisch",
+        "desc": "symmetrisch zum Ursprung: $f(-x)=-f(x)$"
+      },
+      {
+        "sym": "$x$",
+        "desc": "Variable"
+      }
+    ],
+    "explain": "Ist eine Symmetrie bekannt, fallen Koeffizienten weg. Dann braucht man weniger Punkte.",
+    "example": "Achsensymmetrisch, Grad 4: $y=a_4x^4+a_2x^2+a_0$ – nur 3 Unbekannte",
+    "pitfall": "Bei punktsymmetrischen Funktionen ein konstantes Glied ansetzen – es muss null sein.",
+    "drill": [
+      {
+        "prompt": "Achsensymmetrisches Polynom 4. Grades: Wie viele Unbekannte?",
+        "answer": {
+          "type": "number",
+          "value": "3"
+        }
+      },
+      {
+        "prompt": "$y=a_4x^4+a_2x^2+a_0$ durch $(0\\mid2)$, $(1\\mid0)$, $(2\\mid18)$: Gib $(a_4;a_2;a_0)$ an.",
+        "answer": {
+          "type": "tuple",
+          "value": [
+            "2",
+            "-4",
+            "2"
+          ],
+          "names": [
+            "a4",
+            "a2",
+            "a0"
+          ]
+        }
+      },
+      {
+        "prompt": "$y=a_3x^3+a_1x$ durch $(1\\mid-1)$ und $(2\\mid4)$: Gib $(a_3;a_1)$ an.",
+        "answer": {
+          "type": "tuple",
+          "value": [
+            "1",
+            "-2"
+          ],
+          "names": [
+            "a3",
+            "a1"
+          ]
+        }
+      }
+    ]
+  },
+  {
+    "id": "k1-regression",
+    "chapter": "k1",
+    "skills": [
+      "poly-regression"
+    ],
+    "topic": "Regression",
+    "topic_order": 4,
+    "name": "Regression mit dem Rechner",
+    "formula": "$$\\sum\\big(y_i-f(x_i)\\big)^2\\to\\min\\qquad R^2\\in[0;1],\\quad r\\in[-1;1]$$",
+    "symbols": [
+      {
+        "sym": "$(x_i\\mid y_i)$",
+        "desc": "Messpunkte (Daten)"
+      },
+      {
+        "sym": "$f(x_i)$",
+        "desc": "Modellwert an der Stelle $x_i$"
+      },
+      {
+        "sym": "$R^2$",
+        "desc": "Bestimmtheitsmass (Zahl zwischen 0 und 1), 1 = perfekte Anpassung"
+      },
+      {
+        "sym": "$r$",
+        "desc": "Korrelationskoeffizient (nur linear), Zahl zwischen $-1$ und $1$"
+      }
+    ],
+    "explain": "Methode der kleinsten Quadrate. TI-Nspire: `LinReg mx+b`, `QuadReg`, `CubicReg`, `QuartReg`. $R^2$ nahe 1 = gute Anpassung. Grad möglichst klein wählen; bei $N$ Punkten passt Grad $N-1$ exakt.",
+    "example": "Punkte $(0\\mid1),(1\\mid3),(2\\mid5)$: `LinReg` liefert $y=2x+1$, $R^2=1$",
+    "pitfall": "Einen zu hohen Grad wählen: Die Kurve geht durch alle Punkte, ist aber als Modell unbrauchbar (schwingt zwischen den Punkten).",
+    "drill": [
+      {
+        "prompt": "Welcher TI-Befehl liefert ein Polynom 3. Grades?",
+        "answer": {
+          "type": "choice",
+          "value": 2,
+          "options": [
+            "LinReg",
+            "QuadReg",
+            "CubicReg",
+            "QuartReg"
+          ]
+        }
+      },
+      {
+        "prompt": "5 Messpunkte: Welcher Grad passt exakt durch alle Punkte?",
+        "answer": {
+          "type": "number",
+          "value": "4"
+        }
+      },
+      {
+        "prompt": "Lineare Regression für $(0\\mid1)$, $(1\\mid3)$, $(2\\mid5)$: Gib $(m;b)$ an.",
+        "answer": {
+          "type": "tuple",
+          "value": [
+            "2",
+            "1"
+          ],
+          "names": [
+            "m",
+            "b"
+          ]
+        }
+      }
+    ]
+  },
+  {
+    "id": "k1-fehlerquadrate",
+    "chapter": "k1",
+    "skills": [
+      "poly-regression"
+    ],
+    "topic": "Regression",
+    "topic_order": 4,
+    "name": "Summe der Fehlerquadrate",
+    "formula": "$$S=\\sum_{i=1}^N\\big(y_i-f(x_i)\\big)^2$$",
+    "symbols": [
+      {
+        "sym": "$S$",
+        "desc": "Summe der Fehlerquadrate (Zahl $\\ge0$)"
+      },
+      {
+        "sym": "$N$",
+        "desc": "Anzahl Messpunkte"
+      },
+      {
+        "sym": "$(x_i\\mid y_i)$",
+        "desc": "$i$-ter Messpunkt"
+      },
+      {
+        "sym": "$f(x_i)$",
+        "desc": "Modellwert an der Stelle $x_i$"
+      },
+      {
+        "sym": "$y_i-f(x_i)$",
+        "desc": "Residuum (Abweichung)"
+      }
+    ],
+    "explain": "Mass für die Güte eines Modells: Abweichungen (Residuen) quadrieren und addieren. Das beste Modell hat das kleinste $S$.",
+    "example": "Daten $(0\\mid0),(1\\mid1),(2\\mid5)$, Modell $f(x)=2x$: Residuen $0,-1,1$, $S=2$",
+    "pitfall": "Residuen nur addieren (ohne Quadrat): Positive und negative Abweichungen heben sich auf.",
+    "drill": [
+      {
+        "prompt": "Daten $(0\\mid0)$, $(1\\mid1)$, $(2\\mid5)$, Modell $f(x)=2x$. $S=\\;?$",
+        "answer": {
+          "type": "number",
+          "value": "2"
+        }
+      },
+      {
+        "prompt": "Daten $(1\\mid2)$, $(2\\mid2)$, $(3\\mid5)$, Modell $f(x)=x+1$. $S=\\;?$",
+        "answer": {
+          "type": "number",
+          "value": "2"
+        }
+      }
+    ]
+  },
+  {
+    "id": "k1-optimierung",
+    "chapter": "k1",
+    "skills": [
+      "poly-optimierung"
+    ],
+    "topic": "Optimierung",
+    "topic_order": 5,
+    "name": "Extremwertaufgabe: Vorgehen",
+    "formula": "$$\\text{Zielfunktion}\\;\\to\\;\\text{Nebenbedingung einsetzen}\\;\\to\\;\\text{Definitionsbereich }D\\;\\to\\;\\text{Maximum/Minimum in }D$$",
+    "symbols": [
+      {
+        "sym": "Zielfunktion",
+        "desc": "Funktion der Grösse, die maximal bzw. minimal werden soll"
+      },
+      {
+        "sym": "Nebenbedingung",
+        "desc": "Gleichung zwischen den Variablen, mit der eine Variable eliminiert wird"
+      },
+      {
+        "sym": "$D$",
+        "desc": "Definitionsbereich: sinnvolle Werte der Variablen"
+      }
+    ],
+    "explain": "Skizze und Variablen, dann die Grösse, die optimal werden soll, als Funktion aufschreiben. Mit der Nebenbedingung eine Variable eliminieren. Rechner: `fMax(f(x),x)|0<x<6`.",
+    "example": "Rechteck mit Umfang 20: $A=x\\cdot y$, $y=10-x$, $A(x)=x(10-x)$, $D=]0;10[$, max bei $x=5$: $A=25$",
+    "pitfall": "Den Definitionsbereich vergessen – das Maximum kann am Rand liegen oder ausserhalb des sinnvollen Bereichs.",
+    "drill": [
+      {
+        "prompt": "Rechteck mit Umfang 20: maximale Fläche?",
+        "answer": {
+          "type": "number",
+          "value": "25"
+        }
+      },
+      {
+        "prompt": "Quadratisches Blech $12\\times12$: an den Ecken Quadrate der Seite $x$ ausschneiden, Schachtel falten. Volumen $V(x)=\\;?$",
+        "answer": {
+          "type": "expr",
+          "value": "x*(12-2*x)**2"
+        }
+      },
+      {
+        "prompt": "Definitionsbereich dieser Schachtel: Gib die Grenzen $(x_{min};x_{max})$ an.",
+        "answer": {
+          "type": "tuple",
+          "value": [
+            "0",
+            "6"
+          ],
+          "names": [
+            "x_min",
+            "x_max"
+          ]
+        }
+      }
+    ]
+  },
+  {
+    "id": "k1-geometrie-koerper",
+    "chapter": "k1",
+    "skills": [
+      "poly-optimierung"
+    ],
+    "topic": "Optimierung",
+    "topic_order": 5,
+    "name": "Körperformeln für Optimierungsaufgaben",
+    "formula": "$$\\text{Zylinder: }V=\\pi r^2h,\\ O=2\\pi r^2+2\\pi rh\\qquad\\text{Kegel: }V=\\tfrac13\\pi r^2h\\qquad\\text{Kugel: }V=\\tfrac43\\pi r^3,\\ O=4\\pi r^2$$",
+    "symbols": [
+      {
+        "sym": "$r$",
+        "desc": "Radius (Länge)"
+      },
+      {
+        "sym": "$h$",
+        "desc": "Höhe (Länge)"
+      },
+      {
+        "sym": "$V$",
+        "desc": "Volumen (z.B. cm³)"
+      },
+      {
+        "sym": "$O$",
+        "desc": "Oberfläche (z.B. cm²)"
+      },
+      {
+        "sym": "$\\pi$",
+        "desc": "Kreiszahl $\\approx3.14159$"
+      }
+    ],
+    "explain": "Diese Formeln liefern Zielfunktion und Nebenbedingung. Beispiel: gegebenes Volumen nach $h$ auflösen und in die Oberfläche einsetzen.",
+    "example": "Dose mit $V=500$: $h=\\frac{500}{\\pi r^2}$, $O(r)=2\\pi r^2+\\frac{1000}{r}$",
+    "pitfall": "Beim Zylinder nur eine Deckfläche zählen (offene Dose: $\\pi r^2+2\\pi rh$).",
+    "drill": [
+      {
+        "prompt": "Zylinder $r=3$, $h=5$: Volumen?",
+        "answer": {
+          "type": "number",
+          "value": "45*pi"
+        }
+      },
+      {
+        "prompt": "Kugel $r=3$: Volumen?",
+        "answer": {
+          "type": "number",
+          "value": "36*pi"
+        }
+      },
+      {
+        "prompt": "Geschlossene Dose mit $V=500$: Oberfläche $O(r)=\\;?$",
+        "answer": {
+          "type": "expr",
+          "value": "2*pi*r**2+1000/r",
+          "var": "r"
+        }
+      }
+    ]
+  }
+]

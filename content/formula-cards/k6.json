@@ -1,0 +1,1508 @@
+[
+  {
+    "id": "k6-vektorkette",
+    "chapter": "k6",
+    "skills": [
+      "vek-operationen"
+    ],
+    "topic": "Vektoren: Grundlagen",
+    "topic_order": 1,
+    "name": "Vektoraddition und Vektorkette",
+    "formula": "$$\\overrightarrow{AB}+\\overrightarrow{BC}=\\overrightarrow{AC}\\qquad\\overrightarrow{BA}=-\\overrightarrow{AB}\\qquad\\overrightarrow{AA}=\\vec0$$",
+    "symbols": [
+      {
+        "sym": "$A,\\ B,\\ C$",
+        "desc": "Punkte"
+      },
+      {
+        "sym": "$\\overrightarrow{AB}$",
+        "desc": "Vektor (Verschiebung) von $A$ nach $B$"
+      },
+      {
+        "sym": "$\\vec0$",
+        "desc": "Nullvektor (alle Komponenten 0)"
+      }
+    ],
+    "explain": "Vektoren werden «Spitze an Schaft» aneinandergehängt. Der Summenvektor zeigt vom Anfang der Kette zum Ende. Rechnerisch: komponentenweise addieren.",
+    "example": "$\\overrightarrow{AB}=\\begin{pmatrix}2\\\\1\\end{pmatrix}$, $\\overrightarrow{BC}=\\begin{pmatrix}3\\\\-4\\end{pmatrix}$ $\\Rightarrow$ $\\overrightarrow{AC}=\\begin{pmatrix}5\\\\-3\\end{pmatrix}$",
+    "pitfall": "Bei $\\overrightarrow{BA}$ das Vorzeichen nicht umkehren.",
+    "drill": [
+      {
+        "prompt": "$\\overrightarrow{AB}=\\begin{pmatrix}2\\\\1\\end{pmatrix}$, $\\overrightarrow{BC}=\\begin{pmatrix}3\\\\-4\\end{pmatrix}$. $\\overrightarrow{AC}=\\;?$",
+        "answer": {
+          "type": "tuple",
+          "value": [
+            "5",
+            "-3"
+          ]
+        }
+      },
+      {
+        "prompt": "$\\overrightarrow{AB}=\\begin{pmatrix}1\\\\2\\\\3\\end{pmatrix}$. $\\overrightarrow{BA}=\\;?$",
+        "answer": {
+          "type": "tuple",
+          "value": [
+            "-1",
+            "-2",
+            "-3"
+          ]
+        }
+      },
+      {
+        "prompt": "$\\overrightarrow{AB}+\\overrightarrow{BC}+\\overrightarrow{CA}=\\;?$ (in der Ebene)",
+        "answer": {
+          "type": "tuple",
+          "value": [
+            "0",
+            "0"
+          ]
+        }
+      }
+    ]
+  },
+  {
+    "id": "k6-differenz-vielfaches",
+    "chapter": "k6",
+    "skills": [
+      "vek-operationen"
+    ],
+    "topic": "Vektoren: Grundlagen",
+    "topic_order": 1,
+    "name": "Differenz und Vielfaches",
+    "formula": "$$\\vec a-\\vec b=\\vec a+(-\\vec b)\\qquad k\\,\\vec a=\\begin{pmatrix}k\\,a_1\\\\k\\,a_2\\\\k\\,a_3\\end{pmatrix}\\qquad |k\\,\\vec a|=|k|\\cdot|\\vec a|$$",
+    "symbols": [
+      {
+        "sym": "$\\vec a,\\ \\vec b$",
+        "desc": "Vektoren"
+      },
+      {
+        "sym": "$-\\vec b$",
+        "desc": "Gegenvektor: gleiche Länge, umgekehrte Richtung"
+      },
+      {
+        "sym": "$k$",
+        "desc": "Skalar (Zahl)"
+      },
+      {
+        "sym": "$a_1,\\ a_2,\\ a_3$",
+        "desc": "Komponenten von $\\vec a$ (Zahlen)"
+      },
+      {
+        "sym": "$|\\vec a|$",
+        "desc": "Betrag (Länge) von $\\vec a$, Zahl $\\ge0$"
+      }
+    ],
+    "explain": "$\\vec a-\\vec b$ zeigt graphisch von der Spitze von $\\vec b$ zur Spitze von $\\vec a$. $k\\vec a$ ist $|k|$-mal so lang, für $k<0$ umgekehrt gerichtet.",
+    "example": "$2\\begin{pmatrix}3\\\\-1\\\\2\\end{pmatrix}-\\begin{pmatrix}1\\\\4\\\\0\\end{pmatrix}=\\begin{pmatrix}5\\\\-6\\\\4\\end{pmatrix}$",
+    "pitfall": "Bei $\\vec a-\\vec b$ die Richtung verkehrt zeichnen (von $\\vec a$ zu $\\vec b$).",
+    "drill": [
+      {
+        "prompt": "$\\vec a=\\begin{pmatrix}3\\\\-1\\\\2\\end{pmatrix}$, $\\vec b=\\begin{pmatrix}1\\\\4\\\\0\\end{pmatrix}$. $2\\vec a-\\vec b=\\;?$",
+        "answer": {
+          "type": "tuple",
+          "value": [
+            "5",
+            "-6",
+            "4"
+          ]
+        }
+      },
+      {
+        "prompt": "Mit denselben Vektoren: $\\vec a-\\vec b=\\;?$",
+        "answer": {
+          "type": "tuple",
+          "value": [
+            "2",
+            "-5",
+            "2"
+          ]
+        }
+      },
+      {
+        "prompt": "$|\\vec a|=2$. $|-3\\vec a|=\\;?$",
+        "answer": {
+          "type": "number",
+          "value": "6"
+        }
+      }
+    ]
+  },
+  {
+    "id": "k6-kraefte-resultierende",
+    "chapter": "k6",
+    "skills": [
+      "vek-kraefte",
+      "vek-operationen"
+    ],
+    "topic": "Vektoren: Grundlagen",
+    "topic_order": 1,
+    "name": "Resultierende Kraft",
+    "formula": "$$\\vec F_R=\\vec F_1+\\vec F_2+\\dots+\\vec F_n$$",
+    "symbols": [
+      {
+        "sym": "$\\vec F_1,\\dots,\\vec F_n$",
+        "desc": "Einzelkräfte (Vektoren, Einheit N)"
+      },
+      {
+        "sym": "$\\vec F_R$",
+        "desc": "resultierende Kraft (Vektor, N)"
+      }
+    ],
+    "explain": "Kräfte sind Vektoren: Sie werden vektoriell (Kräfteparallelogramm bzw. komponentenweise) addiert, nicht ihre Beträge.",
+    "example": "$30$ N und $40$ N rechtwinklig: $|\\vec F_R|=\\sqrt{30^2+40^2}=50$ N",
+    "pitfall": "Die Beträge einfach addieren: $30+40\\neq50$.",
+    "drill": [
+      {
+        "prompt": "$\\vec F_1=\\begin{pmatrix}3\\\\4\\end{pmatrix}$ N, $\\vec F_2=\\begin{pmatrix}-1\\\\2\\end{pmatrix}$ N. $\\vec F_R=\\;?$",
+        "answer": {
+          "type": "tuple",
+          "value": [
+            "2",
+            "6"
+          ]
+        }
+      },
+      {
+        "prompt": "$30$ N und $40$ N stehen senkrecht aufeinander. $|\\vec F_R|$ in N?",
+        "answer": {
+          "type": "number",
+          "value": "50"
+        }
+      },
+      {
+        "prompt": "Zwei Kräfte je $10$ N, Zwischenwinkel $60^\\circ$. $|\\vec F_R|$ in N?",
+        "answer": {
+          "type": "number",
+          "value": "10*sqrt(3)"
+        }
+      }
+    ]
+  },
+  {
+    "id": "k6-gleichgewicht",
+    "chapter": "k6",
+    "skills": [
+      "vek-kraefte"
+    ],
+    "topic": "Vektoren: Grundlagen",
+    "topic_order": 1,
+    "name": "Kräftegleichgewicht",
+    "formula": "$$\\sum\\vec F_i=\\vec F_1+\\vec F_2+\\dots=\\vec0\\qquad\\Rightarrow\\ \\vec F_3=-(\\vec F_1+\\vec F_2)$$",
+    "symbols": [
+      {
+        "sym": "$\\vec F_i$",
+        "desc": "Kräfte, die am Körper angreifen (Vektoren, N)"
+      },
+      {
+        "sym": "$\\vec F_3$",
+        "desc": "Ausgleichskraft (Vektor, N)"
+      },
+      {
+        "sym": "$\\vec0$",
+        "desc": "Nullvektor"
+      }
+    ],
+    "explain": "Ein Körper ist im Gleichgewicht, wenn die Summe aller Kräfte der Nullvektor ist: Das Kräftepolygon schliesst sich.",
+    "example": "$\\vec F_1+\\vec F_2=\\begin{pmatrix}-2\\\\4\\\\4\\end{pmatrix}$ $\\Rightarrow$ $\\vec F_3=\\begin{pmatrix}2\\\\-4\\\\-4\\end{pmatrix}$",
+    "pitfall": "Die Gegenkraft mit dem gleichen statt dem umgekehrten Vorzeichen ansetzen.",
+    "drill": [
+      {
+        "prompt": "$\\vec F_1=\\begin{pmatrix}2\\\\-1\\\\3\\end{pmatrix}$, $\\vec F_2=\\begin{pmatrix}-4\\\\5\\\\1\\end{pmatrix}$. Ausgleichskraft $\\vec F_3=\\;?$",
+        "answer": {
+          "type": "tuple",
+          "value": [
+            "2",
+            "-4",
+            "-4"
+          ]
+        }
+      },
+      {
+        "prompt": "Zwei Kräfte je $10$ N mit $120^\\circ$ Zwischenwinkel. Betrag der Ausgleichskraft in N?",
+        "answer": {
+          "type": "number",
+          "value": "10"
+        }
+      }
+    ]
+  },
+  {
+    "id": "k6-ortsvektor",
+    "chapter": "k6",
+    "skills": [
+      "vek-koordinaten"
+    ],
+    "topic": "Koordinaten, Betrag & Einheitsvektor",
+    "topic_order": 2,
+    "name": "Ortsvektor und Verbindungsvektor",
+    "formula": "$$\\vec r_P=\\overrightarrow{OP}=\\begin{pmatrix}x\\\\y\\\\z\\end{pmatrix}\\qquad\\overrightarrow{AB}=\\vec r_B-\\vec r_A\\qquad\\overline{AB}=|\\overrightarrow{AB}|$$",
+    "symbols": [
+      {
+        "sym": "$O$",
+        "desc": "Ursprung $(0\\mid0\\mid0)$"
+      },
+      {
+        "sym": "$P(x\\mid y\\mid z)$",
+        "desc": "Punkt mit Koordinaten $x,y,z$ (Zahlen)"
+      },
+      {
+        "sym": "$\\vec r_P$",
+        "desc": "Ortsvektor von $P$ (Vektor vom Ursprung zu $P$)"
+      },
+      {
+        "sym": "$\\overrightarrow{AB}$",
+        "desc": "Verbindungsvektor von $A$ nach $B$"
+      },
+      {
+        "sym": "$\\overline{AB}$",
+        "desc": "Abstand der Punkte $A$ und $B$ (Zahl $\\ge0$)"
+      },
+      {
+        "sym": "$A,\\ B$",
+        "desc": "Punkte"
+      }
+    ],
+    "explain": "Verbindungsvektor: «Endpunkt minus Anfangspunkt». Seine Länge ist der Abstand der Punkte.",
+    "example": "$A(1\\mid2\\mid3)$, $B(4\\mid0\\mid5)$: $\\overrightarrow{AB}=\\begin{pmatrix}3\\\\-2\\\\2\\end{pmatrix}$, $\\overline{AB}=\\sqrt{17}$",
+    "pitfall": "Anfangs- minus Endpunkt rechnen (falsche Richtung).",
+    "drill": [
+      {
+        "prompt": "$A(1\\mid2\\mid3)$, $B(4\\mid0\\mid5)$. $\\overrightarrow{AB}=\\;?$",
+        "answer": {
+          "type": "tuple",
+          "value": [
+            "3",
+            "-2",
+            "2"
+          ]
+        }
+      },
+      {
+        "prompt": "$A(1\\mid2\\mid3)$, $B(4\\mid0\\mid5)$. Abstand $\\overline{AB}=\\;?$",
+        "answer": {
+          "type": "number",
+          "value": "sqrt(17)"
+        }
+      },
+      {
+        "prompt": "$A(2\\mid-1)$, $\\overrightarrow{AB}=\\begin{pmatrix}3\\\\4\\end{pmatrix}$. Koordinaten von $B$?",
+        "answer": {
+          "type": "tuple",
+          "value": [
+            "5",
+            "3"
+          ]
+        }
+      }
+    ]
+  },
+  {
+    "id": "k6-betrag",
+    "chapter": "k6",
+    "skills": [
+      "vek-koordinaten"
+    ],
+    "topic": "Koordinaten, Betrag & Einheitsvektor",
+    "topic_order": 2,
+    "name": "Betrag (Länge) eines Vektors",
+    "formula": "$$|\\vec a|=\\sqrt{a_1^2+a_2^2}\\ \\ (\\text{Ebene})\\qquad|\\vec a|=\\sqrt{a_1^2+a_2^2+a_3^2}\\ \\ (\\text{Raum})$$",
+    "symbols": [
+      {
+        "sym": "$\\vec a$",
+        "desc": "Vektor"
+      },
+      {
+        "sym": "$a_1,\\ a_2,\\ a_3$",
+        "desc": "Komponenten (Zahlen)"
+      },
+      {
+        "sym": "$|\\vec a|$",
+        "desc": "Betrag (Länge) von $\\vec a$, Zahl $\\ge0$"
+      }
+    ],
+    "explain": "Pythagoras in Komponenten. Rechner: `norm(a)`.",
+    "example": "$\\left|\\begin{pmatrix}2\\\\-1\\\\2\\end{pmatrix}\\right|=\\sqrt{4+1+4}=3$",
+    "pitfall": "Negative Komponenten falsch quadrieren: $(-1)^2=+1$.",
+    "drill": [
+      {
+        "prompt": "$\\left|\\begin{pmatrix}2\\\\-1\\\\2\\end{pmatrix}\\right|=\\;?$",
+        "answer": {
+          "type": "number",
+          "value": "3"
+        }
+      },
+      {
+        "prompt": "$\\left|\\begin{pmatrix}3\\\\4\\end{pmatrix}\\right|=\\;?$",
+        "answer": {
+          "type": "number",
+          "value": "5"
+        }
+      },
+      {
+        "prompt": "$\\left|\\begin{pmatrix}1\\\\1\\\\1\\end{pmatrix}\\right|=\\;?$",
+        "answer": {
+          "type": "number",
+          "value": "sqrt(3)"
+        }
+      }
+    ]
+  },
+  {
+    "id": "k6-einheitsvektor",
+    "chapter": "k6",
+    "skills": [
+      "vek-koordinaten"
+    ],
+    "topic": "Koordinaten, Betrag & Einheitsvektor",
+    "topic_order": 2,
+    "name": "Einheitsvektor",
+    "formula": "$$\\vec e_a=\\frac{\\vec a}{|\\vec a|}\\qquad|\\vec e_a|=1\\qquad\\text{Länge }L\\text{ in Richtung }\\vec a:\\ L\\cdot\\vec e_a$$",
+    "symbols": [
+      {
+        "sym": "$\\vec a$",
+        "desc": "Vektor, $\\vec a\\neq\\vec0$"
+      },
+      {
+        "sym": "$|\\vec a|$",
+        "desc": "Betrag von $\\vec a$ (Zahl $>0$)"
+      },
+      {
+        "sym": "$\\vec e_a$",
+        "desc": "Einheitsvektor: Länge 1, Richtung von $\\vec a$"
+      },
+      {
+        "sym": "$L$",
+        "desc": "gewünschte Länge (Zahl $>0$)"
+      }
+    ],
+    "explain": "Vektor durch seine Länge teilen → Länge 1, gleiche Richtung. Rechner: `unitV(a)`.",
+    "example": "$\\vec a=\\begin{pmatrix}3\\\\0\\\\4\\end{pmatrix}$: $\\vec e_a=\\frac15\\begin{pmatrix}3\\\\0\\\\4\\end{pmatrix}=\\begin{pmatrix}0.6\\\\0\\\\0.8\\end{pmatrix}$",
+    "pitfall": "Nur eine Komponente durch den Betrag teilen.",
+    "drill": [
+      {
+        "prompt": "Einheitsvektor zu $\\begin{pmatrix}3\\\\0\\\\4\\end{pmatrix}$?",
+        "answer": {
+          "type": "tuple",
+          "value": [
+            "0.6",
+            "0",
+            "0.8"
+          ]
+        }
+      },
+      {
+        "prompt": "Vektor der Länge 10 in Richtung $\\begin{pmatrix}1\\\\2\\\\2\\end{pmatrix}$?",
+        "answer": {
+          "type": "tuple",
+          "value": [
+            "10/3",
+            "20/3",
+            "20/3"
+          ]
+        }
+      },
+      {
+        "prompt": "Einheitsvektor zu $\\begin{pmatrix}-5\\\\12\\end{pmatrix}$?",
+        "answer": {
+          "type": "tuple",
+          "value": [
+            "-5/13",
+            "12/13"
+          ]
+        }
+      }
+    ]
+  },
+  {
+    "id": "k6-mittelpunkt-schwerpunkt",
+    "chapter": "k6",
+    "skills": [
+      "vek-koordinaten",
+      "vek-operationen"
+    ],
+    "topic": "Koordinaten, Betrag & Einheitsvektor",
+    "topic_order": 2,
+    "name": "Mittelpunkt, Schwerpunkt, Parallelogramm",
+    "formula": "$$\\vec r_M=\\tfrac12\\big(\\vec r_A+\\vec r_B\\big)\\qquad\\vec r_S=\\tfrac13\\big(\\vec r_A+\\vec r_B+\\vec r_C\\big)\\qquad\\vec r_D=\\vec r_A+\\overrightarrow{BC}$$",
+    "symbols": [
+      {
+        "sym": "$\\vec r_A,\\ \\vec r_B,\\ \\vec r_C,\\ \\vec r_D$",
+        "desc": "Ortsvektoren der Punkte $A,B,C,D$"
+      },
+      {
+        "sym": "$\\vec r_M$",
+        "desc": "Ortsvektor des Mittelpunkts der Strecke $AB$"
+      },
+      {
+        "sym": "$\\vec r_S$",
+        "desc": "Ortsvektor des Schwerpunkts des Dreiecks $ABC$"
+      },
+      {
+        "sym": "$\\overrightarrow{BC}$",
+        "desc": "Verbindungsvektor von $B$ nach $C$"
+      }
+    ],
+    "explain": "Mittelpunkt einer Strecke = Durchschnitt der Ortsvektoren; Schwerpunkt eines Dreiecks = Durchschnitt der drei Ecken. Im Parallelogramm $ABCD$ ist $\\overrightarrow{AD}=\\overrightarrow{BC}$.",
+    "example": "$A(2\\mid4\\mid-1)$, $B(6\\mid0\\mid3)$: $M(4\\mid2\\mid1)$",
+    "pitfall": "Beim Parallelogramm die Eckenreihenfolge $A,B,C,D$ missachten.",
+    "drill": [
+      {
+        "prompt": "$A(2\\mid4\\mid-1)$, $B(6\\mid0\\mid3)$. Mittelpunkt $M$?",
+        "answer": {
+          "type": "tuple",
+          "value": [
+            "4",
+            "2",
+            "1"
+          ]
+        }
+      },
+      {
+        "prompt": "Schwerpunkt von $A(0\\mid0\\mid0)$, $B(3\\mid0\\mid0)$, $C(0\\mid6\\mid3)$?",
+        "answer": {
+          "type": "tuple",
+          "value": [
+            "1",
+            "2",
+            "1"
+          ]
+        }
+      },
+      {
+        "prompt": "Parallelogramm $ABCD$: $A(1\\mid1)$, $B(4\\mid1)$, $C(5\\mid3)$. $D=\\;?$",
+        "answer": {
+          "type": "tuple",
+          "value": [
+            "2",
+            "3"
+          ]
+        }
+      }
+    ]
+  },
+  {
+    "id": "k6-linearkombination",
+    "chapter": "k6",
+    "skills": [
+      "vek-linearkombination"
+    ],
+    "topic": "Linearkombination",
+    "topic_order": 3,
+    "name": "Linearkombination und Zerlegung",
+    "formula": "$$\\vec u=k_1\\,\\vec a+k_2\\,\\vec b+k_3\\,\\vec c$$",
+    "symbols": [
+      {
+        "sym": "$\\vec u$",
+        "desc": "zu zerlegender Vektor"
+      },
+      {
+        "sym": "$\\vec a,\\ \\vec b,\\ \\vec c$",
+        "desc": "gegebene Richtungsvektoren"
+      },
+      {
+        "sym": "$k_1,\\ k_2,\\ k_3$",
+        "desc": "Koeffizienten (Skalare, Zahlen)"
+      }
+    ],
+    "explain": "Einen Vektor in Richtungen zerlegen: Ansatz $\\vec c=x\\vec a+y\\vec b$ komponentenweise aufschreiben → Gleichungssystem. Rechner: `solve({…},{x,y})`.",
+    "example": "$\\begin{pmatrix}5\\\\4\\end{pmatrix}=x\\begin{pmatrix}1\\\\2\\end{pmatrix}+y\\begin{pmatrix}1\\\\-1\\end{pmatrix}$: $x+y=5$, $2x-y=4$ $\\Rightarrow$ $x=3$, $y=2$",
+    "pitfall": "Nur eine Komponente betrachten – jede Komponente liefert eine Gleichung.",
+    "drill": [
+      {
+        "prompt": "$\\begin{pmatrix}5\\\\4\\end{pmatrix}=x\\begin{pmatrix}1\\\\2\\end{pmatrix}+y\\begin{pmatrix}1\\\\-1\\end{pmatrix}$. Gib $(x;y)$ an.",
+        "answer": {
+          "type": "tuple",
+          "value": [
+            "3",
+            "2"
+          ],
+          "names": [
+            "x",
+            "y"
+          ]
+        }
+      },
+      {
+        "prompt": "$\\begin{pmatrix}2\\\\3\\\\5\\end{pmatrix}=x\\begin{pmatrix}1\\\\0\\\\1\\end{pmatrix}+y\\begin{pmatrix}0\\\\1\\\\1\\end{pmatrix}+z\\begin{pmatrix}1\\\\1\\\\0\\end{pmatrix}$. Gib $(x;y;z)$ an.",
+        "answer": {
+          "type": "tuple",
+          "value": [
+            "2",
+            "3",
+            "0"
+          ],
+          "names": [
+            "x",
+            "y",
+            "z"
+          ]
+        }
+      }
+    ]
+  },
+  {
+    "id": "k6-linear-abhaengig",
+    "chapter": "k6",
+    "skills": [
+      "vek-linearkombination"
+    ],
+    "topic": "Linearkombination",
+    "topic_order": 3,
+    "name": "Lineare Abhängigkeit",
+    "formula": "$$k_1\\vec a+k_2\\vec b+\\dots=\\vec0\\ \\text{mit nicht allen }k_i=0\\iff\\text{linear abhängig}\\qquad\\vec a\\parallel\\vec b\\iff\\vec a=k\\,\\vec b$$",
+    "symbols": [
+      {
+        "sym": "$\\vec a,\\ \\vec b$",
+        "desc": "Vektoren"
+      },
+      {
+        "sym": "$k_i,\\ k$",
+        "desc": "Skalare (Zahlen)"
+      },
+      {
+        "sym": "$\\parallel$",
+        "desc": "parallel (gleiche oder entgegengesetzte Richtung)"
+      },
+      {
+        "sym": "$\\vec0$",
+        "desc": "Nullvektor"
+      }
+    ],
+    "explain": "Zwei Vektoren sind abhängig, wenn sie parallel sind. Drei Vektoren im Raum sind abhängig, wenn sie in einer Ebene liegen (komplanar).",
+    "example": "$\\begin{pmatrix}2\\\\-4\\\\6\\end{pmatrix}=-2\\begin{pmatrix}-1\\\\2\\\\-3\\end{pmatrix}$ → parallel, also abhängig",
+    "pitfall": "Parallelität nur an einer Komponente prüfen – der Faktor $k$ muss für alle Komponenten gleich sein.",
+    "drill": [
+      {
+        "prompt": "Für welches $k$ ist $\\begin{pmatrix}-1\\\\2\\\\k\\end{pmatrix}$ parallel zu $\\begin{pmatrix}2\\\\-4\\\\6\\end{pmatrix}$?",
+        "answer": {
+          "type": "number",
+          "value": "-3"
+        }
+      },
+      {
+        "prompt": "Sind $\\begin{pmatrix}1\\\\0\\\\0\\end{pmatrix}$, $\\begin{pmatrix}0\\\\1\\\\0\\end{pmatrix}$, $\\begin{pmatrix}1\\\\1\\\\0\\end{pmatrix}$ linear abhängig?",
+        "answer": {
+          "type": "choice",
+          "value": 0,
+          "options": [
+            "ja (komplanar)",
+            "nein"
+          ]
+        }
+      },
+      {
+        "prompt": "Sind $\\begin{pmatrix}1\\\\2\\\\3\\end{pmatrix}$ und $\\begin{pmatrix}2\\\\4\\\\5\\end{pmatrix}$ parallel?",
+        "answer": {
+          "type": "choice",
+          "value": 1,
+          "options": [
+            "ja",
+            "nein"
+          ]
+        }
+      }
+    ]
+  },
+  {
+    "id": "k6-gerade-parameterform",
+    "chapter": "k6",
+    "skills": [
+      "vek-gerade"
+    ],
+    "topic": "Geraden",
+    "topic_order": 4,
+    "name": "Parameterdarstellung einer Geraden",
+    "formula": "$$g:\\ \\vec r=\\vec r_A+t\\cdot\\overrightarrow{AB},\\quad t\\in\\mathbb R$$",
+    "symbols": [
+      {
+        "sym": "$g$",
+        "desc": "Gerade"
+      },
+      {
+        "sym": "$\\vec r$",
+        "desc": "Ortsvektor eines beliebigen Geradenpunkts"
+      },
+      {
+        "sym": "$\\vec r_A$",
+        "desc": "Stützvektor: Ortsvektor des Punkts $A$ auf $g$"
+      },
+      {
+        "sym": "$\\overrightarrow{AB}$",
+        "desc": "Richtungsvektor (oft $\\vec u$)"
+      },
+      {
+        "sym": "$t$",
+        "desc": "Parameter (Zahl)"
+      },
+      {
+        "sym": "$\\mathbb R$",
+        "desc": "reelle Zahlen"
+      }
+    ],
+    "explain": "Stützvektor (Ortsvektor eines Punkts) plus Vielfaches des Richtungsvektors. $t=0$ gibt $A$, $t=1$ gibt $B$, $0\\le t\\le1$ die Strecke $AB$.",
+    "example": "$A(1\\mid2\\mid0)$, $B(3\\mid1\\mid4)$: $g:\\ \\vec r=\\begin{pmatrix}1\\\\2\\\\0\\end{pmatrix}+t\\begin{pmatrix}2\\\\-1\\\\4\\end{pmatrix}$",
+    "pitfall": "Als Richtungsvektor den Ortsvektor von $B$ statt $\\overrightarrow{AB}$ nehmen.",
+    "drill": [
+      {
+        "prompt": "Gerade durch $A(1\\mid2\\mid0)$ und $B(3\\mid1\\mid4)$: Richtungsvektor $\\overrightarrow{AB}=\\;?$",
+        "answer": {
+          "type": "tuple",
+          "value": [
+            "2",
+            "-1",
+            "4"
+          ]
+        }
+      },
+      {
+        "prompt": "Dieselbe Gerade: Punkt für $t=2$?",
+        "answer": {
+          "type": "tuple",
+          "value": [
+            "5",
+            "0",
+            "8"
+          ]
+        }
+      },
+      {
+        "prompt": "Dieselbe Gerade: Punkt für $t=\\frac12$ (Mittelpunkt von $AB$)?",
+        "answer": {
+          "type": "tuple",
+          "value": [
+            "2",
+            "1.5",
+            "2"
+          ]
+        }
+      }
+    ]
+  },
+  {
+    "id": "k6-punktprobe",
+    "chapter": "k6",
+    "skills": [
+      "vek-gerade"
+    ],
+    "topic": "Geraden",
+    "topic_order": 4,
+    "name": "Punktprobe",
+    "formula": "$$C\\in g\\iff\\vec r_A+t\\,\\vec u=\\vec r_C\\ \\text{hat eine Lösung }t\\ (\\text{in allen Komponenten dasselbe }t)$$",
+    "symbols": [
+      {
+        "sym": "$C$",
+        "desc": "zu prüfender Punkt"
+      },
+      {
+        "sym": "$\\vec r_A$",
+        "desc": "Stützvektor von $g$"
+      },
+      {
+        "sym": "$\\vec u$",
+        "desc": "Richtungsvektor von $g$"
+      },
+      {
+        "sym": "$t$",
+        "desc": "Parameter (Zahl)"
+      },
+      {
+        "sym": "$\\vec r_C$",
+        "desc": "Ortsvektor von $C$"
+      },
+      {
+        "sym": "$g$",
+        "desc": "Gerade $\\vec r=\\vec r_A+t\\,\\vec u$"
+      }
+    ],
+    "explain": "Jede Komponente liefert eine Gleichung für $t$. Nur wenn alle dasselbe $t$ ergeben, liegt der Punkt auf der Geraden.",
+    "example": "$g:\\ \\begin{pmatrix}1\\\\0\\\\2\\end{pmatrix}+t\\begin{pmatrix}2\\\\1\\\\-1\\end{pmatrix}$, $C(5\\mid2\\mid0)$: $t=2$ in allen Komponenten → $C\\in g$",
+    "pitfall": "Nur eine oder zwei Komponenten prüfen.",
+    "drill": [
+      {
+        "prompt": "$g:\\ \\vec r=\\begin{pmatrix}1\\\\0\\\\2\\end{pmatrix}+t\\begin{pmatrix}2\\\\1\\\\-1\\end{pmatrix}$. $C(5\\mid2\\mid0)$ liegt auf $g$ für $t=\\;?$",
+        "answer": {
+          "type": "number",
+          "value": "2"
+        }
+      },
+      {
+        "prompt": "Liegt $D(3\\mid1\\mid2)$ auf derselben Geraden $g$?",
+        "answer": {
+          "type": "choice",
+          "value": 1,
+          "options": [
+            "ja",
+            "nein"
+          ]
+        }
+      }
+    ]
+  },
+  {
+    "id": "k6-spurpunkte",
+    "chapter": "k6",
+    "skills": [
+      "vek-gerade",
+      "vek-gerade-lage"
+    ],
+    "topic": "Geraden",
+    "topic_order": 4,
+    "name": "Spurpunkte (Durchstosspunkte)",
+    "formula": "$$xy\\text{-Ebene: }z=0\\qquad yz\\text{-Ebene: }x=0\\qquad xz\\text{-Ebene: }y=0$$",
+    "symbols": [
+      {
+        "sym": "$x,\\ y,\\ z$",
+        "desc": "Koordinaten (Komponenten) des Geradenpunkts"
+      },
+      {
+        "sym": "$xy$-Ebene",
+        "desc": "Koordinatenebene mit $z=0$ (analog $yz$, $xz$)"
+      }
+    ],
+    "explain": "Die passende Komponente der Geradengleichung null setzen, $t$ bestimmen und in die Geradengleichung einsetzen.",
+    "example": "$g:\\ \\begin{pmatrix}1\\\\2\\\\3\\end{pmatrix}+t\\begin{pmatrix}1\\\\1\\\\-1\\end{pmatrix}$, $xy$-Ebene: $3-t=0\\Rightarrow t=3$, Spurpunkt $(4\\mid5\\mid0)$",
+    "pitfall": "Nur $t$ angeben statt den Punkt.",
+    "drill": [
+      {
+        "prompt": "$g:\\ \\vec r=\\begin{pmatrix}1\\\\2\\\\3\\end{pmatrix}+t\\begin{pmatrix}1\\\\1\\\\-1\\end{pmatrix}$. Spurpunkt in der $xy$-Ebene?",
+        "answer": {
+          "type": "tuple",
+          "value": [
+            "4",
+            "5",
+            "0"
+          ]
+        }
+      },
+      {
+        "prompt": "Dieselbe Gerade: Spurpunkt in der $yz$-Ebene?",
+        "answer": {
+          "type": "tuple",
+          "value": [
+            "0",
+            "1",
+            "4"
+          ]
+        }
+      }
+    ]
+  },
+  {
+    "id": "k6-gegenseitige-lage",
+    "chapter": "k6",
+    "skills": [
+      "vek-gerade-lage"
+    ],
+    "topic": "Geraden",
+    "topic_order": 4,
+    "name": "Gegenseitige Lage zweier Geraden",
+    "formula": "$$\\vec u\\parallel\\vec v:\\ \\begin{cases}\\text{gemeinsamer Punkt}\\Rightarrow\\text{identisch}\\\\\\text{sonst}\\Rightarrow\\text{echt parallel}\\end{cases}\\qquad\\vec u\\nparallel\\vec v:\\ \\begin{cases}\\text{LGS lösbar}\\Rightarrow\\text{schneidend}\\\\\\text{sonst}\\Rightarrow\\text{windschief}\\end{cases}$$",
+    "symbols": [
+      {
+        "sym": "$\\vec u,\\ \\vec v$",
+        "desc": "Richtungsvektoren der beiden Geraden"
+      },
+      {
+        "sym": "$\\parallel,\\ \\nparallel$",
+        "desc": "parallel bzw. nicht parallel"
+      },
+      {
+        "sym": "LGS",
+        "desc": "lineares Gleichungssystem $\\vec r_A+t\\vec u=\\vec r_B+s\\vec v$"
+      },
+      {
+        "sym": "windschief",
+        "desc": "weder parallel noch schneidend (nur im Raum)"
+      }
+    ],
+    "explain": "Zuerst die Richtungsvektoren vergleichen. Nicht parallel: $\\vec r_A+t\\vec u=\\vec r_B+s\\vec v$ als Gleichungssystem (3 Gleichungen, 2 Unbekannte) lösen.",
+    "example": "Richtungen $\\begin{pmatrix}1\\\\2\\\\3\\end{pmatrix}$ und $\\begin{pmatrix}2\\\\4\\\\6\\end{pmatrix}$ parallel; Stützpunkt der einen nicht auf der anderen → echt parallel",
+    "pitfall": "Windschief gibt es nur im Raum – in der Ebene schneiden sich nicht parallele Geraden immer.",
+    "drill": [
+      {
+        "prompt": "$g:\\ t\\begin{pmatrix}1\\\\2\\\\3\\end{pmatrix}$, $\\ h:\\ \\begin{pmatrix}1\\\\1\\\\1\\end{pmatrix}+s\\begin{pmatrix}2\\\\4\\\\6\\end{pmatrix}$. Lage?",
+        "answer": {
+          "type": "choice",
+          "value": 1,
+          "options": [
+            "identisch",
+            "echt parallel",
+            "schneidend",
+            "windschief"
+          ]
+        }
+      },
+      {
+        "prompt": "$g:\\ \\begin{pmatrix}1\\\\0\\\\0\\end{pmatrix}+t\\begin{pmatrix}0\\\\1\\\\0\\end{pmatrix}$, $\\ h:\\ \\begin{pmatrix}0\\\\0\\\\1\\end{pmatrix}+s\\begin{pmatrix}1\\\\0\\\\0\\end{pmatrix}$. Lage?",
+        "answer": {
+          "type": "choice",
+          "value": 3,
+          "options": [
+            "identisch",
+            "echt parallel",
+            "schneidend",
+            "windschief"
+          ]
+        }
+      },
+      {
+        "prompt": "$g:\\ t\\begin{pmatrix}1\\\\1\\\\0\\end{pmatrix}$, $\\ h:\\ \\begin{pmatrix}2\\\\2\\\\0\\end{pmatrix}+s\\begin{pmatrix}-1\\\\-1\\\\0\\end{pmatrix}$. Lage?",
+        "answer": {
+          "type": "choice",
+          "value": 0,
+          "options": [
+            "identisch",
+            "echt parallel",
+            "schneidend",
+            "windschief"
+          ]
+        }
+      }
+    ]
+  },
+  {
+    "id": "k6-schnittpunkt",
+    "chapter": "k6",
+    "skills": [
+      "vek-gerade-lage"
+    ],
+    "topic": "Geraden",
+    "topic_order": 4,
+    "name": "Schnittpunkt zweier Geraden",
+    "formula": "$$\\vec r_A+t\\,\\vec u=\\vec r_B+s\\,\\vec v$$",
+    "symbols": [
+      {
+        "sym": "$\\vec r_A,\\ \\vec r_B$",
+        "desc": "Stützvektoren der beiden Geraden"
+      },
+      {
+        "sym": "$\\vec u,\\ \\vec v$",
+        "desc": "Richtungsvektoren"
+      },
+      {
+        "sym": "$t,\\ s$",
+        "desc": "verschiedene Parameter der beiden Geraden (Zahlen)"
+      }
+    ],
+    "explain": "Komponentenweise gleichsetzen → 3 Gleichungen für $t$ und $s$. Zwei Gleichungen lösen, die dritte zur Kontrolle. Dann $t$ (oder $s$) einsetzen. Rechner: `solve({…},{t,s})`.",
+    "example": "$g:\\ \\begin{pmatrix}1\\\\1\\\\0\\end{pmatrix}+t\\begin{pmatrix}1\\\\0\\\\1\\end{pmatrix}$, $h:\\ \\begin{pmatrix}0\\\\-1\\\\1\\end{pmatrix}+s\\begin{pmatrix}1\\\\1\\\\0\\end{pmatrix}$: $t=1$, $s=2$, $S(2\\mid1\\mid1)$",
+    "pitfall": "Für beide Geraden denselben Parameter $t$ verwenden.",
+    "drill": [
+      {
+        "prompt": "$g:\\ \\begin{pmatrix}1\\\\1\\\\0\\end{pmatrix}+t\\begin{pmatrix}1\\\\0\\\\1\\end{pmatrix}$, $h:\\ \\begin{pmatrix}0\\\\-1\\\\1\\end{pmatrix}+s\\begin{pmatrix}1\\\\1\\\\0\\end{pmatrix}$. Gib $(t;s)$ an.",
+        "answer": {
+          "type": "tuple",
+          "value": [
+            "1",
+            "2"
+          ],
+          "names": [
+            "t",
+            "s"
+          ]
+        }
+      },
+      {
+        "prompt": "Dieselben Geraden: Schnittpunkt $S$?",
+        "answer": {
+          "type": "tuple",
+          "value": [
+            "2",
+            "1",
+            "1"
+          ]
+        }
+      }
+    ]
+  },
+  {
+    "id": "k6-skalarprodukt-komponenten",
+    "chapter": "k6",
+    "skills": [
+      "vek-skalarprodukt"
+    ],
+    "topic": "Skalarprodukt & Winkel",
+    "topic_order": 5,
+    "name": "Skalarprodukt in Komponenten",
+    "formula": "$$\\vec a\\cdot\\vec b=a_1b_1+a_2b_2+a_3b_3\\qquad\\vec a\\cdot\\vec a=|\\vec a|^2$$",
+    "symbols": [
+      {
+        "sym": "$\\vec a,\\ \\vec b$",
+        "desc": "Vektoren (im Raum 3 Komponenten)"
+      },
+      {
+        "sym": "$a_i,\\ b_i$",
+        "desc": "Komponenten (Zahlen)"
+      },
+      {
+        "sym": "$\\vec a\\cdot\\vec b$",
+        "desc": "Skalarprodukt: eine Zahl"
+      },
+      {
+        "sym": "$|\\vec a|$",
+        "desc": "Betrag von $\\vec a$"
+      }
+    ],
+    "explain": "Das Skalarprodukt ist eine Zahl (kein Vektor). Komponenten paarweise multiplizieren und addieren. Rechner: `dotP(a,b)`.",
+    "example": "$\\begin{pmatrix}1\\\\2\\\\3\\end{pmatrix}\\cdot\\begin{pmatrix}4\\\\-5\\\\6\\end{pmatrix}=4-10+18=12$",
+    "pitfall": "Als Resultat einen Vektor angeben; das Skalarprodukt ist nicht assoziativ.",
+    "drill": [
+      {
+        "prompt": "$\\begin{pmatrix}1\\\\2\\\\3\\end{pmatrix}\\cdot\\begin{pmatrix}4\\\\-5\\\\6\\end{pmatrix}=\\;?$",
+        "answer": {
+          "type": "number",
+          "value": "12"
+        }
+      },
+      {
+        "prompt": "$\\begin{pmatrix}2\\\\-1\\end{pmatrix}\\cdot\\begin{pmatrix}3\\\\6\\end{pmatrix}=\\;?$",
+        "answer": {
+          "type": "number",
+          "value": "0",
+          "tol": 1e-09
+        }
+      },
+      {
+        "prompt": "$|\\vec a|=5$. $\\vec a\\cdot\\vec a=\\;?$",
+        "answer": {
+          "type": "number",
+          "value": "25"
+        }
+      }
+    ]
+  },
+  {
+    "id": "k6-skalarprodukt-geometrisch",
+    "chapter": "k6",
+    "skills": [
+      "vek-skalarprodukt"
+    ],
+    "topic": "Skalarprodukt & Winkel",
+    "topic_order": 5,
+    "name": "Skalarprodukt geometrisch, Arbeit",
+    "formula": "$$\\vec a\\cdot\\vec b=|\\vec a|\\,|\\vec b|\\cos\\varphi\\qquad W=\\vec F\\cdot\\vec s=F\\,s\\cos\\varphi$$",
+    "symbols": [
+      {
+        "sym": "$\\vec a,\\ \\vec b$",
+        "desc": "Vektoren"
+      },
+      {
+        "sym": "$|\\vec a|,\\ |\\vec b|$",
+        "desc": "Beträge (Zahlen $\\ge0$)"
+      },
+      {
+        "sym": "$\\varphi$",
+        "desc": "Zwischenwinkel, $0^\\circ\\le\\varphi\\le180^\\circ$"
+      },
+      {
+        "sym": "$W$",
+        "desc": "Arbeit (J)"
+      },
+      {
+        "sym": "$\\vec F,\\ F$",
+        "desc": "Kraft (Vektor) bzw. ihr Betrag (N)"
+      },
+      {
+        "sym": "$\\vec s,\\ s$",
+        "desc": "Verschiebung (Vektor) bzw. Weglänge (m)"
+      }
+    ],
+    "explain": "Vorzeichen: $>0$ spitzer Winkel, $=0$ rechter Winkel, $<0$ stumpfer Winkel. In der Physik: Arbeit = Kraft mal Weg in Kraftrichtung.",
+    "example": "$|\\vec a|=3$, $|\\vec b|=4$, $\\varphi=60^\\circ$: $\\vec a\\cdot\\vec b=3\\cdot4\\cdot\\frac12=6$",
+    "pitfall": "Rechner im Bogenmass, obwohl $\\varphi$ in Grad gegeben ist.",
+    "drill": [
+      {
+        "prompt": "$|\\vec a|=3$, $|\\vec b|=4$, $\\varphi=60^\\circ$. $\\vec a\\cdot\\vec b=\\;?$",
+        "answer": {
+          "type": "number",
+          "value": "6"
+        }
+      },
+      {
+        "prompt": "$F=50$ N, $s=10$ m, Winkel $30^\\circ$ zwischen Kraft und Weg. $W$ in J?",
+        "answer": {
+          "type": "number",
+          "value": "433.0"
+        }
+      },
+      {
+        "prompt": "$\\vec a\\cdot\\vec b<0$. Der Winkel zwischen $\\vec a$ und $\\vec b$ ist …",
+        "answer": {
+          "type": "choice",
+          "value": 2,
+          "options": [
+            "spitz",
+            "rechtwinklig",
+            "stumpf"
+          ]
+        }
+      }
+    ]
+  },
+  {
+    "id": "k6-winkel",
+    "chapter": "k6",
+    "skills": [
+      "vek-winkel"
+    ],
+    "topic": "Skalarprodukt & Winkel",
+    "topic_order": 5,
+    "name": "Winkel zwischen zwei Vektoren",
+    "formula": "$$\\cos\\varphi=\\frac{\\vec a\\cdot\\vec b}{|\\vec a|\\,|\\vec b|}\\qquad0^\\circ\\le\\varphi\\le180^\\circ$$",
+    "symbols": [
+      {
+        "sym": "$\\vec a,\\ \\vec b$",
+        "desc": "Vektoren, $\\neq\\vec0$"
+      },
+      {
+        "sym": "$\\varphi$",
+        "desc": "Zwischenwinkel in Grad, $0^\\circ\\le\\varphi\\le180^\\circ$"
+      },
+      {
+        "sym": "$\\vec a\\cdot\\vec b$",
+        "desc": "Skalarprodukt (Zahl)"
+      },
+      {
+        "sym": "$|\\vec a|,\\ |\\vec b|$",
+        "desc": "Beträge (Zahlen $>0$)"
+      }
+    ],
+    "explain": "Skalarprodukt durch das Produkt der Beträge teilen, dann $\\cos^{-1}$. Rechner auf Grad! TI: `cos⁻¹(dotP(a,b)/(norm(a)*norm(b)))`.",
+    "example": "$\\vec a=\\begin{pmatrix}1\\\\2\\\\2\\end{pmatrix}$, $\\vec b=\\begin{pmatrix}2\\\\-1\\\\2\\end{pmatrix}$: $\\cos\\varphi=\\frac49$, $\\varphi\\approx63.61^\\circ$",
+    "pitfall": "Nur durch einen Betrag teilen oder $\\cos$ statt $\\cos^{-1}$ verwenden.",
+    "drill": [
+      {
+        "prompt": "Winkel zwischen $\\begin{pmatrix}1\\\\0\\\\0\\end{pmatrix}$ und $\\begin{pmatrix}1\\\\1\\\\0\\end{pmatrix}$ in Grad?",
+        "answer": {
+          "type": "number",
+          "value": "45",
+          "unit": "°"
+        }
+      },
+      {
+        "prompt": "Winkel zwischen $\\begin{pmatrix}1\\\\2\\\\2\\end{pmatrix}$ und $\\begin{pmatrix}2\\\\-1\\\\2\\end{pmatrix}$ in Grad?",
+        "answer": {
+          "type": "number",
+          "value": "63.61",
+          "unit": "°"
+        }
+      },
+      {
+        "prompt": "Winkel zwischen $\\begin{pmatrix}1\\\\1\\end{pmatrix}$ und $\\begin{pmatrix}-1\\\\0\\end{pmatrix}$ in Grad?",
+        "answer": {
+          "type": "number",
+          "value": "135",
+          "unit": "°"
+        }
+      }
+    ]
+  },
+  {
+    "id": "k6-dreieckswinkel",
+    "chapter": "k6",
+    "skills": [
+      "vek-winkel"
+    ],
+    "topic": "Skalarprodukt & Winkel",
+    "topic_order": 5,
+    "name": "Winkel im Dreieck",
+    "formula": "$$\\cos\\alpha=\\frac{\\overrightarrow{AB}\\cdot\\overrightarrow{AC}}{|\\overrightarrow{AB}|\\,|\\overrightarrow{AC}|}$$",
+    "symbols": [
+      {
+        "sym": "$A,\\ B,\\ C$",
+        "desc": "Eckpunkte des Dreiecks"
+      },
+      {
+        "sym": "$\\alpha$",
+        "desc": "Innenwinkel bei $A$ (Grad)"
+      },
+      {
+        "sym": "$\\overrightarrow{AB},\\ \\overrightarrow{AC}$",
+        "desc": "Seitenvektoren, beide von $A$ weg"
+      }
+    ],
+    "explain": "Für den Innenwinkel bei $A$ beide Vektoren von $A$ weg zeigen lassen. Kontrolle: $\\alpha+\\beta+\\gamma=180^\\circ$.",
+    "example": "$A(0\\mid0)$, $B(4\\mid0)$, $C(0\\mid3)$: Winkel bei $B$ mit $\\overrightarrow{BA}$ und $\\overrightarrow{BC}$: $\\cos\\beta=\\frac{16}{4\\cdot5}$, $\\beta\\approx36.87^\\circ$",
+    "pitfall": "$\\overrightarrow{AB}$ und $\\overrightarrow{BC}$ verwenden – das gibt den Aussenwinkel.",
+    "drill": [
+      {
+        "prompt": "$A(0\\mid0)$, $B(4\\mid0)$, $C(0\\mid3)$: Winkel bei $B$ in Grad?",
+        "answer": {
+          "type": "number",
+          "value": "36.87",
+          "unit": "°"
+        }
+      },
+      {
+        "prompt": "$A(1\\mid1\\mid1)$, $B(2\\mid1\\mid1)$, $C(1\\mid2\\mid1)$: Winkel bei $A$ in Grad?",
+        "answer": {
+          "type": "number",
+          "value": "90",
+          "unit": "°"
+        }
+      }
+    ]
+  },
+  {
+    "id": "k6-orthogonal",
+    "chapter": "k6",
+    "skills": [
+      "vek-orthogonal",
+      "vek-skalarprodukt"
+    ],
+    "topic": "Skalarprodukt & Winkel",
+    "topic_order": 5,
+    "name": "Orthogonale Vektoren",
+    "formula": "$$\\vec a\\perp\\vec b\\iff\\vec a\\cdot\\vec b=0\\qquad(\\vec a,\\vec b\\neq\\vec0)$$",
+    "symbols": [
+      {
+        "sym": "$\\vec a,\\ \\vec b$",
+        "desc": "Vektoren, $\\neq\\vec0$"
+      },
+      {
+        "sym": "$\\perp$",
+        "desc": "senkrecht (orthogonal), Winkel $90^\\circ$"
+      },
+      {
+        "sym": "$\\vec a\\cdot\\vec b$",
+        "desc": "Skalarprodukt (Zahl)"
+      }
+    ],
+    "explain": "Zwei Vektoren stehen senkrecht aufeinander, wenn ihr Skalarprodukt null ist. So bestimmt man fehlende Komponenten.",
+    "example": "$\\begin{pmatrix}2\\\\k\\\\-1\\end{pmatrix}\\perp\\begin{pmatrix}3\\\\1\\\\4\\end{pmatrix}$: $6+k-4=0\\Rightarrow k=-2$",
+    "pitfall": "Komponenten multiplizieren und die Summe vergessen (jedes Produkt einzeln null setzen).",
+    "drill": [
+      {
+        "prompt": "$\\begin{pmatrix}2\\\\k\\\\-1\\end{pmatrix}\\perp\\begin{pmatrix}3\\\\1\\\\4\\end{pmatrix}$: $k=\\;?$",
+        "answer": {
+          "type": "number",
+          "value": "-2"
+        }
+      },
+      {
+        "prompt": "$\\begin{pmatrix}x\\\\6\\end{pmatrix}\\perp\\begin{pmatrix}3\\\\4\\end{pmatrix}$: $x=\\;?$",
+        "answer": {
+          "type": "number",
+          "value": "-8"
+        }
+      },
+      {
+        "prompt": "Sind $\\begin{pmatrix}1\\\\2\\\\3\\end{pmatrix}$ und $\\begin{pmatrix}3\\\\0\\\\-1\\end{pmatrix}$ orthogonal?",
+        "answer": {
+          "type": "choice",
+          "value": 0,
+          "options": [
+            "ja",
+            "nein"
+          ]
+        }
+      }
+    ]
+  },
+  {
+    "id": "k6-vektorprodukt",
+    "chapter": "k6",
+    "skills": [
+      "vek-vektorprodukt"
+    ],
+    "topic": "Vektorprodukt",
+    "topic_order": 6,
+    "name": "Vektorprodukt (Kreuzprodukt)",
+    "formula": "$$\\vec a\\times\\vec b=\\begin{pmatrix}a_2b_3-a_3b_2\\\\a_3b_1-a_1b_3\\\\a_1b_2-a_2b_1\\end{pmatrix}\\qquad\\vec b\\times\\vec a=-(\\vec a\\times\\vec b)$$",
+    "symbols": [
+      {
+        "sym": "$\\vec a,\\ \\vec b$",
+        "desc": "Vektoren im Raum (3 Komponenten)"
+      },
+      {
+        "sym": "$a_i,\\ b_i$",
+        "desc": "Komponenten (Zahlen)"
+      },
+      {
+        "sym": "$\\vec a\\times\\vec b$",
+        "desc": "Vektorprodukt: ein Vektor, senkrecht zu $\\vec a$ und $\\vec b$"
+      }
+    ],
+    "explain": "Nur im Raum definiert. Ergebnis ist ein Vektor, der senkrecht auf $\\vec a$ und $\\vec b$ steht (Normalenvektor, Rechte-Hand-Regel). $\\vec a\\parallel\\vec b\\iff\\vec a\\times\\vec b=\\vec0$. Rechner: `crossP(a,b)`.",
+    "example": "$\\begin{pmatrix}1\\\\2\\\\3\\end{pmatrix}\\times\\begin{pmatrix}4\\\\5\\\\6\\end{pmatrix}=\\begin{pmatrix}12-15\\\\12-6\\\\5-8\\end{pmatrix}=\\begin{pmatrix}-3\\\\6\\\\-3\\end{pmatrix}$",
+    "pitfall": "Vorzeichen in der mittleren Komponente: $a_3b_1-a_1b_3$ (nicht umgekehrt).",
+    "drill": [
+      {
+        "prompt": "$\\begin{pmatrix}1\\\\0\\\\0\\end{pmatrix}\\times\\begin{pmatrix}0\\\\1\\\\0\\end{pmatrix}=\\;?$",
+        "answer": {
+          "type": "tuple",
+          "value": [
+            "0",
+            "0",
+            "1"
+          ]
+        }
+      },
+      {
+        "prompt": "$\\begin{pmatrix}1\\\\2\\\\3\\end{pmatrix}\\times\\begin{pmatrix}4\\\\5\\\\6\\end{pmatrix}=\\;?$",
+        "answer": {
+          "type": "tuple",
+          "value": [
+            "-3",
+            "6",
+            "-3"
+          ]
+        }
+      },
+      {
+        "prompt": "$\\begin{pmatrix}2\\\\0\\\\1\\end{pmatrix}\\times\\begin{pmatrix}0\\\\3\\\\0\\end{pmatrix}=\\;?$",
+        "answer": {
+          "type": "tuple",
+          "value": [
+            "-3",
+            "0",
+            "6"
+          ]
+        }
+      }
+    ]
+  },
+  {
+    "id": "k6-vektorprodukt-flaeche",
+    "chapter": "k6",
+    "skills": [
+      "vek-vektorprodukt"
+    ],
+    "topic": "Vektorprodukt",
+    "topic_order": 6,
+    "name": "Fläche mit dem Vektorprodukt",
+    "formula": "$$|\\vec a\\times\\vec b|=|\\vec a|\\,|\\vec b|\\sin\\alpha=A_{\\text{Parallelogramm}}\\qquad A_{\\text{Dreieck}}=\\tfrac12\\,\\big|\\overrightarrow{AB}\\times\\overrightarrow{AC}\\big|$$",
+    "symbols": [
+      {
+        "sym": "$\\vec a,\\ \\vec b$",
+        "desc": "Vektoren, die das Parallelogramm aufspannen"
+      },
+      {
+        "sym": "$|\\vec a\\times\\vec b|$",
+        "desc": "Betrag des Vektorprodukts = Parallelogrammfläche (Zahl)"
+      },
+      {
+        "sym": "$\\alpha$",
+        "desc": "Zwischenwinkel von $\\vec a$ und $\\vec b$"
+      },
+      {
+        "sym": "$A$",
+        "desc": "Fläche (Zahl); $A$ als Index bzw. in $\\overrightarrow{AB}$: Eckpunkt"
+      },
+      {
+        "sym": "$\\overrightarrow{AB},\\ \\overrightarrow{AC}$",
+        "desc": "Seitenvektoren des Dreiecks $ABC$"
+      }
+    ],
+    "explain": "Der Betrag des Kreuzprodukts ist die Fläche des aufgespannten Parallelogramms, das Dreieck ist die Hälfte davon.",
+    "example": "$A(0\\mid0\\mid0)$, $B(2\\mid0\\mid0)$, $C(0\\mid2\\mid2)$: $\\overrightarrow{AB}\\times\\overrightarrow{AC}=\\begin{pmatrix}0\\\\-4\\\\4\\end{pmatrix}$, $A=\\tfrac12\\sqrt{32}=2\\sqrt2$",
+    "pitfall": "Beim Dreieck den Faktor $\\frac12$ vergessen.",
+    "drill": [
+      {
+        "prompt": "Parallelogramm aus $\\begin{pmatrix}3\\\\0\\\\0\\end{pmatrix}$ und $\\begin{pmatrix}0\\\\4\\\\0\\end{pmatrix}$: Fläche?",
+        "answer": {
+          "type": "number",
+          "value": "12"
+        }
+      },
+      {
+        "prompt": "Dreieck $A(0\\mid0\\mid0)$, $B(2\\mid0\\mid0)$, $C(0\\mid2\\mid2)$: Fläche?",
+        "answer": {
+          "type": "number",
+          "value": "2*sqrt(2)"
+        }
+      },
+      {
+        "prompt": "$|\\vec a|=2$, $|\\vec b|=5$, $\\alpha=30^\\circ$: $|\\vec a\\times\\vec b|=\\;?$",
+        "answer": {
+          "type": "number",
+          "value": "5"
+        }
+      }
+    ]
+  },
+  {
+    "id": "k6-drehmoment",
+    "chapter": "k6",
+    "skills": [
+      "vek-vektorprodukt"
+    ],
+    "topic": "Vektorprodukt",
+    "topic_order": 6,
+    "name": "Drehmoment",
+    "formula": "$$\\vec M=\\vec r\\times\\vec F\\qquad|\\vec M|=r\\,F\\,\\sin\\varphi$$",
+    "symbols": [
+      {
+        "sym": "$\\vec M$",
+        "desc": "Drehmoment (Vektor, Nm)"
+      },
+      {
+        "sym": "$\\vec r,\\ r$",
+        "desc": "Hebelarm: Vektor vom Drehpunkt zum Angriffspunkt bzw. seine Länge (m)"
+      },
+      {
+        "sym": "$\\vec F,\\ F$",
+        "desc": "Kraft (Vektor) bzw. ihr Betrag (N)"
+      },
+      {
+        "sym": "$\\varphi$",
+        "desc": "Winkel zwischen $\\vec r$ und $\\vec F$"
+      }
+    ],
+    "explain": "Das Drehmoment steht senkrecht auf Hebelarm und Kraft (Richtung der Drehachse). Maximal, wenn die Kraft senkrecht zum Hebel wirkt.",
+    "example": "$r=0.2$ m, $F=50$ N senkrecht: $|\\vec M|=10$ Nm",
+    "pitfall": "$\\vec F\\times\\vec r$ rechnen – das gibt das umgekehrte Vorzeichen.",
+    "drill": [
+      {
+        "prompt": "$\\vec r=\\begin{pmatrix}0.5\\\\0\\\\0\\end{pmatrix}$ m, $\\vec F=\\begin{pmatrix}0\\\\10\\\\0\\end{pmatrix}$ N. $\\vec M$ in Nm?",
+        "answer": {
+          "type": "tuple",
+          "value": [
+            "0",
+            "0",
+            "5"
+          ]
+        }
+      },
+      {
+        "prompt": "$r=0.2$ m, $F=50$ N, $\\varphi=90^\\circ$: $|\\vec M|$ in Nm?",
+        "answer": {
+          "type": "number",
+          "value": "10"
+        }
+      },
+      {
+        "prompt": "$r=0.4$ m, $F=20$ N, $\\varphi=30^\\circ$: $|\\vec M|$ in Nm?",
+        "answer": {
+          "type": "number",
+          "value": "4"
+        }
+      }
+    ]
+  },
+  {
+    "id": "k6-abstand-lotfusspunkt",
+    "chapter": "k6",
+    "skills": [
+      "vek-abstand",
+      "vek-orthogonal"
+    ],
+    "topic": "Abstände",
+    "topic_order": 7,
+    "name": "Abstand Punkt–Gerade (Lotfusspunkt)",
+    "formula": "$$\\vec r_F=\\vec r_0+t\\,\\vec u\\quad\\text{mit}\\quad\\overrightarrow{FP}\\cdot\\vec u=0\\qquad d=|\\overrightarrow{FP}|$$",
+    "symbols": [
+      {
+        "sym": "$P$",
+        "desc": "gegebener Punkt"
+      },
+      {
+        "sym": "$F$",
+        "desc": "Lotfusspunkt auf der Geraden"
+      },
+      {
+        "sym": "$\\vec r_F$",
+        "desc": "Ortsvektor von $F$"
+      },
+      {
+        "sym": "$\\vec r_0$",
+        "desc": "Stützvektor der Geraden"
+      },
+      {
+        "sym": "$\\vec u$",
+        "desc": "Richtungsvektor der Geraden"
+      },
+      {
+        "sym": "$t$",
+        "desc": "Parameter von $F$ (Zahl)"
+      },
+      {
+        "sym": "$d$",
+        "desc": "Abstand Punkt–Gerade (Zahl $\\ge0$)"
+      }
+    ],
+    "explain": "Der Lotfusspunkt $F$ ist der Punkt der Geraden, für den $\\overrightarrow{FP}$ senkrecht auf dem Richtungsvektor steht. Gleichung für $t$ lösen, $F$ berechnen, Abstand = Länge von $\\overrightarrow{FP}$.",
+    "example": "$g:\\ t\\begin{pmatrix}1\\\\2\\\\2\\end{pmatrix}$, $P(3\\mid0\\mid0)$: $t=\\frac13$, $F(\\frac13\\mid\\frac23\\mid\\frac23)$, $d=2\\sqrt2$",
+    "pitfall": "Den Abstand $|\\overrightarrow{AP}|$ zu irgendeinem Geradenpunkt nehmen statt zum Lotfusspunkt.",
+    "drill": [
+      {
+        "prompt": "$g:\\ \\vec r=t\\begin{pmatrix}1\\\\0\\\\0\\end{pmatrix}$, $P(3\\mid4\\mid0)$. Lotfusspunkt $F$?",
+        "answer": {
+          "type": "tuple",
+          "value": [
+            "3",
+            "0",
+            "0"
+          ]
+        }
+      },
+      {
+        "prompt": "Dieselbe Situation: Abstand von $P$ zu $g$?",
+        "answer": {
+          "type": "number",
+          "value": "4"
+        }
+      },
+      {
+        "prompt": "$g:\\ \\vec r=t\\begin{pmatrix}1\\\\2\\\\2\\end{pmatrix}$, $P(3\\mid0\\mid0)$. Abstand?",
+        "answer": {
+          "type": "number",
+          "value": "2*sqrt(2)"
+        }
+      }
+    ]
+  },
+  {
+    "id": "k6-abstand-kreuzprodukt",
+    "chapter": "k6",
+    "skills": [
+      "vek-abstand",
+      "vek-vektorprodukt"
+    ],
+    "topic": "Abstände",
+    "topic_order": 7,
+    "name": "Abstand Punkt–Gerade mit dem Vektorprodukt",
+    "formula": "$$d=\\frac{\\big|\\vec u\\times\\overrightarrow{AP}\\big|}{|\\vec u|}$$",
+    "symbols": [
+      {
+        "sym": "$d$",
+        "desc": "Abstand Punkt–Gerade (Zahl $\\ge0$)"
+      },
+      {
+        "sym": "$\\vec u$",
+        "desc": "Richtungsvektor der Geraden"
+      },
+      {
+        "sym": "$A$",
+        "desc": "Stützpunkt der Geraden"
+      },
+      {
+        "sym": "$P$",
+        "desc": "gegebener Punkt"
+      },
+      {
+        "sym": "$\\overrightarrow{AP}$",
+        "desc": "Vektor von $A$ nach $P$"
+      }
+    ],
+    "explain": "Alternative ohne Lotfusspunkt: Parallelogrammfläche aus $\\vec u$ und $\\overrightarrow{AP}$ geteilt durch die Grundseite $|\\vec u|$ ergibt die Höhe = Abstand. $A$ ist der Stützpunkt der Geraden.",
+    "example": "$g:\\ \\begin{pmatrix}0\\\\0\\\\0\\end{pmatrix}+t\\begin{pmatrix}1\\\\2\\\\2\\end{pmatrix}$, $P(3\\mid0\\mid0)$: $\\vec u\\times\\overrightarrow{AP}=\\begin{pmatrix}0\\\\6\\\\-6\\end{pmatrix}$, $d=\\frac{\\sqrt{72}}{3}=2\\sqrt2$",
+    "pitfall": "Durch $|\\overrightarrow{AP}|$ statt durch $|\\vec u|$ teilen.",
+    "drill": [
+      {
+        "prompt": "$g:\\ \\begin{pmatrix}1\\\\1\\\\1\\end{pmatrix}+t\\begin{pmatrix}0\\\\0\\\\1\\end{pmatrix}$, $P(4\\mid5\\mid7)$. Abstand?",
+        "answer": {
+          "type": "number",
+          "value": "5"
+        }
+      },
+      {
+        "prompt": "$g:\\ t\\begin{pmatrix}1\\\\2\\\\2\\end{pmatrix}$, $P(3\\mid0\\mid0)$: $\\big|\\vec u\\times\\overrightarrow{AP}\\big|=\\;?$",
+        "answer": {
+          "type": "number",
+          "value": "sqrt(72)"
+        }
+      }
+    ]
+  }
+]
