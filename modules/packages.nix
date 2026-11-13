@@ -12,6 +12,13 @@
       inherit system;
       config.allowUnfreePredicate = p: builtins.elem (lib.getName p) ["claude-code"];
     };
+    # claude-code from nixos-unstable: the API rejects current models from older
+    # Claude Code releases (e.g. claude-opus-5-5 needs >= 2.1.280, 26.05 has 2.1.223).
+    pkgsUnstable = import inputs.nixpkgs-unstable {
+      inherit system;
+      config.allowUnfreePredicate = p: builtins.elem (lib.getName p) ["claude-code"];
+    };
+    inherit (pkgsUnstable) claude-code;
     n2c = inputs.nix2container.packages.${system}.nix2container;
 
     python = pkgs.python3.withPackages (p:
