@@ -21,8 +21,7 @@
         port = cfg.port;
         locationExtra = "    ${proxySecret.include}";
       });
-      # Only with SWAG on: the template restarts docker-swag, which must not exist otherwise.
-      neo.core.secrets.templates = lib.mkIf (cfg.enabled && config.neo.services.swag.enabled) proxySecret.templates;
+      neo.core.secrets.templates = lib.mkIf cfg.enabled proxySecret.templates;
     };
   };
 }
