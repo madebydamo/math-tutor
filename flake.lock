@@ -210,11 +210,11 @@
         "pyproject-nix": "pyproject-nix"
       },
       "locked": {
-        "lastModified": 1794406348,
-        "narHash": "sha256-oijSlfewsIQPtqmwyMKZSjY0VG81gyNyVdIE3fyN6Nc=",
+        "lastModified": 1794824339,
+        "narHash": "sha256-DuhtkaS+hdMwyJx8cNT47diGY8OkNHMRBR27N5zaDfc=",
         "owner": "madebydamo",
         "repo": "neo",
-        "rev": "ea39a2f8815af725074ba012822bcc19c9ceb2ab",
+        "rev": "15be2b29f71b6823d6bcb8a4884c1238ad22bc19",
         "type": "github"
       },
       "original": {
