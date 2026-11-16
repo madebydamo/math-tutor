@@ -23,6 +23,8 @@ This repo is a **Neo plugin**: a Nix flake that adds services to a Neo homeserve
 | `modules/services/<svc>/default.nix` | What runs (containers, units), inside `lib.mkIf cfg.enabled` |
 | `modules/services/<svc>/swag.nix` | HTTPS vhost via `lib.neo.mkSubdomainProxyConf` |
 | `modules/services/<svc>/skills.nix` | Skill for Neo's assistant via `lib.neo.mkServiceSkill` |
+| `modules/services/<svc>/monitoring.nix` | Metrics endpoint, Grafana dashboard and alert rules (`$NEO/docs/APP-TELEMETRY.md`) |
+| `app/mathtutor/neo_telemetry.py` | Copied unchanged from `$NEO/templates/plugin/telemetry/python/`; app metrics in `app/mathtutor/metrics.py` |
 
 ## Rules
 
@@ -30,7 +32,7 @@ This repo is a **Neo plugin**: a Nix flake that adds services to a Neo homeserve
 - `name = plugin.name "<svc>"` for every service key, container, unit, appdata dir, subdomain, user and secret name. Titles get `${plugin.label}`.
 - All state under `"${config.neo.core.volumes.appdata}/${name}"` (`mkAppdata`, `mkEnsureDirs`). Nothing in `/var/lib`.
 - Secrets: `lib.neo.mkSecretOption`, passed only through `neo.core.secrets.containerEnv` / `.templates`. Never in `environment` or scripts.
-- Containers on `networks = ["internal"]`, no published web ports. Health/API paths called without a login go in `auth.publicPaths`.
+- Containers on `networks = [(lib.neo.docker.serviceNetwork name)]` (extra networks such as `<name>-sandbox` are just named there; Neo creates them), never `internal`, no published web ports. Health/API paths called without a login go in `auth.publicPaths`.
 - Every unit in `mkContainerDefinitions { extraUnits; }` or `mkSystemdUnits`; post-start config with `lib.neo.mkSetupService`.
 - Texts are for non-technical operators: `tagline`/`description` say what they get, technical facts go in `notes` or Nix comments.
 - Options are API: operators have them in `settings.toml`. Add, do not rename.

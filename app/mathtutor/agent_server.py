@@ -8,14 +8,19 @@ and streams the result back as NDJSON lines:
   {"t": "tool", "name": "python"}            a tool started (UI shows "rechnet…")
   {"t": "image", "name": "...", "data": "<base64 png>"}
   {"t": "review", "data": {...}}             correction result (submit_review)
-  {"t": "done", "session": "...", "text": "...", "cost": 0.01}
-  {"t": "error", "message": "..."}
+  {"t": "done", "session": "...", "text": "...", "cost": 0.01, "usage": {...}, "turns": 3, "status": "ok"}
+  {"t": "error", "message": "...", "status": "auth"}
+
+`done` carries Claude Code's result numbers (usage, total_cost_usd, num_turns) and the call's
+status (ok|error|timeout|rate_limited|auth); the web app records them as AI-call metrics.
+Logs are JSON lines (neo_telemetry) without prompts or answers.
 """
 from __future__ import annotations
 
 import asyncio
 import base64
 import json
+import logging
 import os
 import pathlib
 import shutil
@@ -26,6 +31,8 @@ import uuid
 from fastapi import FastAPI, Header, HTTPException, Request
 from fastapi.responses import JSONResponse, StreamingResponse
 
+from . import neo_telemetry as tel
+
 TOKEN = os.environ.get("MT_AGENT_TOKEN", "")
 CLAUDE = os.environ.get("MT_CLAUDE_BIN", "claude")
 WORK = pathlib.Path(os.environ.get("MT_AGENT_WORK", "/tmp/mt-agent"))
@@ -34,6 +41,7 @@ TOOLS = ["mcp__math__python", "mcp__math__check_answer", "mcp__math__equivalent"
 
 app = FastAPI(title="mathtutor-agent")
 sem = asyncio.Semaphore(MAX_PARALLEL)
+log = logging.getLogger("mathtutor.agent")
 
 
 def _auth(tok: str | None):
@@ -86,18 +94,21 @@ async def _run(body: dict):
             proc = await asyncio.create_subprocess_exec(*args, stdin=asyncio.subprocess.PIPE, stdout=asyncio.subprocess.PIPE,
                                                         stderr=asyncio.subprocess.PIPE, cwd=run_dir, env=env, limit=2**24)
         except FileNotFoundError:
-            yield _line({"t": "error", "message": "Claude Code ist im Agent-Container nicht installiert."})
+            log.error("claude binary missing", extra={"event": "agent_error", "bin": CLAUDE})
+            yield _line({"t": "error", "message": "Claude Code ist im Agent-Container nicht installiert.", "status": "error"})
             return
         proc.stdin.write((json.dumps(msg) + "\n").encode())
         await proc.stdin.drain()
         proc.stdin.close()
         session, final_text, cost, got_text = body.get("session"), "", None, False
         streamed = []
+        usage, turns, status, model = None, None, "ok", body.get("model") or "claude-opus-5-5"
         try:
             async for raw in proc.stdout:
                 try:
                     ev = json.loads(raw)
                 except json.JSONDecodeError:
+                    log.debug("non-JSON line from claude", extra={"bytes": len(raw)})
                     continue
                 typ = ev.get("type")
                 if typ == "system" and ev.get("session_id"):
@@ -123,12 +134,20 @@ async def _run(body: dict):
                     session = ev.get("session_id", session)
                     final_text = ev.get("result") or ""
                     cost = ev.get("total_cost_usd")
+                    usage = ev.get("usage")
+                    turns = ev.get("num_turns")
                     if ev.get("is_error") or "not logged in" in final_text.lower():
-                        yield _line({"t": "error", "message": _explain(final_text or ev.get("subtype", "Fehler"))})
+                        status = _status(final_text or ev.get("subtype", ""))
+                        log.error("claude run failed", extra={"event": "agent_error", "subtype": ev.get("subtype"),
+                                                              "status": status, "turns": turns})
+                        yield _line({"t": "error", "message": _explain(final_text or ev.get("subtype", "Fehler")), "status": status})
             await proc.wait()
             if proc.returncode and not final_text:
                 err = (await proc.stderr.read()).decode(errors="replace")[-1500:]
-                yield _line({"t": "error", "message": _explain(err)})
+                status = _status(err)
+                log.error("claude exited with an error", extra={"event": "agent_error", "returncode": proc.returncode,
+                                                                "status": status, "stderr": err[-500:]})
+                yield _line({"t": "error", "message": _explain(err), "status": status})
             imgs = run_dir / "py" / "bilder"
             if imgs.exists():
                 for f in sorted(imgs.glob("*.png"))[:8]:
@@ -138,17 +157,32 @@ async def _run(body: dict):
                 try:
                     yield _line({"t": "review", "data": json.loads(review_path.read_text())})
                 except json.JSONDecodeError:
-                    pass
-            yield _line({"t": "done", "session": session, "text": "".join(streamed) or final_text, "cost": cost})
+                    log.error("review file is not JSON", exc_info=True, extra={"event": "review_invalid"})
+            yield _line({"t": "done", "session": session, "text": "".join(streamed) or final_text, "cost": cost,
+                         "usage": usage, "turns": turns, "status": status, "model": model})
+        except Exception:
+            log.exception("tutor run failed", extra={"event": "agent_error"})
+            raise
         finally:
             if proc.returncode is None:
                 proc.kill()
             shutil.rmtree(run_dir, ignore_errors=True)
 
 
+def _status(text: str) -> str:
+    """ok|error|timeout|rate_limited|auth for the AI-call metrics, from Claude Code's error text."""
+    low = text.lower()
+    if "login" in low or "logged in" in low or "auth" in low or "401" in low or "api key" in low or "credit" in low:
+        return "auth"
+    if "rate limit" in low or "429" in low or "overloaded" in low or "usage limit" in low:
+        return "rate_limited"
+    if "timeout" in low or "timed out" in low:
+        return "timeout"
+    return "error"
+
+
 def _explain(stderr: str) -> str:
-    low = stderr.lower()
-    if "login" in low or "logged in" in low or "auth" in low or "401" in low or "api key" in low:
+    if _status(stderr) == "auth":
         return "Der Tutor ist nicht angemeldet. Bitte im Neo-Admin den Claude-Token hinterlegen."
     return "Der Tutor hatte einen Fehler: " + stderr.strip()[-400:]
 
@@ -160,8 +194,10 @@ async def _http_exc(_, exc: HTTPException):
 
 def main():
     import uvicorn
+    tel.setup_logging()
     WORK.mkdir(parents=True, exist_ok=True)
-    uvicorn.run(app, host="0.0.0.0", port=int(os.environ.get("MT_AGENT_PORT", "8100")), log_level="info")
+    # log_config=None keeps the JSON logging; access lines would repeat one POST /run per turn.
+    uvicorn.run(app, host="0.0.0.0", port=int(os.environ.get("MT_AGENT_PORT", "8100")), log_config=None, access_log=False)
 
 
 if __name__ == "__main__":

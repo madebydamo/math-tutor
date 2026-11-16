@@ -5,6 +5,7 @@ import asyncio
 import hmac
 import io
 import json
+import logging
 import os
 import random
 import time
@@ -14,17 +15,35 @@ from fastapi import Depends, FastAPI, File, HTTPException, Request, UploadFile
 from fastapi.responses import FileResponse, HTMLResponse, JSONResponse, Response, StreamingResponse
 from fastapi.staticfiles import StaticFiles
 
-from . import db, engage, generators, notify, progress, steps, tutor
+from . import db, engage, generators, metrics, notify, progress, steps, tutor
+from . import neo_telemetry as tel
 from .checker import check, describe_expected
 from .config import CFG
 from .content import content, public_exercise, reload
 
 app = FastAPI(title="Mathe-Trainer", docs_url=None, redoc_url=None)
+log = logging.getLogger("mathtutor")
 
 # SWAG sends this secret with every proxied request (X-Neo-Proxy-Secret). Without it the identity
 # headers (Remote-User) are ignored: other containers (the tutor agent on the sandbox network) can
 # reach this port directly and must not pass as the student or a coach.
 PROXY_SECRET = os.environ.get("NEO_PROXY_SECRET", "")
+
+# Background tasks (exam grading, notifications): referenced here so they are not garbage-collected.
+_tasks: set[asyncio.Task] = set()
+
+
+def _spawn(coro, name: str) -> asyncio.Task:
+    task = asyncio.create_task(coro, name=name)
+    _tasks.add(task)
+
+    def _done(t: asyncio.Task):
+        _tasks.discard(t)
+        if not t.cancelled() and t.exception() is not None:
+            log.error("background task failed", exc_info=t.exception(), extra={"event": "task_failed", "task": name})
+
+    task.add_done_callback(_done)
+    return task
 
 
 def _app_version() -> str:
@@ -52,12 +71,14 @@ async def _log_server_errors(request: Request, call_next):
     try:
         return await call_next(request)
     except Exception as e:  # noqa: BLE001
+        route = getattr(request.scope.get("route"), "path", None) or "unmatched"
+        log.exception("request failed", extra={"event": "server_error", "method": request.method, "route": route})
         try:
             user = _identity(request)
             db.insert("server_errors", user=user, method=request.method, path=str(request.url.path) + (f"?{request.url.query}" if request.url.query else ""),
                       error=f"{type(e).__name__}: {e}"[:500], traceback=traceback.format_exc()[-6000:], created_at=time.time())
         except Exception:  # noqa: BLE001
-            pass
+            log.exception("could not store the server error", extra={"event": "server_error_store_failed"})
         return JSONResponse({"error": "Interner Fehler – er wurde protokolliert.", "kind": "server"}, status_code=500)
 
 
@@ -65,7 +86,8 @@ async def _log_server_errors(request: Request, call_next):
 async def _startup():
     db.init()  # engage extends the schema on import
     content()
-    asyncio.create_task(notify.loop())
+    _spawn(notify.loop(), "notifications")
+    _resume_gradings()
 
 
 # ───────────── auth ─────────────
@@ -101,6 +123,7 @@ def who(request: Request) -> Who:
     admin = u in [a.lower() for a in CFG.admin_users]
     if not admin and u != CFG.student_user.lower():
         raise HTTPException(403, "Kein Zugriff")
+    tel.seen_user(u)
     return Who(user=u, admin=admin)
 
 
@@ -116,6 +139,7 @@ def sse(gen):
             async for ev in gen:
                 yield f"data: {json.dumps(ev, ensure_ascii=False, default=str)}\n\n"
         except Exception as e:  # noqa: BLE001
+            log.exception("stream failed", extra={"event": "stream_failed"})
             yield f"data: {json.dumps({'t': 'error', 'message': str(e)})}\n\n"
     return StreamingResponse(wrap(), media_type="text/event-stream", headers={"Cache-Control": "no-cache", "X-Accel-Buffering": "no"})
 
@@ -190,6 +214,7 @@ async def feedback(request: Request, w: Who = Depends(who)):
                      "recent_server_errors": db.q("SELECT id, method, path, error, created_at FROM server_errors WHERE user=? AND created_at>? ORDER BY id DESC LIMIT 5",
                                                   w.user, time.time() - 3600)}
     photos = [int(p) for p in (b.get("photo_ids") or [])][:8]
+    metrics.feature("feedback_sent")
     fid = db.insert("feedback", user=w.user, kind=kind, text=(b.get("text") or "")[:5000], photo_ids=photos, context=ctx,
                     status="neu", created_at=time.time(), updated_at=time.time())
     if w.user == CFG.student_user:
@@ -274,6 +299,7 @@ async def cards_rate(card_id: str, request: Request, w: Who = Depends(who)):
     b = await request.json()
     if card_id not in content().cards:
         raise HTTPException(404)
+    metrics.feature("card_rated")
     return engage.rate_card(w.user, card_id, b.get("grade", "good"), b.get("kind", "flip"))
 
 
@@ -283,6 +309,7 @@ async def cards_drill(card_id: str, request: Request, w: Who = Depends(who)):
     k = content().cards.get(card_id)
     if not k:
         raise HTTPException(404)
+    metrics.feature("formula_drill")
     i = int(b.get("index", 0))
     d = k["drill"][i]
     res = check(d["answer"], b.get("input"), k.get("skills"))
@@ -377,6 +404,7 @@ def next_exercise(skill: str | None = None, chapter: str | None = None, prefer: 
     ex = c.pick(skill=skill, chapter=chapter, prefer=prefer, exclude=seen, calculator=calculator)
     if not ex:
         raise HTTPException(404, "Keine Aufgabe gefunden")
+    metrics.feature("next_exercise")
     return public_exercise(ex)
 
 
@@ -397,6 +425,7 @@ def similar(eid: str, w: Who = Depends(who)):
     if not ex:
         raise HTTPException(404)
     p = generators.parse_id(eid)
+    metrics.feature("similar_exercise")
     if p:
         return public_exercise(generators.build(p[0], random.randint(1, 10**6)))
     nxt = content().pick(skill=ex["skills"][0], exclude={eid})
@@ -426,6 +455,7 @@ async def check_answer(eid: str, request: Request, w: Who = Depends(who)):
         return out
     if mode == "exam":
         return {"ok": None, "status": "gespeichert", "message": "Antwort gespeichert."}
+    metrics.feature("answer_checked")
     hints = int(body.get("hints", 0))
     shown = bool(body.get("solution_shown"))
     score = progress.attempt_score(res.ok, res.status, hints, shown)
@@ -441,6 +471,10 @@ async def check_answer(eid: str, request: Request, w: Who = Depends(who)):
     if previously:
         xp = max(1, xp // 5)
     progress.add_xp(w.user, xp, "Aufgabe", eid)
+    metrics.answer(w.user, mode, ex["chapter"], "auto", res.status, error or body.get("error_category"))
+    seconds = max(0, min(int(body.get("duration_s") or 0), 3 * 3600))
+    if seconds:
+        metrics.PRACTICE.labels(metrics.role(w.user)).inc(seconds)
     progress.record_activity(w.user, int(body.get("duration_s") or 0))
     ch = progress.on_attempt(w.user, ex, part.get("label") or "", res.ok, score, mode, aid, error, body.get("challenge_id"))
     if not res.ok:
@@ -466,6 +500,7 @@ async def hint(eid: str, request: Request, w: Who = Depends(who)):
     if not 1 <= level <= len(hints):
         raise HTTPException(400, "Keine weiteren Hinweise")
     db.insert("hints", user=w.user, exercise_id=eid, part=part.get("label") or "", level=level, kind="static", created_at=time.time())
+    metrics.feature("hint")
     return {"level": level, "text": hints[level - 1], "more": level < len(hints)}
 
 
@@ -477,6 +512,7 @@ async def solution(eid: str, request: Request, w: Who = Depends(who)):
         raise HTTPException(404)
     part = _part(ex, body.get("part", ""))
     lab = part.get("label") or ""
+    metrics.feature("solution_shown")
     solved = db.q1("SELECT 1 FROM attempts WHERE user=? AND exercise_id=? AND part=? AND correct=1", w.user, eid, lab)
     if not solved and body.get("mode") != "exam":
         aid = db.insert("attempts", user=w.user, exercise_id=eid, part=lab, chapter=ex["chapter"], skills=ex.get("skills", []),
@@ -507,6 +543,7 @@ async def upload_photo(file: UploadFile = File(...), exercise_id: str | None = N
     fn = f"{w.user}-{uuid.uuid4().hex}.jpg"
     (CFG.photo_dir / fn).write_bytes(buf.getvalue())
     pid = db.insert("photos", user=w.user, path=fn, mime="image/jpeg", exercise_id=exercise_id, created_at=time.time())
+    metrics.feature("photo_uploaded")
     return {"id": pid, "url": f"/api/photo/{pid}"}
 
 
@@ -530,6 +567,7 @@ async def review(eid: str, request: Request, w: Who = Depends(who)):
     chat_id = db.insert("chats", user=w.user, title=f"Korrektur: {ex['title']}", exercise_id=eid, kind="review",
                         created_at=time.time(), updated_at=time.time())
     text = body.get("text") or "Bitte korrigiere meine Lösung."
+    metrics.feature("photo_review")
 
     async def gen():
         review_data = None
@@ -545,9 +583,12 @@ async def review(eid: str, request: Request, w: Who = Depends(who)):
             if mode != "exam":
                 progress.add_xp(w.user, 5, "Lösung fotografiert", eid)
             rank = progress.rank_state(w.user)
+            metrics.REVIEWS.labels("practice", "structured").inc()
             yield {"t": "result", "review": review_data, "results": results, "review_id": rid, "promoted": rank["promoted"],
                    "solutions": {(p.get("label") or ""): steps.payload(p, ex) for p in ex["parts"]}}
         else:
+            metrics.REVIEWS.labels("practice", "none").inc()
+            log.warning("tutor handed in no correction", extra={"event": "review_missing", "exercise": eid, "chat": chat_id})
             yield {"t": "result", "review": None, "results": [], "message": "Der Tutor konnte keine strukturierte Korrektur erstellen."}
     return sse(gen())
 
@@ -565,6 +606,7 @@ async def new_chat(request: Request, w: Who = Depends(who)):
     kind = "admin" if body.get("kind") == "admin" and w.admin else "chat"
     cid = db.insert("chats", user=w.user, title=body.get("title") or "Neues Gespräch", exercise_id=body.get("exercise_id"),
                     kind=kind, created_at=time.time(), updated_at=time.time())
+    metrics.feature("chat_started")
     return {"id": cid}
 
 
@@ -599,6 +641,7 @@ async def send(cid: int, request: Request, w: Who = Depends(who)):
         mode = "chat"
     if ch["title"] == "Neues Gespräch" and text:
         db.update("chats", cid, title=text[:60])
+    metrics.feature("tutor_message")
     return sse(tutor.chat_turn(w.user, cid, text, [int(p) for p in body.get("photo_ids", [])], mode, body.get("exercise_id")))
 
 
@@ -623,6 +666,7 @@ def challenge_next(w: Who = Depends(who)):
     p = generators.parse_id(ex["id"])
     if p:  # generated: same kind of exercise, new numbers
         ex = generators.build(p[0], random.randint(1, 10**6))
+    metrics.feature("challenge_started")
     out = public_exercise(ex)
     out["challenge"] = {"id": ch["id"], "part": ch["part"], "wins": ch["wins"], "need": progress.WINS_TO_BEAT, "fails": ch["fails"]}
     return out
@@ -683,6 +727,7 @@ async def exam_start(request: Request, w: Who = Depends(who)):
     t = time.time()
     rid = db.insert("exam_runs", user=w.user, exam_id=body.get("exam_id"), part_index=int(body.get("part_index", 0)),
                     exercise_ids=ids, started_at=t, deadline=t + minutes * 60, details={"title": title, "answers": {}})
+    metrics.feature("exam_started")
     return {"id": rid, "title": title, "deadline": t + minutes * 60, "minutes": minutes,
             "exercises": [public_exercise(c.get(i)) for i in ids if c.get(i)]}
 
@@ -737,6 +782,7 @@ async def exam_submit(rid: int, request: Request, w: Who = Depends(who)):
             ok = bool(res.get("ok"))
             got += per if ok else 0
             parts[lab] = {**res, "input": inp}
+            metrics.answer(w.user, "exam", ex["chapter"], "auto", "richtig" if ok else "falsch")
             db.insert("attempts", user=w.user, exercise_id=eid, part=lab, chapter=ex["chapter"], skills=ex.get("skills", []),
                       mode="exam", input=None if inp is None else str(inp), status="richtig" if ok else "falsch",
                       score=1.0 if ok else 0.0, correct=1 if ok else 0, hints=0, solution_shown=0, source="auto",
@@ -744,36 +790,73 @@ async def exam_submit(rid: int, request: Request, w: Who = Depends(who)):
         total += got
         details["grading"][eid] = {"status": "done", "points": round(got, 2), "max": pts, "parts": parts}
     db.update("exam_runs", rid, finished_at=time.time(), score=total, max_score=maxs, details=details)
+    metrics.feature("exam_submitted")
     if pending:
-        asyncio.create_task(_grade_photos(rid, w.user, pending, photos))
+        _spawn(_grade_photos(rid, w.user, pending, photos), f"grading-{rid}")
     progress.add_xp(w.user, 50, "Prüfungssimulation", str(rid))
     return {"id": rid, "pending": pending}
 
 
+class GradingFailed(Exception):
+    """The tutor handed in no structured correction for an exam exercise."""
+
+
 async def _grade_photos(rid: int, user: str, eids: list[str], photos: dict):
+    """Grade the photographed exam exercises one by one (job `grading`, one run per exercise).
+
+    A failure marks that exercise "fehler" (the exam page shows it) and is logged and counted."""
     c = content()
     for eid in eids:
         ex = c.get(eid)
-        chat_id = db.insert("chats", user=user, title=f"Prüfung: {ex['title']}", exercise_id=eid, kind="review",
-                            created_at=time.time(), updated_at=time.time())
-        review_data = None
-        async for ev in tutor.chat_turn(user, chat_id, "Prüfungsmodus: Bitte korrigiere streng nach Prüfungsmassstab "
-                                        "(Lösungsweg muss ersichtlich sein).", [int(p) for p in photos[eid]], "correct", eid):
-            if ev.get("t") == "review":
-                review_data = ev["data"]
+        pts = _points(ex) if ex else 0
+        try:
+            with tel.job("grading"):
+                if not ex:
+                    raise GradingFailed(f"exercise {eid} no longer exists")
+                got, entry = await _grade_one(rid, user, ex, photos[eid])
+        except Exception:  # noqa: BLE001 - logged and counted by tel.job
+            metrics.REVIEWS.labels("exam", "none").inc()
+            got, entry = 0, {"status": "fehler", "points": 0, "max": pts}
+        else:
+            metrics.REVIEWS.labels("exam", "structured").inc()
         r = db.q1("SELECT * FROM exam_runs WHERE id=?", rid)
         details = db.loads(r["details"], {})
-        pts = _points(ex)
-        if review_data:
-            revid = db.insert("reviews", user=user, exercise_id=eid, photo_ids=photos[eid], result=review_data, status="ok",
-                              mode="exam", chat_id=chat_id, created_at=time.time())
-            results = tutor.apply_review(user, ex, review_data, "exam", revid, exam_run_id=rid)
-            got = pts * sum(x["score"] for x in results) / max(1, len(ex["parts"]))
-            details["grading"][eid] = {"status": "done", "points": round(got, 2), "max": pts, "review_id": revid, "results": results}
-        else:
-            got = 0
-            details["grading"][eid] = {"status": "fehler", "points": 0, "max": pts}
+        details.setdefault("grading", {})[eid] = entry
         db.update("exam_runs", rid, score=(r["score"] or 0) + got, details=details)
+
+
+async def _grade_one(rid: int, user: str, ex: dict, photo_ids: list) -> tuple[float, dict]:
+    eid = ex["id"]
+    chat_id = db.insert("chats", user=user, title=f"Prüfung: {ex['title']}", exercise_id=eid, kind="review",
+                        created_at=time.time(), updated_at=time.time())
+    review_data, error = None, None
+    async for ev in tutor.chat_turn(user, chat_id, "Prüfungsmodus: Bitte korrigiere streng nach Prüfungsmassstab "
+                                    "(Lösungsweg muss ersichtlich sein).", [int(p) for p in photo_ids], "correct", eid,
+                                    feature="grade"):
+        if ev.get("t") == "review":
+            review_data = ev["data"]
+        elif ev.get("t") == "error":
+            error = ev.get("status") or "error"
+    if not review_data:
+        raise GradingFailed(f"no correction for exam {rid} exercise {eid} (tutor status {error or 'ok'})")
+    pts = _points(ex)
+    revid = db.insert("reviews", user=user, exercise_id=eid, photo_ids=photo_ids, result=review_data, status="ok",
+                      mode="exam", chat_id=chat_id, created_at=time.time())
+    results = tutor.apply_review(user, ex, review_data, "exam", revid, exam_run_id=rid)
+    got = pts * sum(x["score"] for x in results) / max(1, len(ex["parts"]))
+    return got, {"status": "done", "points": round(got, 2), "max": pts, "review_id": revid, "results": results}
+
+
+def _resume_gradings():
+    """Exam gradings a restart interrupted (still "pending") start again."""
+    for r in db.q("SELECT id, user, details FROM exam_runs WHERE finished_at IS NOT NULL AND details LIKE '%\"pending\"%'"):
+        details = db.loads(r["details"], {})
+        eids = [eid for eid, g in (details.get("grading") or {}).items() if g.get("status") == "pending"]
+        photos = details.get("photos") or {}
+        eids = [eid for eid in eids if photos.get(eid)]
+        if eids:
+            log.info("resuming exam grading", extra={"event": "grading_resumed", "exam": r["id"], "exercises": len(eids)})
+            _spawn(_grade_photos(r["id"], r["user"], eids, photos), f"grading-{r['id']}")
 
 
 # ───────────── admin API ─────────────
@@ -847,6 +930,7 @@ async def admin_override(aid: int, request: Request, w: Who = Depends(admin_only
     if not r:
         raise HTTPException(404)
     correct = bool(body.get("correct"))
+    metrics.feature("coach_override")
     db.update("attempts", aid, correct=1 if correct else 0, score=float(body.get("score", 1.0 if correct else 0.0)),
               status="richtig" if correct else "falsch", error_category=None if correct else body.get("error_category"),
               admin_note=body.get("note") or f"vom Coach korrigiert ({w.user})", source=r["source"])
@@ -951,6 +1035,7 @@ def briefing_data(since: float | None = None) -> dict:
 
 @app.get("/api/admin/briefing")
 def admin_briefing(w: Who = Depends(admin_only)):
+    metrics.feature("coach_briefing")
     return progress.json_safe(briefing_data())
 
 
@@ -1009,9 +1094,12 @@ async def admin_settings_set(request: Request, w: Who = Depends(admin_only)):
     for k in ("session_dates", "exam_date", "notify_enabled", "chapter_weights", "daily_goal"):
         if k in b:
             db.set_setting(k, b[k])
+    metrics.feature("coach_settings_saved")
+    out = {"ok": True}
     if b.get("test_telegram"):
-        notify.send("✅ Testnachricht vom Mathe-Trainer.")
-    return {"ok": True}
+        metrics.feature("telegram_test")
+        out["telegram"] = await asyncio.to_thread(notify.send, "✅ Testnachricht vom Mathe-Trainer.")
+    return out
 
 
 # ───────────── error reports ("Fehler melden") ─────────────
@@ -1057,6 +1145,7 @@ async def report_error(eid: str, request: Request, w: Who = Depends(who)):
                 if inp:
                     context["checker"] = check(p["answer"], inp, ex.get("skills")).as_dict()
                     context["input"] = inp
+    metrics.feature("error_reported")
     rid = db.insert("reports", user=w.user, exercise_id=eid, part=part, kind=kind, comment=(b.get("comment") or "")[:2000],
                     context=context, status="offen", created_at=time.time())
     if w.user == CFG.student_user:
@@ -1146,10 +1235,17 @@ async def http_exc(request: Request, exc: HTTPException):
 
 def run():
     import uvicorn
+    tel.setup_logging()
+    # httpx logs every request URL at info; the Telegram URL carries the bot token.
+    logging.getLogger("httpx").setLevel(logging.WARNING)
+    logging.getLogger("httpcore").setLevel(logging.WARNING)
+    if not PROXY_SECRET:
+        log.warning("NEO_PROXY_SECRET is not set: sign-ins from the proxy are ignored", extra={"event": "no_proxy_secret"})
+    metrics.start(APP_VERSION)
     # No proxy headers: the app never needs the client address, and trusting X-Forwarded-* from every
-    # peer would let any container spoof it.
+    # peer would let any container spoof it. log_config=None keeps the JSON logging.
     uvicorn.run("mathtutor.main:app", host="0.0.0.0", port=int(os.environ.get("MT_PORT", "8080")),
-                proxy_headers=False, log_level="info")
+                proxy_headers=False, log_config=None, access_log=False)
 
 
 if __name__ == "__main__":

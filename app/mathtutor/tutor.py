@@ -3,15 +3,19 @@ from __future__ import annotations
 
 import base64
 import json
+import logging
 import time
 from typing import AsyncIterator
 
 import httpx
 
-from . import db, progress
+from . import db, metrics, progress
+from . import neo_telemetry as tel
 from .checker import check, describe_expected
 from .config import CFG
 from .content import content
+
+log = logging.getLogger("mathtutor.tutor")
 
 BASE_PROMPT = """Du bist «Mathe-Coach», der persönliche Mathematik-Tutor von {name}. {name} bereitet sich auf die Modulprüfung \
 «Mathematik II» an der Höheren Fachschule (ZbW, Schweiz) vor. Themen: Polynomfunktionen, trigonometrische Funktionen \
@@ -132,16 +136,21 @@ async def run_agent(system: str, content_blocks: list[dict], session: str | None
         async with httpx.AsyncClient(timeout=httpx.Timeout(600, connect=10)) as client:
             async with client.stream("POST", f"{CFG.agent_url}/run", json=payload, headers=headers) as resp:
                 if resp.status_code != 200:
-                    yield {"t": "error", "message": f"Tutor nicht erreichbar (HTTP {resp.status_code})."}
+                    log.error("tutor agent refused the turn", extra={"event": "agent_unreachable", "http_status": resp.status_code})
+                    yield {"t": "error", "message": f"Tutor nicht erreichbar (HTTP {resp.status_code}).",
+                           "status": "auth" if resp.status_code == 401 else "error"}
                     return
                 async for line in resp.aiter_lines():
                     if line.strip():
                         try:
                             yield json.loads(line)
                         except json.JSONDecodeError:
+                            log.warning("tutor agent sent a non-JSON line", extra={"event": "agent_bad_line", "bytes": len(line)})
                             continue
     except httpx.HTTPError as e:
-        yield {"t": "error", "message": f"Tutor nicht erreichbar ({type(e).__name__}). Läuft der Agent-Container?"}
+        log.error("tutor agent not reachable", exc_info=True, extra={"event": "agent_unreachable"})
+        yield {"t": "error", "message": f"Tutor nicht erreichbar ({type(e).__name__}). Läuft der Agent-Container?",
+               "status": tel.classify_error(e)}
 
 
 def save_images(chat_id: int, images: list[dict]) -> dict[str, int]:
@@ -161,8 +170,12 @@ def rewrite_image_refs(text: str, mapping: dict[str, int]) -> str:
 
 
 async def chat_turn(user: str, chat_id: int, text: str, photo_ids: list[int], mode: str,
-                    exercise_id: str | None = None) -> AsyncIterator[dict]:
-    """One chat message: store it, stream the tutor's answer, store that."""
+                    exercise_id: str | None = None, feature: str | None = None) -> AsyncIterator[dict]:
+    """One chat message: store it, stream the tutor's answer, store that.
+
+    Every turn is one AI call in the metrics (provider claude_code, feature = the mode or `feature`)."""
+    mode = mode if mode in MODES else "chat"
+    feature = feature or metrics.tutor_feature(mode)
     chat = db.q1("SELECT * FROM chats WHERE id=?", chat_id)
     db.insert("messages", chat_id=chat_id, role="user", content=text, attachments=photo_ids,
               meta={"mode": mode, "exercise_id": exercise_id}, created_at=time.time())
@@ -184,10 +197,15 @@ async def chat_turn(user: str, chat_id: int, text: str, photo_ids: list[int], mo
     blocks.append({"type": "text", "text": msg})
 
     acc, images, review, session, error = [], [], None, chat["agent_session"], None
+    started, first_text, done, status = time.monotonic(), None, None, None
     async for ev in run_agent(system_prompt(mode), blocks, chat["agent_session"]):
         t = ev.get("t")
         if t == "text":
+            if first_text is None:
+                first_text = time.monotonic() - started
             acc.append(ev["d"])
+        elif t == "tool":
+            metrics.tool_call(ev.get("name", ""))
         elif t == "image":
             images.append(ev)
             continue
@@ -195,13 +213,16 @@ async def chat_turn(user: str, chat_id: int, text: str, photo_ids: list[int], mo
             review = ev["data"]
             continue
         elif t == "done":
+            done = ev
             session = ev.get("session") or session
             if not acc and ev.get("text"):
                 acc.append(ev["text"])
             continue
         elif t == "error":
             error = ev["message"]
+            status = ev.get("status") or "error"
         yield ev
+    _record_turn(feature, done, status, time.monotonic() - started, first_text, chat_id)
     mapping = save_images(chat_id, images) if images else {}
     final = rewrite_image_refs("".join(acc), mapping)
     if mapping:
@@ -212,6 +233,25 @@ async def chat_turn(user: str, chat_id: int, text: str, photo_ids: list[int], mo
     if review is not None:
         yield {"t": "review", "data": review}
     yield {"t": "done", "message_id": mid}
+
+
+def _record_turn(feature: str, done: dict | None, status: str | None, seconds: float, first_text: float | None,
+                 chat_id: int) -> None:
+    """AI-call metrics from the agent's `done` line: Claude Code's usage and total_cost_usd."""
+    done = done or {}
+    status = status or done.get("status") or ("ok" if done else "error")
+    tel.record_llm("claude_code", done.get("model") or CFG.model, feature, done.get("usage"), status=status,
+                   duration=seconds, cost_usd=done.get("cost"))
+    if first_text is not None:
+        metrics.FIRST_TEXT.labels(feature).observe(first_text)
+    if done.get("turns"):
+        metrics.TUTOR_TURNS.labels(feature).observe(done["turns"])
+    extra = {"event": "tutor_turn", "feature": feature, "status": status, "chat": chat_id, "seconds": round(seconds, 2),
+             "turns": done.get("turns"), "cost": done.get("cost")}
+    if status == "ok":
+        log.info("tutor turn", extra=extra)
+    else:
+        log.error("tutor turn failed", extra=extra)
 
 
 def apply_review(user: str, ex: dict, review: dict, mode: str, review_id: int, exam_run_id: int | None = None,
@@ -236,6 +276,11 @@ def apply_review(user: str, ex: dict, review: dict, mode: str, review_id: int, e
                     score = min(score, 0.4 if verdict.status == "fast" else 0.2)
         correct = verdict.ok if verdict and verdict.status in ("richtig", "falsch", "fast") else ai_correct
         disagreement = verdict is not None and verdict.status in ("richtig", "falsch") and verdict.ok != ai_correct
+        metrics.answer(user, mode, ex.get("chapter"), "photo", "richtig" if correct else "falsch", r.get("error_category"))
+        if disagreement:
+            metrics.DISAGREEMENTS.labels(ex.get("chapter") or "other").inc()
+            log.warning("AI and checker disagree", extra={"event": "review_disagreement", "exercise": ex["id"], "part": lab,
+                                                          "ai_correct": ai_correct, "checker": verdict.status})
         aid = db.insert("attempts", user=user, exercise_id=ex["id"], part=lab, chapter=ex["chapter"], skills=ex.get("skills", []),
                         mode=mode, input=r.get("final_answer"), status="richtig" if correct else "falsch", score=score,
                         correct=1 if correct else 0, hints=0, solution_shown=0,

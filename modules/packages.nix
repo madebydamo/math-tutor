@@ -33,6 +33,7 @@
         numpy
         scipy
         matplotlib
+        prometheus-client
       ]);
 
     # App source and course content, without dev leftovers.

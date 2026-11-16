@@ -3,28 +3,50 @@ from __future__ import annotations
 
 import asyncio
 import datetime as dt
+import logging
+import threading
 import time
 
 import httpx
 
-from . import db, progress
+from . import db, metrics, progress
+from . import neo_telemetry as tel
 from .config import CFG
 from .content import content
+
+log = logging.getLogger("mathtutor.notify")
 
 
 def enabled() -> bool:
     return bool(CFG.telegram_token and CFG.telegram_chat) and db.get_setting("notify_enabled", True)
 
 
-def send(text: str):
+def send(text: str) -> bool:
+    """Send a message to the coach. Blocking (call it with asyncio.to_thread from async code).
+
+    Failures are logged (status and Telegram's description, never the token or the text) and counted."""
     if not enabled():
-        return
+        return False
     try:
-        httpx.post(f"https://api.telegram.org/bot{CFG.telegram_token}/sendMessage",
-                   json={"chat_id": CFG.telegram_chat, "text": text, "parse_mode": "HTML", "disable_web_page_preview": True},
-                   timeout=15)
-    except httpx.HTTPError:
-        pass
+        r = httpx.post(f"https://api.telegram.org/bot{CFG.telegram_token}/sendMessage",
+                       json={"chat_id": CFG.telegram_chat, "text": text, "parse_mode": "HTML", "disable_web_page_preview": True},
+                       timeout=15)
+    except httpx.HTTPError as e:
+        metrics.TELEGRAM.labels("exception").inc()
+        # the exception text holds the URL with the bot token: log the type only
+        log.error("telegram message failed", extra={"event": "telegram_failed", "error": type(e).__name__})
+        return False
+    if r.status_code != 200:
+        metrics.TELEGRAM.labels("http_error").inc()
+        try:
+            desc = str(r.json().get("description", ""))[:200]
+        except ValueError:
+            desc = ""
+        log.error("telegram refused the message", extra={"event": "telegram_failed", "http_status": r.status_code,
+                                                         "description": desc})
+        return False
+    metrics.TELEGRAM.labels("ok").inc()
+    return True
 
 
 def link(path: str) -> str:
@@ -33,7 +55,9 @@ def link(path: str) -> str:
 
 def promotion(user: str, rank: dict):
     if user == CFG.student_user and db.once(f"promo:{user}:{rank['id']}"):
-        send(f"🎖️ {CFG.student_name} wurde befördert: <b>{rank['name']}</b>")
+        # called from request handlers on the event loop: send in a thread, never block it
+        threading.Thread(target=send, args=(f"🎖️ {CFG.student_name} wurde befördert: <b>{rank['name']}</b>",),
+                         name="telegram-promotion", daemon=True).start()
 
 
 def struggle(user: str, skill: str):
@@ -87,14 +111,20 @@ def session_reminder():
             send(f"💤 {CFG.student_name} hat seit einer Woche nicht geübt – Session in 7 Tagen.")
 
 
+def _tick():
+    now = dt.datetime.now(progress.TZ)
+    if now.hour == 20:
+        daily_summary()
+    if now.hour == 18:
+        session_reminder()
+
+
 async def loop():
+    """Every 10 minutes: daily summary at 20:00, session reminders at 18:00 (job `notifications`)."""
     while True:
         try:
-            now = dt.datetime.now(progress.TZ)
-            if now.hour == 20:
-                await asyncio.to_thread(daily_summary)
-            if now.hour == 18:
-                await asyncio.to_thread(session_reminder)
-        except Exception as e:  # noqa: BLE001
-            print("notify loop:", e)
+            with tel.job("notifications"):
+                await asyncio.to_thread(_tick)
+        except Exception:  # noqa: BLE001 - logged and counted by tel.job; keep the loop alive
+            pass
         await asyncio.sleep(600)
