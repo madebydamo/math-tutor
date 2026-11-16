@@ -6,6 +6,10 @@ Tools:
   equivalent     are two expressions mathematically equal?
   plot           validate an interactive diagram and get the block to put into the answer
   submit_review  hand in the structured result of a correction (photo / written work)
+
+The server runs model-written code and expressions, so main() first cuts it and its children off the
+network (sandbox.deny_network): it only talks to Claude Code over stdio. Without that sandbox the
+`python` tool refuses to run.
 """
 from __future__ import annotations
 
@@ -20,8 +24,10 @@ import sympy as sp
 from mcp.server.fastmcp import FastMCP
 
 from .checker import ParseError, check, parse
+from .sandbox import deny_network
 
 mcp = FastMCP("math")
+SANDBOXED = False
 RUN_DIR = pathlib.Path(os.environ.get("MT_RUN_DIR", "/tmp/mt-run"))
 REVIEW_OUT = os.environ.get("MT_REVIEW_OUT")
 ERROR_CATEGORIES = {
@@ -49,6 +55,8 @@ def python(code: str) -> str:
     Use print() for results. To draw a static figure for the student, save it with
     plt.savefig('bilder/<name>.png', bbox_inches='tight') and reference it in your answer as ![Beschreibung](bild:<name>.png).
     No network access. Timeout 30 s."""
+    if not SANDBOXED:
+        return "Das Rechenwerkzeug ist gesperrt: die Netzwerk-Sperre liess sich nicht einrichten."
     RUN_DIR.mkdir(parents=True, exist_ok=True)
     (RUN_DIR / "bilder").mkdir(exist_ok=True)
     env = {"PATH": os.environ.get("PATH", "/bin"), "HOME": str(RUN_DIR), "MPLBACKEND": "Agg",
@@ -163,6 +171,13 @@ def submit_review(review: str) -> str:
 
 
 def main():
+    global SANDBOXED
+    try:
+        deny_network()
+        SANDBOXED = True
+    except OSError as e:  # stdout is the MCP channel: report on stderr (agent container log)
+        print(json.dumps({"level": "error", "logger": "mcp_math", "msg": "network sandbox not available",
+                          "event": "sandbox_failed", "error": str(e)}), file=sys.stderr, flush=True)
     mcp.run()
 
 
