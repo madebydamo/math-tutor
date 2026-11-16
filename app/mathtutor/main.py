@@ -2,8 +2,10 @@
 from __future__ import annotations
 
 import asyncio
+import hmac
 import io
 import json
+import os
 import random
 import time
 import uuid
@@ -18,6 +20,11 @@ from .config import CFG
 from .content import content, public_exercise, reload
 
 app = FastAPI(title="Mathe-Trainer", docs_url=None, redoc_url=None)
+
+# SWAG sends this secret with every proxied request (X-Neo-Proxy-Secret). Without it the identity
+# headers (Remote-User) are ignored: other containers (the tutor agent on the sandbox network) can
+# reach this port directly and must not pass as the student or a coach.
+PROXY_SECRET = os.environ.get("NEO_PROXY_SECRET", "")
 
 
 def _app_version() -> str:
@@ -46,7 +53,7 @@ async def _log_server_errors(request: Request, call_next):
         return await call_next(request)
     except Exception as e:  # noqa: BLE001
         try:
-            user = (request.headers.get("Remote-User") or request.cookies.get("mt_dev_user") or CFG.dev_user or "").lower()
+            user = _identity(request)
             db.insert("server_errors", user=user, method=request.method, path=str(request.url.path) + (f"?{request.url.query}" if request.url.query else ""),
                       error=f"{type(e).__name__}: {e}"[:500], traceback=traceback.format_exc()[-6000:], created_at=time.time())
         except Exception:  # noqa: BLE001
@@ -73,10 +80,22 @@ class Who(dict):
         return self["admin"]
 
 
-def who(request: Request) -> Who:
-    u = (request.headers.get("Remote-User") or "").strip().lower()
+def _from_proxy(request: Request) -> bool:
+    """The request came through SWAG: it carries the proxy secret (compared in constant time)."""
+    sent = request.headers.get("X-Neo-Proxy-Secret") or ""
+    return bool(PROXY_SECRET) and hmac.compare_digest(sent.encode(), PROXY_SECRET.encode())
+
+
+def _identity(request: Request) -> str:
+    """Signed-in user name, or "" (anonymous). Remote-User counts only on requests from SWAG."""
+    u = (request.headers.get("Remote-User") or "").strip().lower() if _from_proxy(request) else ""
     if not u and CFG.dev_user:  # local development only: switch user with /dev/as/<name>
         u = (request.cookies.get("mt_dev_user") or CFG.dev_user).strip().lower()
+    return u
+
+
+def who(request: Request) -> Who:
+    u = _identity(request)
     if not u:
         raise HTTPException(401, "Nicht angemeldet")
     admin = u in [a.lower() for a in CFG.admin_users]
@@ -1126,11 +1145,11 @@ async def http_exc(request: Request, exc: HTTPException):
 
 
 def run():
-    import os
-
     import uvicorn
+    # No proxy headers: the app never needs the client address, and trusting X-Forwarded-* from every
+    # peer would let any container spoof it.
     uvicorn.run("mathtutor.main:app", host="0.0.0.0", port=int(os.environ.get("MT_PORT", "8080")),
-                proxy_headers=True, forwarded_allow_ips="*", log_level="info")
+                proxy_headers=False, log_level="info")
 
 
 if __name__ == "__main__":

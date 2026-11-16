@@ -1,8 +1,14 @@
 # Mathe-Trainer implementation.
-# - `<name>-image` loads the Nix-built image under this copy's name and creates the
-#   `<name>-sandbox` network (agent only, no route to the other services).
-# - `<name>`: web app on `internal` (SWAG) and `<name>-sandbox` (to reach the agent).
-# - `<name>-agent`: Claude Code + math tools, only on `<name>-sandbox`.
+# - `<name>-image` loads the Nix-built image under this copy's name.
+# - `<name>`: web app on its service network `app-<name>` (SWAG, metrics) and on
+#   `<name>-sandbox` (to reach the agent).
+# - `<name>-agent`: Claude Code + math tools, only on `<name>-sandbox` (internet for
+#   Anthropic, no route to other services). Its maths tools run without any network
+#   (seccomp, app/mathtutor/sandbox.py).
+# Neo creates both networks from the containers' `networks` and removes them when the
+# service is off. The app trusts `Remote-User` only on requests that carry SWAG's
+# X-Neo-Proxy-Secret (generated secret `<name>-proxy`, see swag.nix), so the agent
+# cannot pass as a user by calling the app directly.
 {withSystem, ...}: {
   neoPlugin.modules.mathtutor = {
     config,
@@ -20,7 +26,7 @@
       image = withSystem pkgs.stdenv.hostPlatform.system ({config, ...}: config.packages.mathtutor-image);
       docker = "${config.virtualisation.docker.package}/bin/docker";
       localRef = "${name}:${image.imageTag}";
-      domain = config.neo.services.swag.domain or null;
+      publicUrl = lib.neo.publicUrl config cfg;
       hermes = config.neo.services.hermes or {};
       tgToken =
         if lib.neo.isSet cfg.telegramBotToken
@@ -52,7 +58,7 @@
           "neo.services.${name}: neither claudeToken nor anthropicApiKey is set; the tutor only works after an interactive login (docker exec -it ${agent} claude, then /login).";
 
         systemd.services."${name}-image" = {
-          description = "Load the Mathe-Trainer image and create its sandbox network";
+          description = "Load the Mathe-Trainer image";
           after = ["docker.service" "docker.socket"];
           requires = ["docker.service"];
           serviceConfig = {
@@ -63,7 +69,6 @@
             if ! ${docker} image inspect ${localRef} >/dev/null 2>&1; then
               ${image.copyTo}/bin/copy-to docker-daemon:${localRef}
             fi
-            ${docker} network inspect ${sandbox} >/dev/null 2>&1 || ${docker} network create ${sandbox} >/dev/null
             ${docker} image ls ${name} --format '{{.Repository}}:{{.Tag}}' \
               | grep -vxF ${localRef} \
               | xargs -r ${docker} rmi 2>/dev/null || true
@@ -96,11 +101,15 @@
             MT_ADMIN_USERS = concatStringsSep "," cfg.adminUsers;
             MT_MODEL = cfg.model;
             MT_TELEGRAM_CHAT = tgChat;
-            MT_PUBLIC_URL = optionalString (domain != null) "https://${cfg.subdomain}.${domain}";
+            MT_PUBLIC_URL =
+              if publicUrl == null
+              then ""
+              else publicUrl;
             TZ = config.neo.core.timeZone;
           };
           volumes = ["${appdata}/app:/data"];
-          networks = ["internal" sandbox];
+          # Service network first: SWAG and the metrics scrape use it.
+          networks = [(lib.neo.docker.serviceNetwork name) sandbox];
           extraOptions = ["--user=${user}"];
           dependsOn = [agent];
         };
@@ -119,9 +128,15 @@
           extraOptions = ["--user=${user}" "--memory=2g" "--pids-limit=512"];
         };
 
+        # Sent by SWAG with every proxied request (swag.nix); generated on the machine.
+        neo.core.secrets.generated."${name}-proxy" = {};
+
         neo.core.secrets.containerEnv = {
           ${name} =
-            {MT_AGENT_TOKEN = cfg.agentToken;}
+            {
+              MT_AGENT_TOKEN = cfg.agentToken;
+              NEO_PROXY_SECRET = lib.neo.secrets.mkPlaceholder "generated/${name}-proxy";
+            }
             // optionalAttrs (tgToken != null && tgToken != "") {MT_TELEGRAM_TOKEN = tgToken;};
           ${agent} =
             {MT_AGENT_TOKEN = cfg.agentToken;}
